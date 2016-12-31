@@ -193,9 +193,9 @@ while True:
 ########################################################
 ###   GETTXT   ###   MUST HAVE HTML2TEXT INSTALLED   ###
 ########################################################
-###    elif statement == "gettxt":
-###	bot.rhea()
-###	os.system("read -p 'Enter URL: ' url ; wget -qO- $url | html2text")
+    elif statement == "gettxt":
+        bot.rhea()
+	os.system("read -p 'Enter URL: ' url ; wget -qO- $url | html2text")
 ########################################################
 ### LIBRARY
 ########################################################
