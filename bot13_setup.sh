@@ -1,0 +1,1 @@
+pip install os ; pip install time ; pip install re ; pip install urllib ; pip install urllib2 ; pip install sys ; pip install random ; pip install math ; pip install subprocess ; pip install future ; pip install requests ; pip install ImageScraper ; pip install lxml 

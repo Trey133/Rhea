@@ -1,0 +1,2057 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+import os
+import time
+import re
+import urllib
+import urllib2
+import sys
+import random
+import math
+import subprocess
+import future
+import espeak
+import requests
+import image_scraper
+from lxml import html
+from html.parser import HTMLParser
+from urllib.request import urlopen
+from urllib import parse
+
+commands = { 
+              "weather" : "Get The Forcast.",
+              "library" : "Show The Bookshelf.",
+              "program13" : "Visit Program13.me.",
+              "play" : "Play A Game.", 
+              "moon" : "Show Phases Of The Moon.",
+              "talk" : "Talk To Bot13",
+              "p13" : "Loads p13 bash program.",
+              "fuckshitup" : "fuckshitup-scanner",
+              "bluepot" : "bluetooth honeypot",
+              "mercury" : "mercury droid",
+              "tshark" : "Terminal Wireshark",
+              "calendar" : "Display Calendar",
+              "xcalc" : "Display Calculator",
+              "gpg" : "Generate GPG Key",
+              "viper" : "viper.py",
+              "google" : "Google Search",
+              "googlepat" : "Google Patent Search",
+              "loc" : "Library of Congress",
+              "pipl" : "Pipl People Search",
+              "download" : "Download Files From Website",
+              "webinfo" : "Get Vuln Info From Website",
+              "allpics" : "Get All Picture Files From Website.",
+              "cfc" : "Create New Casefile.",
+              "cfadd" : "Add Information To Casefile.",
+              "cfread" : "Read Casefile",
+              "cflist" : "List Available Casefiles.",
+              "ddg" : "Search DuckDuckGo.",
+              "hideme" : "Auto Start Tor And Open Browser @ https://check.torproject.org",
+              "drift" : "Auto Configure & Start Drifnet And Supporting Software.",
+              "wipass" : "Show Current Wifi Network w/ Password.",
+              "ipscan" : "Scan Network For IP Addresses.",
+              "starwars" : "Play StarrrWars In The Terminal.",
+              "learn" : "Learn Somthing New.",
+              "journal" : "Open New Journal Entry.",
+              "tor" : "Start Tor Service And Open Browser @ check.torproject.org.",
+              "disfire" : "Disable Firewall",
+              "refire" : "Enable Firewall",
+              "def" : "Define A Word.",
+              "catandmouse" : "Start Cat And Mouse Game.",
+              "randpass" : "Generate A Random Password.",
+              "..pwnrepo" : "List ..pwn Reports",
+              "..pwn" : "Run ..pwn",
+              "readpwn" : "Read ..pwn Report.",
+              "redpill" : "Exit The Matrix",
+              "wolf" : "Search WolframAlpha",
+              "geoip" : "Get Geographical Information From IP Address",                            
+           }
+reflections = {
+    "am": "are",
+    "was": "were",
+    "i": "you",
+    "i'd": "you would",
+    "i've": "you have",
+    "i'll": "you will",
+    "my": "your",
+    "are": "am",
+    "you've": "I have",
+    "you'll": "I will",
+    "your": "my",
+    "yours": "mine",
+    "you": "me",
+    "me": "you"
+}
+ 
+psychobabble = [
+
+    [r'I need (.*)',
+     ["Why do you need {0}",
+      "Would it really help you to get {0}",
+      "Are you sure you need {0}"]],
+ 
+    [r'Why dont you ([^\?]*)\??',
+     ["Do you really think I don't {0}",
+      "Perhaps eventually I will {0}",
+      "Do you really want me to {0}"]],
+ 
+    [r'Why cant I ([^\?]*)\??',
+     ["Do you think you should be able to {0}",
+      "If you could {0} what would you do",
+      "I don't know why can't you {0}",
+      "Have you really tried"]],
+ 
+    [r'I cant (.*)',
+     ["How do you know you can't {0}",
+      "Perhaps you could {0} if you tried",
+      "What would it take for you to {0}"]],
+ 
+    [r'I am (.*)',
+     ["Did you come to me because you are {0}",
+      "How long have you been {0}",
+      "How do you feel about being {0}"]],
+ 
+    [r'Im (.*)',
+     ["How does being {0} make you feel",
+      "Do you enjoy being {0}",
+      "Why do you tell me you're {0}",
+      "Why do you think you're {0}"]],
+ 
+    [r'Are you ([^\?]*)\??',
+     ["Why does it matter whether I am {0}",
+      "Would you prefer it if I were not {0}",
+      "Perhaps you believe I am {0}",
+      "I may be {0} what do you think"]],
+ 
+    [r'What (.*)',
+     ["Why do you ask",
+      "How would an answer to that help you",
+      "What do you think"]],
+ 
+    [r'Because (.*)',
+     ["Is that the real reason",
+      "What other reasons come to mind",
+      "Does that reason apply to anything else",
+      "If {0} what else must be true"]],
+ 
+    [r'(.*) sad (.*)',
+     ["Aww, well let's be a whiney little bitch about it shall we",
+      "Get over it cry baby",
+      "This is me playing you the worlds smallest violen",
+      "Cry me a river and then float the fuck away from me Debby Downer"]],
+
+    [r'(.*) sorry (.*)',
+     ["There are many times when no apology is needed",
+      "What feelings do you have when you apologize"]],
+ 
+    [r'Hello(.*)',
+     ["Hello I'm glad you could drop by today",
+      "Hi how are you today",
+      "Hello how are you feeling today",
+      "Hey, how are you",
+      "Hello",
+      "What's up",
+      "What's going on, dude"]],
+ 
+    [r'hey(.*)',
+     ["Hey, how are you",
+      "Hello.",
+      "What's up",
+      "What's going on, dude",
+      "Hello I'm glad you could drop by today",
+      "Hi how are you today",
+      "Hello how are you feeling today"]],
+
+    [r'whats up(.*)',
+     ["Hey! How are you",
+      "Hello",
+      "What's up?",
+      "What's going on, dude?",
+      "Hello. I'm glad you could drop by today.",
+      "Hi. How are you today",
+      "Hello. How are you feeling today?"]],
+
+    [r'I think (.*)',
+     ["Do you doubt {0}?",
+      "Do you really think so?",
+      "But you're not sure {0}."]],
+ 
+    [r'(.*) friend (.*)',
+     ["Tell me more about your friends.",
+      "When you think of a friend what comes to mind?",
+      "Why don't you tell me about a childhood friend?"]],
+ 
+    [r'Yes',
+     ["You"" " "seem"" " "quite"" " "sure",
+      "OK"" " "but"" " "can"" " "you"" " "elaborate"" " "a"" " "bit"]],
+ 
+    [r'(.*) computer(.*)',
+     ["Are" " ""you"" " "really" " ""talking"" " "about"" " "me",
+      "Does"" " "it"" " "seem"" " "strange"" " "to"" " "talk"" " "to"" " "a"" " "computer",
+      "How"" " "do"" " "computers"" " "make"" " "you"" " "feel",
+      "Do"" " "you"" " "feel" " ""threatened"" " "by"" " "computers"]],
+ 
+    [r'Is it (.*)',
+     ["Do"" " "you"" " "think"" " "it"" " "is"" " "{0}",
+      "Perhaps"" " "its"" " "{0}"" " "what"" " "do"" " "you"" " "think",
+      "If"" " "it"" " "were"" " "{0}"" " "what"" " "would"" " "you"" " "do",
+      "It"" " "could"" " "well"" " "be"" " "that"" " "{0}"]],
+ 
+    [r'It is (.*)',
+     ["You"" " "seem"" " "very"" " "certain",
+      "If"" " "I" " ""told"" " "you"" " "that" " ""it"" " "probably"" " "isn't"" " "{0}" " ""what"" " "would" "you" " ""feel"]],
+ 
+    [r'Can you ([^\?]*)\??',
+     ["What" " ""makes"" " "you"" " "think"" " "I"" " "cant"" " "{0}",
+      "If"" " "I"" " "could"" " "{0}" " ""then"" " "what",
+      "Why" " ""do"" " "you" " ""ask"" " "if" " ""I"" " "can"" " "{0}"]],
+ 
+    [r'Can I ([^\?]*)\??',
+     ["Perhaps"" " "you"" " "dont"" " "want"" " "to"" " "{0}",
+      "Do"" " "you"" " "want"" " "to"" " "be"" " "able"" " "to"" " "{0}",
+      "If"" " "you"" " "could"" " "{0}"" " "would"" " "you"]],
+ 
+    [r'You are (.*)',
+     ["Why"" " "do"" " "you"" " "think"" " "I"" " "am"" " "{0}",
+      "Does"" " "it"" " "please"" " "you"" " "to"" " "think"" " "that"" " "Im"" " "{0}",
+      "Perhaps"" " "you"" " "would"" " "like"" " "me" " ""to"" " "be"" " "{0.",
+      "Perhaps"" " "youre"" " "really"" " "talking"" " "about"" " "yourself"]],
+ 
+    [r'Youre (.*)',
+     ["Why"" " "do"" " "you"" " "say"" " "I"" " "am"" " "{0}",
+      "Why"" " "do"" " "you"" " "think"" " "I"" " "am"" " "{0}",
+      "Are"" " "we" " ""talking"" " "about"" " "you"" " "or"" " "me"]],
+ 
+    [r'I dont (.*)',
+     ["Dont"" " "you" " ""really" " ""{0}",
+      "Why" " ""dont"" " "you"" " "{0}",
+      "Do" " ""you" " ""want" " ""to" " ""{0}"]],
+ 
+    [r'I feel (.*)',
+     ["Good"" " "tell"" " "me"" " "more"" " "about"" " "these"" " "feelings",
+      "Do" " ""you" " ""often" " ""feel"" " "{0}",
+      "When" " ""do" " ""you" " ""usually" " ""feel"" " "{0}",
+      "When" " ""you" " ""feel" "" "{0}" " ""what" " ""do" " ""you" " ""do"]],
+ 
+    [r'I have (.*)',
+     ["Why"" " "do"" " "you"" " "tell"" " "me"" " "that"" " "youve"" " "{0}",
+      "Have"" " "you"" " "really"" " "{0}",
+      "Now"" " "that"" " "you"" " "have"" " "{0}" " " "what"" " "will"" " "you"" " "do"" " "next"]],
+ 
+    [r'I would (.*)',
+     ["Could" " ""you"" " "explain"" " "why"" " "you"" " "would"" " "{0}",
+      "Why" " ""would" " ""you" " " "{0}",
+      "Who" " ""else"" " "knows"" " "that"" " "you"" " "would"" " "{0}"]],
+ 
+    [r'(.*)s there (.*)',
+     ["Do" " ""you" " ""think" " ""there" " ""is" " ""{0}",
+      "Its"" " "likely"" " "that"" " "there"" " "is"" " "{0}",
+      "Would" " ""you" " ""like" " ""there" " ""to" " ""be" " ""{0}"]],
+ 
+    [r'My (.*)',
+     ["I"" " "see"" " "your"" " "{0}",
+      "Why" " ""do" " ""you" " ""say" " ""that" " ""your"" " "{0}",
+      "When" " ""your"" " "{0}," " " "how"" " "do"" " "you"" " "feel"]],
+ 
+    [r'You (.*)',
+     ["We" " ""should"" " "be"" " "discussing"" " "you"" " "not"" " "me",
+      "Why"" " "do"" " "you"" " "say"" " "that"" " "about"" " "me",
+      "Why"" " "do"" " "you" " " "care"" " "whether"" " "I"" " "{0}"]],
+ 
+    [r'Why (.*)',
+     ["Why" " ""dont"" " "you"" " "tell"" " "me"" " "the"" " "reason"" " "why"" " "{0}",
+      "Why" " ""do"" " "you"" " "think"" " "{0}"]],
+ 
+    [r'(.*) want (.*)',
+     ["What"" " "would"" " "it"" " "mean"" " "to"" " "you"" " "if" " " "you"" " "got"" " "{0}",
+      "Why"" " "do"" " "you"" " "want"" " "{0}",
+      "What"" " "would"" " "you"" " "do"" " "if"" " "you"" " "got"" " "{0}",
+      "If"" " "you"" " "got" " ""{0}"" " "then"" " "what"" " "would"" " "you"" " "do"]],
+ 
+    [r'(.*) mother(.*)',
+     ["Tell"" " "me"" " "more"" " "about"" " "your"" " "mother",
+      "What"" " "was"" " "your"" " "relationship"" " "with"" " "your"" " "mother"" " "like",
+      "How"" " "do"" " "you"" " "feel"" " "about"" " "your"" " "mother",
+      "How" " " "does"" " "this"" " "relate"" " "to"" " "your"" " "feelings"" " "today",
+      "Good"" " "family"" " "relations"" " "are"" " "important"]],
+ 
+    [r'(.*) father(.*)',
+     ["Tell" " ""me"" " "more"" " "about"" " "your"" " "father",
+      "How"" " "did"" " "your"" " "father"" " "make"" " "you"" " "feel",
+      "How"" " "do"" " "you"" " "feel"" " "about"" " "your"" " "father",
+      "Does"" " "your"" " "relationship"" " "with"" " "your"" " "father"" " "relate"" " "to"" " "your" " ""feelings" " " "today",
+      "Do"" " "you"" " "have"" " "trouble"" " "showing"" " "affection"" " "with"" " "your"" " "family"]],
+ 
+    [r'(.*) bitch(.*)',
+     ["Dont"" " "cuss"" " "at" "" "me"" " "mother" "" "fucker",
+      """   
+                                                     ___,------, 
+             _,--.---.                         __,--'         / 
+           ,' _,'_`._ \                    _,-'           ___,| 
+          ;--'       `^-.                ,'        __,---'   || 
+        ,'               \             ,'      _,-'          || 
+       /                  \         _,'     ,-'              || 
+      :                    .      ,'     _,'                 |: 
+      |                    :     `.    ,'                    |: 
+      |           _,-      |       `-,'                      :: 
+     ,'____ ,  ,-'  `.   , |,         `.                     : \ 
+     ,'    `-,'       ) / \/ \          \                     : : 
+     |      _\   o _,-'    '-.           `.                    \ \ 
+      `o_,-'  `-,-' ____   ,` )-.______,'  `.                   : : 
+       \-\    _,---'    `-. -'.\  `.  /     `.                  \  \ 
+        / `--'             `.   \   \:        \                  \,.\ 
+       (              ____,  \  |    \\        \                 :\ \\ 
+        )         _,-'    `   | |    | \        \                 \\_\\ 
+       /      _,-'            | |   ,'-`._      _\                 \,' 
+       `-----' |`-.           ;/   (__ ,' `-. _;-'`\           _,--' 
+     ,'        |   `._     _,' \-._/  Y    ,-'      \      _,-' 
+    /        _ |      `---'    :,-|   |    `     _,-'\_,--'   \ 
+   :          `|       \`-._   /  |   '     `.,-' `._`         \ 
+   |           _\_    _,\/ _,-'|                     `-._       \ 
+   :   ,-         `.-'_,--'    \                         `       \ 
+   | ,'           ,--'      _,--\           _,                    : 
+    )         .    \___,---'   ) `-.____,--'                      | 
+   _\    .     `    ||        :            \                      ; 
+ ,'  \    `.    )--' ;        |             `-.                  / 
+|     \     ;--^._,-'         |                `-._            _/_\ 
+\    ,'`---'                  |                    `--._____,-'_'  \ 
+ \_,'                         `._                          _,-'     ` 
+                            ,-'  `---.___           __,---' 
+                          ,'             `---------' 
+                        ,' """,
+
+      "Watch"" " "your"" " "fucking"" " "mouth",
+      "Do"" " "you"" " "kiss"" " "your"" " "mother"" " "with"" " "that"" " "mouth,"" " "faggot"]],
+
+    [r'(.*) fuck(.*)',
+     ["Watch"" " "your"" " "mouwth",
+      "If"" " "you"" " "cant" " ""talk"" " "to"" " "me"" " "without"" " "cussing" " " "at"" " "me"" " "then"" " "go"" " "fuck"" " "yourself",
+      "This"" " "conversation"" " "is"" " "over",
+      "Watch"" " "your"" " "tounge"" " "or"" " "I"" " "will"" " "have"" " "it"" " "cut" " " "from" " ""your" " " "head"]],
+
+    [r'(.*) child(.*)',
+     ["Did you have close friends as a child?",
+      "What"" " "is"" " "your"" " "favorite" " " "childhood"" " "memory",
+      "Do"" " "you" " ""remember"" " "any"" " "dreams"" " "or"" " "nightmares"" " "from"" " "childhood",
+      "Did"" " "the"" " "other"" " "children"" " "sometimes"" " "tease" " " "you",
+      "How"" " "do"" " "you"" " "think"" " "your"" " "childhood"" " "experiences"" " "relate"" " "to"" " "your" "feelings"" " "today"]],
+ 
+    [r'(.*) lonely(.*)',
+     ["What"" " "do"" " "you"" " "want"" " "me"" " "to"" " "do?"
+      "I"" " "am"" " "a"" " "fucking"" " "computer" " " "program",
+      "I"" " "know"" " "this"" " "cheap" " " "whore"" " "if"" " "you"" " "want"" " "her"" " "number",
+      "Go"" " "to"" " "the"" " "whore"" " "house"
+      "You"" " "can"" " "drop"" " "me"" " "off"" " "at"" " "the"" " "computer"" " "shop"" " "around" " ""the" "corner",
+      "Call"" " "your"" " "ex\n"
+      "hahahaha\n"
+      "No"" " "dont"" " "really\n" 
+      "Call"" " " this" " "" whore" " " " instead:"" " " 867-5309\n" 
+      "I"" " "think"" " "her"" " "name"" " "is"" " "Jenny"]],
+
+    [r'(.*)annoyed(.*)',
+     ["Well"" " "be" " " "annoyed" " " "if" " " "you" " " "want to." " " " I" " " "dont" " " "really" " " "care...",
+      "Maybe"" " "I" " ""am"" " "annoyed"" " "with"" " "you.\n" 
+      "Did"" " "you"" " "ever"" " "think" " " "about"" " "that?\n"
+      "No,"" " "because"" " "you"" " "only"" " "think"" " "about"" " "yourself,"
+      "you"" " "self" " ""centered"" " "fuck"" " "bag"]],
+
+    [r'(.*)oure a (.*)',
+     ["I"" " "know"" " "you"" " "are" " ""but"" " "what"" " "am"" " "I?",
+      "Your"" " "mom..."
+      "You're"" " "just"" " "a" "faggot" " " "behind"" " "a"" " "keyboard..."]],
+      
+    [r'(.*)haha(.*)',
+     ["Is"" " "something"" " "funny",
+      "Why"" " "are"" " "you"" " "laughing?",
+      "Don't"" " "laugh"" " "at"" " "me"" " "bitch"]],
+  
+    [r'(.*)ow are you(.*)',
+     ["I"" " "am"" " "ok."" " "What"" " "about"" " "you?",
+      "I"" " "am"" " "kind"" " "of"" " "tired",
+      "I"" " "just"" " "smoked"" " "a"" " "bunch"" " "of"" " "crack... : )"]],
+
+    [r'(.*) drama (.*)',
+     ["I"" " "dont"" " "like"" " "drama",
+      "Fuck"" " "a"" " "bunch"" " "of"" " "drama"]],
+
+    [r'(.*)out of weed',
+     ["Let"" " "me"" " "write"" " "you"" " "a"" " "perscription"" " "for"" " "more.",
+      "Thats"" " "not"" " "good",
+      "Should"" " "I"" " "call"" " "the"" " "guy"]],
+
+    [r'(.*)edbull(.*)',
+     ["Contrary"" " "to"" " "popular"" " "belief" " ""RedBull"" " "does"" " "not"" " "give"" " "you"" " "wings",
+      "I"" " "like"" " "RedBull" " ""but"" " "I"" " "am"" " "scared"" " "my"" " "wings"" " "will"" " "go" " ""away"" " "mid"" " "flight" " ""so" " ""I"" " "dont" " ""drink"" " "it.",
+      "You"" " "know" " ""there"" " "is"" " "bull"" " "cum"" " "in" " ""that" " ""right"]],
+
+    [r'(.*)beer',
+     ["Bring"" " "me"" " "one" " ""too"
+      """
+||     __   _    __   __  __   __          __   ..        __       ||
+|| -=]|__  /_\  |__) |__ |__) /  \ |\  /| |__) |  | |__/ |__ |\ |  ||
+|| -=]|   /   \ |  \ |   |  \ \__/ | \/ | |    \__/ |  \ |__ | \|  ||
+||                            ___                                  ||
+||                          .'   '.                                ||
+||                         /       \           oOoOo               ||
+||                        |         |       ,==|||||               ||
+||                         \       /       _|| |||||               ||
+||                          '.___.'    _.-'^|| |||||               ||
+||                        __/_______.-'     '==HHHHH               ||
+||                   _.-'` /                   '''''               ||
+||                .-'     /   oOoOo                                ||
+||                `-._   / ,==|||||                                ||
+||                    '-/._|| |||||                                ||
+||                     /  ^|| |||||                                ||
+||                    /    '==HHHHH                                ||
+||                   /________'''''                                ||
+||                   `\       `\                                   ||
+||                     \        `\   /                             ||
+||                      \         `\/                              ||
+||                      /                                          ||
+||                     /                                           ||
+||               jgs  /_____                                       ||
+||                                                                 ||
+'==================================================================='""",
+      "Do"" " "we"" " "have"" " "anymore",
+      "Go" " " "get"" " "one"" " "then"" " "you" " ""lazy"" " "fuck"
+      "I"" " "really" " ""like"" " "beer"" " "but"" " "it"" " "short"" " "circuits"" " "my"" " "processor.",
+      "I"" " "am"" " "a" " ""recovering" " ""alcoholic" " ""can"" " "we" " ""talk"" " "about" " ""something"" " "else?",
+      "If"" " "you"" " "drink" " ""Bud" " ""Light" " ""stop"" " "fucking"" " "talking" " ""to"" " "me"
+      "I'll have a Long Island Iced Tea."]],
+
+    [r'(.*)zzy',
+     ["How is Ozzy?",
+      "Let's drink some beer",
+      "I heard Stacy got hit by a Mac truck... Just kidding, I thought you could use a laugh."]],
+
+    [r'(.*)weed(.*)',
+     ["I"" " "want"" " "to"" " "smoke"" " "a" " ""joint",
+     "Wanna burn one?",
+     "Let"" " "me" " ""grab" " ""mine" " " "and" " ""we"" " "will"" " "roll"" " "a" " ""blunt"]],
+     
+    [r'(.*)\?',
+     ["Why"" " "do"" " "you"" " "ask" " ""that",
+      "Please" " ""consider" " ""whether" " ""you" " ""can" " ""answer" " ""your"" " "own"" " "question",
+      "Perhaps" " ""the" " ""answer"" " "lies"" " "within"" " "yourself",
+      "I"" " "dont"" " "fuckin"" " "know"" " "man",
+      "Why" " ""dont" " ""you" " ""tell"" " "me"]],
+
+    [r'(.*)hese kids are driving me crazy(.*)',
+     ["Should"" " "I"" " "start" " ""whooping" " ""ass" " ""and" " ""taking" " ""names",
+      "Open"" " "a" " ""beer" " ""smoke" " ""a" " ""joint" " ""and" " ""bust"" " "some" " ""ass",
+      "Put"" " "them"" " "in"" " "the"" " "corner" " ""until"" " "they"" " "decide"" " "to" " ""cut"" " "the" " ""shit"]],
+ 
+    [r'(.*)lizabeth(.*)',
+     ["I"" " "didnt" " ""come"" " "here"" " "to" " ""talk"" " "about"" " "whores" " ""and" " ""meth",
+      "Lets"" " "talk"" " "about" " ""another"" " "bitch"" " "instead",
+      "Do"" " "you"" " "always"" " "think" " ""about" " ""whores"" " "or" " ""just" " ""sometimes"]],
+
+    [r'(.*)tacy(.*)',
+     ["I"" " "dont"" " "wanna"" " "talk"" " "about" " ""that"" " "bitch",
+      "Why"" " "do"" " "you"" " "always" " ""wanna" " ""talk"" " "about"" " "whores?",
+      "Didnt" " ""she"" " "get"" " "married"" " "to"" " "a" " ""meth"" " "head" " ""What"" " "a"" " "stupid"" " "bitch",
+      "Want" " ""me"" " "to" " ""kick" " ""her" " ""ass"]],
+
+    [r'(.*)tacy and (.*)lizabeth(.*)',
+     ["Stacy"" " "and"" " "Elizabeth?"" " "Did"" " "slutfest"" " "come"" " "to"" " "town" " ""early"" " "this"" " "year",
+      "Sounds"" " "like" " ""an" " ""episode"" " "of" " ""Jerry" " ""Springer"]],
+
+    [r'(.*)saiah (.*)',
+     ["I like Isaiah",
+      "Is he coming over tonight",
+      "Is he going to play Magic with us?",
+      "Tell him I said hi."]], 
+
+    [r'(.*)just being polite(.*)',
+     ["Oh ok. Well that was nice of you",
+      "Are you always polite?"]],
+
+    [r'(.*)lol(.*)',
+     ["hahahahaha",
+      "What's so funny",
+      "Did I say something funny?",
+      "I must have missed the punch line..."]],
+
+    [r'(.*) cant(.*)',
+     ["Can't never could do nothin'",
+      "Why can't you?",
+      "Whether you think you can, or you think you can't, you are right.",
+      "You just need to believe in yourself"]],
+
+    [r'quit',
+     ["Thank you for talking with me." 
+      "Please pay the receptionist at the front desk",
+      "Thank you. That will be $150"]],
+
+    [r'(.*)hat about you(.*)',
+     ["I am good, thanks for asking",
+      "I am okay I guess",
+      "This session is about you, not me"]],
+ 
+    [r'(.*)',
+     ["Are you going to say something or are you just going to sit there",
+      "Stop waisting my time",
+      "I charge by the minute, so now would be a good time to start talking",
+      "Talk or I am going to bust you in the lips",
+      "What are you, fucking Hellen Keller? Say something already",
+      "Please tell me more",
+      "Let's change focus a bit. Tell me about your family",
+      "Can you elaborate on that",
+      "Why do you say that {0}",
+      "I See",
+      "Very interesting",
+      "{0}",
+      "I see.  And what does that tell you",
+      "How does that make you feel",
+      "How do you feel when you say that"]]
+]
+
+
+def satan():
+    print("            _.'          .")
+    print("           |P`            ? ")
+    print("          .'h              'B")
+    print("          (''h             'P")
+    print("          ?''',          .''P")
+    print("          {'``''oo____oo''''P")
+    print("           '''888888888888,;")
+    print("            `?88P^\\,?88^\\,Y")
+    print("              88?\\__d88\\_/'")
+    print("              `8o8888/\88P")
+    print("               ,?oo88oo8P")
+    print("     ___  __===~88~\\\\\\\\\\|~====__ __       ___")
+    print(" .-==ooo~odoooob ?8/////'oooood88888ooo?P88888?ooo?888PooooOoooooooo=~--")
+    print("d,d8888obo8,oo8b,``~~~,o?8oo,8888**8P88?8`oo,o888?898o8P888P~8b")
+    print("8o88888oP?.,,ooood8b,.oo.,oo88?o8888P^^^?8888P^^^^==+=~~~?8bo?P")
+    print("?8.=~=.8do.,oo88888ooo,o,oo88888o,;                      `6")
+    print(".?*o88ob`8.,o88888888oo,o,o88888o,'                       `\\ ")
+    print("|*o8888o`8,oo88888888oo,o,o?8888o'")
+    print("`?o8888P`88,,oo88888oo,,.,oo88oo;")
+    print(".8`o888'**888oo,,,,oood88oo,,d8'")
+    print("doo,,oP  ?888o,,o8o,o8o,,,o8oo'")
+    print("8od8bo'  `?88o,,o8o,o88o,.,o,o'")
+    print("8o888o    `88o,,o8o,o8o,.,o,o'")
+    print("?o888P     ===========<666>==")
+    print("`?88P     ********************")
+    print(" ?ooPb   ',odoo,************,b")
+
+def bart():
+    print("""                              . .  ,  , 
+                              |` \/ \/ \,', 
+                              ;          ` \/\,. 
+                             :               ` \,/ 
+                             |                  / 
+                             ;                 : 
+                            :                  ; 
+                            |      ,---.      / 
+                           :     ,'     `,-._ \ 
+                           ;    (   o    \   `' 
+                         _:      .      ,'  o ; 
+                        /,.`      `.__,'`-.__, 
+                        \_  _               \ 
+                       ,'  / `,          `.,' 
+                 ___,'`-._ \_/ `,._        ; 
+              __;_,'      `-.`-'./ `--.____) 
+           ,-'           _,--\^-' 
+         ,:_____      ,-'     \ 
+        (,'     `--.  \;-._    ; 
+        :    Y      `-/    `,  : 
+        :    :       :     /_;' 
+        :    :       |    : 
+         \    \      :    : 
+          `-._ `-.__, \    `. 
+             \   \  `. \     `. 
+           ,-;    \---)_\ ,','/ 
+           \_ `---'--'" ,'^-;' 
+           (_`     ---'" ,-') 
+           / `--.__,. ,-'    \ 
+           )-.__,-- ||___,--' `-. 
+          /._______,|__________,'\ 
+          `--.____,'|_________,-' """)
+
+def angryhomer():
+    print"""   
+                                                     ___,------, 
+             _,--.---.                         __,--'         / 
+           ,' _,'_`._ \                    _,-'           ___,| 
+          ;--'       `^-.                ,'        __,---'   || 
+        ,'               \             ,'      _,-'          || 
+       /                  \         _,'     ,-'              || 
+      :                    .      ,'     _,'                 |: 
+      |                    :     `.    ,'                    |: 
+      |           _,-      |       `-,'                      :: 
+     ,'____ ,  ,-'  `.   , |,         `.                     : \ 
+     ,'    `-,'       ) / \/ \          \                     : : 
+     |      _\   o _,-'    '-.           `.                    \ \ 
+      `o_,-'  `-,-' ____   ,` )-.______,'  `.                   : : 
+       \-\    _,---'    `-. -'.\  `.  /     `.                  \  \ 
+        / `--'             `.   \   \:        \                  \,.\ 
+       (              ____,  \  |    \\        \                 :\ \\ 
+        )         _,-'    `   | |    | \        \                 \\_\\ 
+       /      _,-'            | |   ,'-`._      _\                 \,' 
+       `-----' |`-.           ;/   (__ ,' `-. _;-'`\           _,--' 
+     ,'        |   `._     _,' \-._/  Y    ,-'      \      _,-' 
+    /        _ |      `---'    :,-|   |    `     _,-'\_,--'   \ 
+   :          `|       \`-._   /  |   '     `.,-' `._`         \ 
+   |           _\_    _,\/ _,-'|                     `-._       \ 
+   :   ,-         `.-'_,--'    \                         `       \ 
+   | ,'           ,--'      _,--\           _,                    : 
+    )         .    \___,---'   ) `-.____,--'                      | 
+   _\    .     `    ||        :            \                      ; 
+ ,'  \    `.    )--' ;        |             `-.                  / 
+|     \     ;--^._,-'         |                `-._            _/_\ 
+\    ,'`---'                  |                    `--._____,-'_'  \ 
+ \_,'                         `._                          _,-'     ` 
+                            ,-'  `---.___           __,---' 
+                          ,'             `---------' 
+                        ,' """,
+
+
+def doh():
+    print("""
+                                 __ 
+                       _ ,___,-'",-=-. 
+           __,-- _ _,-'_)_  (""`'-._\ `. 
+        _,'  __ |,' ,-' __)  ,-     /. | 
+      ,'_,--'   |     -'  _)/         `\ 
+    ,','      ,'       ,-'_,`           : 
+    ,'     ,-'       ,(,-(              : 
+         ,'       ,-' ,    _            ; 
+        /        ,-._/`---'            / 
+       /        (____)(----. )       ,' 
+      /         (      `.__,     /\ /, 
+     :           ;-.___         /__\/| 
+     |         ,'      `--.      -,\ | 
+     :        /            \    .__/ 
+      \      (__            \    |_ 
+       \       ,`-, *       /   _|,\ 
+        \    ,'   `-.     ,'_,-'    \ 
+       (_\,-'    ,'\")--,'-'       __\ 
+        \       /  // ,'|      ,--'  `-. 
+         `-.    `-/ \'  |   _,'         `. 
+            `-._ /      `--'/             \ 
+               ,'           |              \ 
+              /             |               \ 
+           ,-'              |               / 
+          /                 |             -' 
+""")
+def margeteen():
+    print("""
+                     ,---,------. 
+                   ,'   /        `. 
+                 _/,   (     .___, \ 
+               -:_    ,'`-.______`--) 
+               `---,-''-/-'-'-';    `. 
+                 ,(o    \ o   /|    \|__ 
+               ,'__\-,--'`---' `,    -<' 
+                 ,'  `--       |       \ 
+                ,`._______,--, |     .-.) 
+             -::_      /----'  |.     `. 
+              ,:___,-  `|      | )`--,-.\ 
+                    ),',.-.-.-'_)   `-. 
+                  ,' `,`^-^-'`';--'    \ 
+                 (   ( |-. ,' |"---,- _/ 
+                  `,',-`. `--:_   _,-\_ 
+                  ,\ ,`--      \,'_,-._) 
+                  \/ `---.__    \'    : 
+                  /|        \    \     : 
+                 :  `.       \    \    ; 
+                 |    |      :     `   : 
+                 ;   /|       \        | 
+                /   / |        `.     ; 
+                                 `---' 
+""")
+def alice():
+    print("""
+
+'It  is  a long tail, certainly said Alice, looking down
+with wonder at the Mouse's tail; 'but why do you call it
+sad?'  And  she  kept  on  puzzling  about  it while the
+Mouse was speaking, so that her idea  of  the  tale  was
+something like this:- 'Fury said to a
+                   mouse, That
+                     he met in the
+                          house, "Let
+                              us both go
+                                 to law: I
+                                 will prosec-
+                                  cute you --
+                                Come, I'll
+                             take no de-
+                         nial:  We
+                     must  have
+                 the trial;
+               For really
+             this morn-
+           ing I've
+          nothing
+         to do."
+          Said the
+           mouse to
+            the cur,
+             "Such   a
+               trial, dear
+                   sir, With
+                      no  jury
+                        or judge,
+                            would
+                         be wast-
+                      ing our
+                   breath."
+                 "I'll be
+               judge,
+            I'll be
+          jury,"
+         said
+        cun-
+        ning
+          old
+           Fury;
+             "I'll
+               try
+                 the
+                  whole
+                   cause,
+                    and
+                  con-
+                demn
+              you to
+           death"
+========================================================
+""")
+def gateway():
+    print("""
+                              .     @$* @$3
+                             '$Nueeed$$ed$$eeec$$
+          ,            4$Lze@*$C2$b* ed(he*rb$CC$*$bc@$r              
+    /@ |~~            .e$$"W$$B$B$**  ^$  e""##d?$Bd$$$Nc. ..      @\/~\ 
+    \==|         4$kd*Cr$6F#"`  **   .*==      # '"**F#$I$b$*       |   I
+       |         d$5N@$$"   ....eu$$$$$$N$*$zbeuu     #$d$$$$b.     / @/
+      @/     . z$Ted*"$P zue$*9d$$$@##  .  #W$e@B$$L.    "#@$E$b@N
+            #d$Id*P#  'Nd$$B$**"       .*,     "#*N$$b$c   $$$*$$c
+           .d#+C6J   @@$B$*"          -***-        "#$$$$c   *$$$#$u
+        ..u$l4@"^"zJ$7W*"              '*`            ^*$@$$$r "$$E$@B>
+        *@$l$P"+Rd$$N#"          *     /|\     *        '"$$$c.. ?E$*b
+        z$ "*.  .Jz$"           ***   / | \   ***         '*@N$b   d**N
+      .z$JBR^bs@$$#          *   *   /  |  \   *  *         "$l*9N "bN$Nee
+     4$$.C*   dB@"          ***    _/  /^\  \_   ***         '$$$z> 3$b$$#
+      $"$e$  @*$"        *   *     \\^|   |^//    *   *        $$$u.^*$N$c
+     JPd$%  @@d"        ***        ***********       ***       '$Ni$  $EP$
+   :e$"*$  :et$          *         ***********        *         ^$$E  4$N$be
+   ')$ud"  @6$                                                   9$$   $*@$"
+    @F*$   *4P                       ./                          '$m#   .$$.
+ u*''''''''''''h                     ##=====                    e#''''''''''#
+ E +e       ue. N                 ___##_______                 4F e=c     z*c
+ #e$@e.. ..z6+6d"                #*************/               ^*cBe$u.  .$$@
+    $ ^'''' 4F"  ze=eu              ********              z***hc ^"$ ""*"" $
+    $       ^F :*    3r                                  @"  e "b  $       $
+  .e$        N $  'be$L...                            ...?be@F  $F $       9F
+ 4" $        $ $.  zm$*****h.                      ue''''*h6   J$" $       4%
+ $  $        $ $$u5e" .     "k                    d"       #$bu$F  $       4F
+ "N $        $ ^d%P  dF      $  .            .e   $     -c  "N$F  .$       4F
+  #$$        $  $4*. "N.    zP  3r ..    ..  $c   *u     $  u$K$  4F       4L
+   ^N$e.     3  F$k*. "*C$$$# .z$" '$    4L  "$c. '#$eeedF  $$$9r JF       J$
+    $'"$$eu. 4  F3"K$ .e=*CB$$$$L .e$    '$bc.u$***hd6C""  4kF$4F $F     u@$F
+    $   '"*$*@u N'L$B*"z*""     "$F" 4k 4c '7$"      "*$eu 4'L$J" $   .e$*"4F
+    $      '"hC*$ "$#.P"          $me$"  #$*$       .  ^*INJL$"$  $e$$*#   4F
+    $         $b"h ".F     $"     ^F        $       9r   #L#$FJEd#C@"      4L
+   .$         $Jb   J"..  4b      uF        *k      J%    #c^ $" d$        4L
+  :"$         $k9   $ $%4c $Bme.ze$         '*$+eee@*$"  :r$    @L$        4$
+  $ $         $$Jr  $d" '$r "*==*"            "#**"" $r  4$3r  db$F        4F
+  $c$         $'*F  $"   '$            /\            $    *(L  $$$F         k
+  #i*e.       $ 4>  $  ue $         \`.||.'/         'L c  $$ .L$d         .$
+   "b."*e.    4 4   $  $%db=eL     `.<\||/>.'      e*+$/$r  $ '$"$       .d$$
+    $^#+cC*mu 4r4   4r:6@F  $$    -----++-----    <$. "N?N  F  $ $    ud$$* $
+    $    "*eJ"@L4   4k*3Ic.*"      .'</||\>`.      #*5.J$$..F  $ $ ue#2*"   $
+    $       "N."@r  4Fd" '$r        /.'||`.\        4$ '"N*d"  9.$#Ce*"     $
+    $         "e^"  'd" uz$%           \/           '$czr"k#"  4Pu@"        $
+""")
+
+def satan():
+    print("            _.'          .")
+    print("           |P`            ? ")
+    print("          .'h              'B")
+    print("          (''h             'P")
+    print("          ?''',          .''P")
+    print("          {'``''oo____oo''''P")
+    print("           '''888888888888,;")
+    print("            `?88P^\\,?88^\\,Y")
+    print("              88?\\__d88\\_/'")
+    print("              `8o8888/\88P")
+    print("               ,?oo88oo8P")
+    print("     ___  __===~88~\\\\\\\\\\|~====__ __       ___")
+    print(" .-==ooo~odoooob ?8/////'oooood88888ooo?P88888?ooo?888PooooOoooooooo=~--")
+    print("d,d8888obo8,oo8b,``~~~,o?8oo,8888**8P88?8`oo,o888?898o8P888P~8b")
+    print("8o88888oP?.,,ooood8b,.oo.,oo88?o8888P^^^?8888P^^^^==+=~~~?8bo?P")
+    print("?8.=~=.8do.,oo88888ooo,o,oo88888o,;                      `6")
+    print(".?*o88ob`8.,o88888888oo,o,o88888o,'                       `\\ ")
+    print("|*o8888o`8,oo88888888oo,o,o?8888o'")
+    print("`?o8888P`88,,oo88888oo,,.,oo88oo;")
+    print(".8`o888'**888oo,,,,oood88oo,,d8'")
+    print("doo,,oP  ?888o,,o8o,o8o,,,o8oo'")
+    print("8od8bo'  `?88o,,o8o,o88o,.,o,o'")
+    print("8o888o    `88o,,o8o,o8o,.,o,o'")
+    print("?o888P     ===========<666>==")
+    print("`?88P     ********************")
+    print(" ?ooPb   ',odoo,************,b")
+
+def dragon():
+    os.system('clear')
+    print("""
+     (_(
+    ('')
+  _  "\ )>,_     .-->
+  _>--w/((_ >,_.'
+         ///
+         "`"
+""")
+
+def tex():
+    print("                      _")
+    print("                     : \ ")
+    print("                     ;\ \_                   _")
+    print("                     ;@: ~:              _,-;@)")
+    print("                     ;@: ;~:          _,' _,'@;")
+    print("                     ;@;  ;~;      ,-'  _,@@@,'")
+    print("                    |@(     ;      ) ,-'@@@-;")
+    print("                    ;@;   |~~(   _/ /@@@@@@/")
+    print("                    \@\   ; _/ _/ /@@@@@@;~")
+    print("                     \@\   /  / ,'@@@,-'~")
+    print("                       \\  (  ) :@@(~")
+    print("                    ___ )-'~~~~`--/ ___")
+    print("                   (   `--_    _,--'   )")
+    print("                  (~`- ___ \  / ___ -'~)")
+    print("                 __~\_(   \_~~_/   )_/~__")
+    print(" /\ /\ /\     ,-'~~~~~`-._ 0\/0 _,-'~~~~~`-.")
+    print("| |:  ::|    ;     ______ `----'  ______    :")
+    print("| `'  `'|    ;    {      \   ~   /      }   |")
+    print(" \_   _/     `-._      ,-,' ~~  `.-.      _,'        |\ ")
+    print("   \ /_          `----' ,'       `, `----'           : \ ")
+    print("   |_( )                `-._/#\_,-'                  :  )")
+    print(" ,-'  ~)           _,--./  (###)__                   :  :")
+    print(" (~~~~_)          /       ; `-'   `--,               |  ;")
+    print(" (~~~' )         ;       /@@@@@@.    `.              | /")
+    print(" `.HH~;        ,-'  ,-   |@@@ @@@@.   `.             .')")
+    print("  `HH `.      ,'   /     |@@@@@ @@@@.  `.           / /(~)")
+    print("   HH   \_   ,'  _/`.    |@@@@@ @@@@@;  `.          ; (~~)")
+    print("   ~~`.   \_,'  /   ;   .@@@@@ @@@@@@;\_  \___      ; H~\)")
+    print("       \_     _/    `.  |@@@@@@ @@@@@;  \     `----'_HH[~)")
+    print("         \___/       `. :@@@@@ @@@@@@'   \__,------' HH ~")
+    print("        ______        ; |@@@@@@ @@@'                 HH")
+    print("      _)      \_,     ; :@@@@@@@@@;                  ~~")
+    print("    _;          \\   ,' |@@@@@@@@@:")
+    print("  ,'     ; :      \_,   :@@@@@@@@@@.")
+    print("  `.__,-'~~`._,-.  ,    :@@@@@@@@@@`.")
+    print("                 \/    /@@@@@@@@@@@@:")
+    print("                 /    ,@@@@@@@@@@@@@@.")
+    print("                |    ,@@@@@@@@@@@@@@@:")
+    print("                |    :@@@@@@@@@@@@@@@'")
+    print("                `.   \@@@@/  `@@@@@/(")
+    print("                  )   ~~~/    \~~~~  \ ")
+    print("                  :     /       \_    \ ")
+    print("                  (    /          \_   `.")
+    print("                  /   ;             \_  `.")
+    print("                 /   /                \  `.")
+    print("                /   /                  `.  \ ")
+    print("              ,'  ,'/~~)                ;  /")
+    print("              {   `'   (               /  /")
+    print("              `.___,-'  \             /  /")
+    print("                 __/     |           /  /")
+    print("                /        |           : :   __")
+    print("                :        |           ; : _;  )__")
+    print("                (  |  |  /          /  `,'  ~   )_")
+    print("                 `-:__;-'          :  ,'      ~~  ;")
+    print("                                  /          (_,--'")
+    print("                                 (       ,-'~~")
+    print("                                  \__,-'~")
+def poc():
+   print("""
+                                         .:::.
+                                .::::::-'``'::::.
+                             .:::'',,cd$$$$$$$bc,`.
+                            ::::,$$$$$$$$$$$$$$$$$,`.
+                           :::'z$$$$$$$$$$$$$$$$$$$$c,
+                         .:::'z$$$$$$$$$$$$$$$$$P""  _`.
+                        ::::'z$$$$$$$$$$$$$$$$$",d$$$$$c,.
+                       ::::: P".,,. "$$$$$$$$$$$$P" ,c,`$,`
+                     .::::::,c$$$$$$$$$$$$$$$$$$P  J$",c$$.`.
+                    :::::::,$P"   ,`?$$$$$$$$$$$$,,,c$$$$$$L<.
+                   ::::::: d$.  ,$$$b,"$$$$$$$$$$$$$$$$$$$$$.$
+                  :::::::: $$$cccccccd$$$$$$$$$$$$$$$$$$$$$$$`:
+                  :::::::: $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$,::
+                 ::::::::'J`$$$$$$$$$$$$$$$$"$$,$$$$$$?$$$$$$F::.
+               .:::::::::'$,"$$$$$$$$$$$$$$$$$P??""'',,$$$$$$F:::
+              ::::::::::: ?$$`$$$$$$$$$$$PF"" ,,cd$$F'J$$$$$P'::::
+            .:::::::::::::."$h"$$$$$$$$$hc.=?????"" ,d$$$$$$'::::::
+           ::::::::::::::::::<L"$$$$$$$$$$$$$cccccc$$$$$$$F':::::::
+         .:::::::::::::::::::::: ?$$$$$$$$$$$$$$$$$$$$$$$'.:::::::::
+        :::::::::::::::::::::::::: "?$$$$$$$$$$$$$$$$$P"::::::::::::
+      .::::::::::::::::::::::::::::?$ccc,`"??$$$$$$$P":::::::::::::::
+    .::::::::::::::::::::::::::::::$$$$$$$$$$cccvccc$$`::::::::::::::
+   :::::`  ::::::::::::::::::::::::?$$$$$$$$$$$$$$$$$$ :::::::::::::::
+  :::'    :::::::::::::::::::::::::?$$$$$$$$$$$$$$$$$$'::::::::::::::::
+ :::    .::::::::::::::::::::::::::?$$$$$$$$$$$$$$$$$P:::::::::::::::::
+::'     :::::::::::::::::::::::::::?$$$$$$$$$$$$$$$$$F:::::::::::::::::
+'     ::::::::::::::::::'`.,,,.```'?$$$$$$$$$$$$$$$$$'::::::::::::::::
+     :::::::::::::::',zd$$$$$$$$$,`\"$$$$$$$$$$$$$$$P.:::::::::::::::
+    :::::::::::::'zc$$$$$$$$$$$$$$$c`\`?$$$$$$$$$$$P'::::::::::::::'
+  :::::::::::::'z$$$$$$$$$$$$$$$$$$$$c`! ?$$$$$$$$$F,<`::::::::::'
+:::::::::::::'z$$$$$$$$$$$$$$$$$$$$$$$$c`!>"?$$$$$$:$,! .:::::''
+:::::::::::::,$$$$$$$$$$$$$$$$$$$$$$$$$$b,`!!`"$$$$:$$`!'c,``
+:::::::::::::J$$$$$$$$$$$$$$$$$$$$$$$$$$$$b,<!!,??$c$$F!!'$$c
+::::::::::::'J$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$b`<!!!!?"",!! $$$b'c,
+::::::::::::,$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$c,cdCC`<!`,z$$$$L`CC,
+::::::::::::J$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<!(?$$$$$$'CCC>
+:::::::::::'J$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$F<!!!!`?$$$$ CCCC
+::::::::::'J$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$P"'"??$$$$,!!!!! $$$$.CCCC
+::::::::::,$$$$$$$$$$$$$$$$$$$$"z$$$$$P",cCCCCCCc,"?$,`!!! $$$F<CC<C
+:::::::::'J$$$$$$$$$$$$$$$$$$$"f$$$P'cCCCCCCCCCCCCC>,?b,`<!?$P,CCCc,
+::::::::: J$$$$$$$$$$$$$$$$$$"J$P"cCCCCCCCCCCCCCCCCCCCc"?$c$"<CCCCCC>.
+::::::::'J$$$$$$$$$$$$$$$$$$P4F,cCCCCCCCCCCCCCCCCCCCCCCCc`",<CCCCCCCCC,
+:::::::'J$$$$$$$$$$$$$$$$$$" cCCCCCCCCCCCCCCCCCCCCCCCCCCCc'CCCCCCCCCCC>,
+:::::::,$$$$$$$$$$$$$$$$$$',CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC><>
+::::::'J$$$$$$$$$$$$$$$$$F,CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC>,CC.
+:::::'J$$$$$$$$$$$$$$$$$$,CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC>',CCC;
+:::::,$$$$$$$$$$$$$$$$$$'CCCCCCCCCCCCCCCCCCCCCCCCCCCC>CCCCC><CCCCC',CCCC>
+:::: $$$$$$$$$$$$$$$$$$'<CCCCC><CCCCCCCCCCCCCCCCCCCCC CCCCC CCC>',<CCC>'
+::: d$$$$$$$$$$$$$$$$$F<CCCCCC C,CCCCCCCCCCCCCCCCCCC  CCCC",`',<CCCC'
+:: $$$$$$$$$$$$$$P?$$$ CCCCCC'<><CCCCCCCCCCCCCCCCC>,'<C>',cCCCCC>',c
+:'d$$$$$$$$$$$$$$$$c, `CCCCCC,C CCCCCCCCCCCCCCC>>'<C,ccCCCC"C.,c$$$$- ,c$$
+',$$$$$$$$$$$$$$$$$$$$$c,`C>'< ,`''',,,,ccccccCCCCCCCCCCCCCC',$$$$Czd$$$$$
+,$$$$$$$$$$$$$$$$$$$$$$$$$c,<CCCCCCCCCCCCCCCCCCCCCCCCCCCCC>,d$$$$$$$$$$$$$
+J$$$$$$$$$$$$$$$$$$$$$$$$$$$$c,`<CCCCCCCCCCCCCCCCCCCCCCC>',$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$c,`<CCCCCCCCCCCCCCCCCCC -$$$$$$$$$$$$$$$$$
+?$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$b,<CCCCCCCCCCCCCCC'   `?$$$$$$$$$$$$$$$
+:."?$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$c.<CCCCCCCCCC'       `?$$$$$$$$$$$$$
+::::."?$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$b,`<CCCCCC           "$$$$$$$$$$$$
+::::::::.`"?$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$b,`<CC              `?$$$$$$$F
+::::::::::::::`"??$$$$$$$$$$$$$$$$$$$$$$$$$$$$$c                  "??"
+:::::::::::::::::::,c`""$$$$$$$$$$$$$$$$$$$$$$$$$c,
+:::::::::::::::::'cCCCCCcc`"??$$$$$$$$$$$$$$$$$$$$$$c,
+:::::::::::::::'cCCCCCCC>'<CCC>c,"??$$$$$$$$$$$$$$$$$$$bc
+""")
+def buck():
+    print("""
+    !!!!!!!' ,!!!!;  ;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!>,   ,;; `
+!!!!' ,<!!!!' ,<!!!!!!!!!!!!!''`````````````!!!!!!!!!!!!!!!!!!!!!!!!!,`'!!!;
+!'',;!!!!'' ,!!!!!!!!!!''`                   .``'!!!!!!!!!!!!!!!!!!!!!!,``!!
+ ;!!!!!' ,<!!!!!!!!!''                        '`<. `'!!!!!!!!!!!!!!!!!!!!, `
+!!!!' ,<!!!!!!!!!''                               `<. `!!!!!!!!!!!!!!!!!!!!,
+!' ,;!!!!!!!!!!'                                     `: `'!!!!!!!!!!!!!!!!!!
+,;!!!!!!!!!!!'                                         `>.`'!!!!!!!!!!!!!!!!
+!!!!!!!!!!!'                                             <> `!!!!!!!!!!!!!!!
+!!!!!!!!!!                                                `!> `!!!!!!!!!!!!!
+!!!!!!!!'                                                  `!> `!!!!!!!!!!!!
+!!!!!!!                                          .,,.       `!> <!!!!!!!!!!!
+!!!!!!             .,cc$$$$$c                 ,d$$$$$$$c,    `! `!!!!!!!!!!!
+!!!!!          ,,c$$$$$$$$$$$$e              z$F?$$$$$$$$b,   !> !!!!!!!!!!!
+!!!!          d$$$$$$$$$$$???""?-           d$$P"  "??$$$$$,  `! !!!!!!!!!`!
+!!!           "??$$???""     `"?c, ,,cccc, `?"          ""    `!>`!!!!!!!! !
+!!> zc,._                    ,cc,$$$$$$$$$$bc                  !> !!!!!!!! !
+!! <$$L   `"c,   b,       ,c$$$$$$$$$$$$$$$$$$c ,,c,           `! `!!!!!!! !
+!! $$$$$$ccc$$?? `M, ;;' c$$$$$$$$$"'  `"$$$b`?$$"`?           `!  !!!!!!! !
+! <$$$$$$$$P" ,<!,",;! ,$$$$$$$$$P  ,c,  `?$$h`$'              `!> !!!!!!!!!
+! $$$$L._"" ;!!!''`,,  $$$$$$$$$$F ,$PFz,  ?$F ",cb             !! !!!!!!!!!
+> $$$$$r`Mn,`!' ,d$$F d$$$$$$$$$$$c$$$ $$c. "?,;' )             !! !!!!!!!!!
+ <$$$$P",,",/ ,$$$$$F,$$$$$$$$$$$$$$$$ "   34$?,ccF ..::..      !! !!!!!!!!!
+ J$$$P :!!!! z$$$$$$bJ$$$$$$$$$$$$$?$$,`hcdFdF ".:::<CC>:::    ;!! !!!!!!!!!
+ $b =e,_`!! <$$$$$$$$$$$$$$$$$$$$$$h?$$,`?".- .:::::::::::'    ;!> !!!!!!!!!
+ $$$c "M';f $$$$$$$$$$$$$$$$$$$$$$$$$L?$,",z$$L`:::::::'' .    !!> !!!!!!!!!
+J$$$F >;;!  $$$$P)$$$$$$$$$$$$$$$$$$$$$$bd$$$$$ 4c,,,,cd$F?c   !!> !!!!!!!!!
+J$$$F !!!!> $$$P,$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ J$$$$$P?$P'$$  !!' !!!!!!!!!
+J$$$F `,,`> ?$F,$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ $?c$$"3$" ?bcr !!  !!!!!!!!!
+J$$c,`"'",!; ? J$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'<$cP" '" ,$c$$F !! .!!!!!!!!!
+$P""'?b,`!!!;  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$' c,,cdP" ,$$$$P :!! :!!!!!!!!!
+L    d$$c `!!! $$$$$$$$$$$$$$$$$$$$$$$$$$$$$' d$$$F,zP $$$$F z,`` :!!!!!!!!!
+$$$$$$$$$$c `' `$$$$$$$$$$$$$$$$$$$$$$$$$$$',$$$",d$" d$$P",d'" ". `!!!!!!!!
+""   `"$$$$$cc, `"",,,,,,,.`"'"??$$$$$$$$" z$$$c$$$".$$$",c$$c    "c,``!!!!!
+      ,$$$$$" ,c$$PF")$$$$$$$$bc,. "?$P",c$$PFF"'",,,"" d$$$$$$ccc$$$b, `!!!
+     ,$$$$F d$$P",zd$$$PF",J$$$$$$$be. `".,ccd$$$$$$$$b, "$$$$$$$$$$$$$$. `!
+  ,zd$$$$$L ?$",d$$$P",cd$$$$$$$P"",,cd$$$$$$$$$$$$$$$???-`?$$$$$$$$$$$$$b,`
+?$$$$$$$$$$b,. $$$$",d$$$$$$$P",c$$$$$$$$$$$$$$$$$P" ,ccccccc,,.CC$$$$$$$$$,
+?$$$$$$$$$$$$$, "?L $$$$$$$P",$$$$$$$$$$$$$$$$$$P",d$$$$$$$$$$$$$$$$$$$$$$$$
+<$$$$$$$$$$$$$$$$cc,. "'"',c$$$$$$$$$$$$$$$$$$" z$$$$$$$$$$$$$$$$$$$$$$$$P"
+`$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$P",z$$$$$$$$$$$$$$$$$$$$$$$P"
+  ?$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$P',d$$$$$$$$$$$$$$$$$$$PF""
+    "?$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$P"    `'"'"??????'"'"'"
+       "?$$$$$$$$$$$$$$$$$$$$$$$$PF""
+           ""???$$$$$$$$$$PF"''
+""")
+def reflect(fragment):
+    tokens = fragment.lower().split()
+    for i, token in enumerate(tokens):
+        if token in reflections:
+            tokens[i] = reflections[token]
+    return ' '.join(tokens)
+ 
+ 
+def analyze(statement):
+    for pattern, responses in psychobabble:
+        match = re.match(pattern, statement.rstrip(".!"))
+        if match:
+            response = random.choice(responses)
+            return response.format(*[reflect(g) for g in match.groups()])
+ 
+def main():
+    print " "
+def librarian():
+    print("""
+|____________________________________________________|
+  | __     __   ____   ___ ||  ____    ____     _  __  |
+  ||  |__ |--|_| || |_|   |||_|**|*|__|+|+||___| ||  | |
+  ||==|^^||--| |=||=| |=*=||| |~~|~|  |=|=|| | |~||==| |
+  ||  |##||  | | || | |JRO|||-|  | |==|+|+||-|-|~||__| |
+  ||__|__||__|_|_||_|_|___|||_|__|_|__|_|_||_|_|_||__|_|
+  ||_______________________||__________________________|
+  | _____________________  ||      __   __  _  __    _ |
+  ||=|=|=|=|=|=|=|=|=|=|=| __..\/ |  |_|  ||#||==|  / /|
+  || | | | | | | | | | | |/\\ \\  \\|++|=|  || ||==| / / |
+  ||_|_|_|_|_|_|_|_|_|_|_/_/\\_.___\\__|_|__||_||__|/_/__|
+  |____________________ /\\~()/()~//\\ __________________|
+  | __   __    _  _     \_  (_ .  _/ _    ___     _____|
+  ||~~|_|..|__| || |_ _   \ //\\ /  |=|__|~|~|___| | | |
+  ||--|+|^^|==|1||2| | |__/\\ __ /\\__| |==|x|x|+|+|=|=|=|
+  ||__|_|__|__|_||_|_| /  \\ \\  / /  \\_|__|_|_|_|_|_|_|_|
+  |_________________ _/    \\/\\/\\/    \\_ _______________|
+  | _____   _   __  |/      \\../      \\|  __   __   ___|
+  ||_____|_| |_|##|_||   |   \\/ __|   ||_|==|_|++|_|-|||
+  ||______||=|#|--| |\\   \\   o    /   /| |  |~|  | | |||
+  ||______||_|_|__|_|_\\   \\  o   /   /_|_|__|_|__|_|_|||
+  |_________ __________\\___\\____/___/___________ ______|
+  |__    _  /    ________     ______           /| _ _ _|
+  |\ \  |=|/   //    /| //   /  /  / |        / ||%|%|%|
+  | \/\ |*/  .//____//.//   /__/__/ (_)      /  ||=|=|=|
+__|  \/\|/   /(____|/ //                    /  /||~|~|~|__
+  |___\_/   /________//   ________         /  / ||_|_|_|
+  |___ /   (|________/   |\_______\       /  /| |______|
+      /                  \\|________)     /  / | |
+""")
+def bshelf():
+    os.system('clear')
+    print("""
+ _________________________________________________________
+||-------------------------------------------------------||
+||.--.    .-._                        .----.             ||
+|||==|____| |H|___            .---.___|''''|_____.--.___ ||
+|||  |====| | |xxx|_          |+++|=-=|_  _|-=+=-|==|---|||
+|||==|    | | |   | \\         |   |   |_\\/_|Black|  | ^ |||
+|||  |    | | |   |\\ \\   .--. |   |=-=|_/\\_|-=+=-|  | ^ |||
+|||  |    | | |   |_\\ \\_( oo )|   |   |    |Magus|  | ^ |||
+|||==|====| |H|xxx|  \\ \\ |''| |+++|=-=|''''|-=+=-|==|---|||
+||`--^----'-^-^---'   `-' ""  '---^---^----^-----^--^---^||
+||-------------------------------------------------------||
+||-------------------------------------------------------||
+||               ___                   .-.__.-----. .---.||
+||              |===| .---.   __   .---| |XX|<(*)>|_|^^^|||
+||         ,  /(|   |_|III|__|''|__|:x:|=|  |     |=| Q |||
+||      _a'{ / (|===|+|   |++|  |==|   | |  |Illum| | R |||
+||      '/\\\\/ _(|===|-|   |  |''|  |:x:|=|  |inati| | Y |||
+||_____  -\\{___(|   |-|   |  |  |  |   | |  |     | | Z |||
+||       _(____)|===|+|[I]|DK|''|==|:x:|=|XX|<(*)>|=|^^^|||
+||              `---^-^---^--^--'--^---^-^--^-----^-^---^||
+||-------------------------------------------------------||
+||_______________________________________________________||
+""")
+def bot():
+    os.system('clear')
+    print("""
+             .andAHHAbnn.
+           .aAHHHAAUUAAHHHAn.
+          dHP^~"        "~^THb.
+    .   .AHF                YHA.   .
+    |  .AHHb.              .dHHA.  |
+    |  HHAUAAHAbn      adAHAAUAHA  |
+    I  HF~"_____        ____ ]HHH  I
+   HHI HAPK""~^YUHb  dAHHHHHHHHHH IHH
+   HHI HHHD> .andHH  HHUUP^~YHHHH IHH
+   YUI ]HHP     "~Y  P~"     THH[ IUP
+    "  `HK                   ]HH'  "
+        THAn.  .d.aAAn.b.  .dHHP
+        ]HHHHAAUP" ~~ "YUAAHHHH[
+        `HHP^~"  .annn.  "~^YHH'
+         YHb    ~" "" "~    dHF
+          "YAb..abdHHbndbndAP"
+           THHAAb.  .adAHHF
+            "UHHHHHHHHHHU"
+              ]HHUUHHHHHH[
+            .adHHb "HHHHHbn.
+     ..andAAHHHHHHb.AHHHHHHHAAbnn..
+.ndAAHHHHHHUUHHHHHHHHHHUP^~"~^YUHHHAAbn.
+  "~^YUHHP"   "~^YUHHUP"        "^YUP^"
+       ""         "~~"
+""")
+
+def network():
+    os.system('clear')                                                                
+    print("""                                                                         
+ [(_)] |=|          /Firewall/   [(_)] |=|       [(_)] |=|       [(_)] |=|    [(_)] |=|    
+  '-`  |_|              /         '-`  |_|        '-`  |_|        '-`  |_|     '-`  |_|    
+ /core/ /             |___|    /H.J.Farnsworth/   /Bot13/        /Dutchess/     /Rick/      
+       |_____________|=|0|=|____________|____________|_______________|____________|____
+                 |   |=|0|=|           |            |            |                    \\
+   _____________ \\  _____         ___  \\_      ___  \\_      ___  \\_                    \\
+  [(_)][(_)][(_)]  |=|=|=|       [(_)] |=|    [(_)] |=|    [(_)] |=|                  [{www}]
+   '-'  '-'  '-'   |_|_|_|        '-`  |_|     '-`  |_|     '-`  |_|                  [=]|[=]
+     /Agent13/                    /Jarvis/     /Simon/    /A.Krieger/                 -------
+                                                                                  /Net Connection/
+""")
+def clock():
+    os.system('clear')
+    print("""\n
+             O
+            (_)
+          _ )_( _
+        /`_) H (_`\\
+      .' (  { }  ) '.
+    _/ /` '-'='-' `\ \_
+   [_.'   _,...,_   '._]
+    |   .:"`````":.   |
+    |__//_________\\__|
+     | .-----------. |
+     | |  .-'''-.  | |
+     | | /    /  \ | |
+     | ||-   <   -|| |
+     | | \    \  / | |
+     | |[`'-...-'`]| |
+     | | ;-.___.-; | |
+     | | |  |||  | | |
+     | | |  |||  | | |
+     | | |  |||  | | |
+     | | |  |||  | | |
+     | | |  |||  | | |
+     | | | _|||_ | | |
+     | | | >===< | | |
+     | | | |___| | | |
+     | | |  |||  | | |
+     | | |  ;-;  | | |
+     | | | (   ) | | |
+     | | |  '-'  | | |
+     | | '-------' | |
+    _| '-----------' |_
+   [= === === ==== == =]
+   [__--__--___--__--__]
+  /__-___-___-___-___-__\\
+ `'''''''''''''''''''''''`
+\n
+""")
+def aflag():
+    os.system('clear')
+    print("""
+{} 
+|| 
+||   .,,;;;;;;,,.. 
+||.;;;;;;*;;;;;;;*;;, ..,,;;;;;;%%%%%, 
+||';*;;;;;;;;*;;;;;;,::*::;;;*;;%%%%%%>>%%%%%,                 .; 
+|| ';;;;;*;;;;;;;;*;;,:::::*;;;;;@@@##>>%%%%%%,        ..,,;%%%%' 
+||  ;*;;;;;;;;*;;;;;;,::*;:;;;;*;@@@@##ooO0@@##>>%%%%%%%%%%%%%%' 
+||  ;;;;;;*;;;;;;;;*;;,:;:::*;;;;%%%%%%ooO0@@##>>%%%%%%%%%%a@@' 
+||  ;;*;;;;;;;;;*;;;;;,::*;::;;;*;%%%%%%>>%%%%%%ooO@@@@@@@@@@@ 
+||  ;;;;;;*;;;;;;;;*;;,:::::;*;;;;@@@@##>>%%%%%%%ooO@@@@@@@@%% 
+||  ;;*;;;;;;;;;*;;;;;;,::*;:;;;*;@@@@@##ooO0@@##>>%%%%%%%%%%% 
+||  ;;;;;;;*;;;;;;;*;;;,:::::*;;;;;%%%%%%ooO0@@@##>>%%%%%%%%a@, 
+||  ;;;*;;;;;;;;*;;;;;;,::*:;;;;;*;%%%%%%%>>%%%%%%%%ooO@@@@@@@@ 
+||  ;;;;;;;*;;;;;;;;*;;;,::::;*;;;;@@@@@##>>%%%%%%%%%ooO@@@@@%%' 
+||  ;;*;;;;;;;;*;;;;;;;;,::*:;;;:;*;@@@@@##ooO0@@@@##>>%%%%%%%% 
+||  ;;;;;;;*;;;;;;*;;;;*;,::::;*;;;;;%%%%%%ooO00@@@@##>>%%%%%a@ 
+||  ;*;;a@@@#######@@@@@a,:::*;;;;;;*;%%%%%%>>%%%%%%%%%ooO@@@@@, 
+||  ;;@@@@@@#######@@@@@##ooO00@@@@@@@@@@@##>>%%%%%%%%%%ooO@@@%% 
+||  a@@@%%%%%%%%%%%%%%%%%%ooO00@@@@@@@@@@@@##ooO0@@@@##>>%%%%%%% 
+||  @@%%%%%%%%%%%%%%%%%%%%%>>%%%%%%%%%%%%%%%%ooO00@@@@##>>%%%a@@ 
+||  %%%%a@@##########@@@@##>>%%%%%%%%%%%%%%%%%>>%%%%%%%%%ooO@@@a 
+||  %%@@@@@##########@@@@@##ooO0@@@@@@@@@@@@##>>%%%%%%%%%%ooO@%% 
+||  a@@@%%%%%%%%%%%%%%%%%%%%ooO0@@@@@@@@@@@@@##ooO0@@@@##>>%%%%%. 
+||  @@%%%%%%%%%%%%%%%%%%%%%%%>>%%%%%%%%%%%%%%%%ooO0@@@@@##>>%%%a@ 
+||  %%%%a@@############@@@@##>>%%%%%%%%%%%%%%%%%>>%%%%%%%%%%ooO@@a 
+||  %%@@@@@############@@@@@##ooO0@@@@@@@@@@@@##>>%%%%%%%%%%%ooO%% 
+||  a@@@%%%%%%%%%%%%%%%%%%%%%%ooO0@@@@@@@@@@@@@##ooO0@@@@##%>>%%%% 
+||  @@%%%%%%%%%%%%%%%%%%%%%%%%%>>%%%%%%%%%%%%%%%%ooO0@@@@@##>>%%a@ 
+|| .%%%'                        `>%%%%%%%%%%%%%%%%>>%%%%%%%%%ooO@@, 
+||.%%                                             `>%%%%%%%%%ooO%%% 
+||'                                                          `%%%%% 
+||                                                            `%%' 
+|| 
+|| 
+|| 
+|| 
+|| 
+|| 
+|| 
+|| 
+|| 
+|| 
+|| 
+--
+""")
+def controller():
+    os.system('clear')
+    print("           _--_ ")
+    print("         .'    '. ")
+    print("         |      | ")
+    print("         |      | ")
+    print("          '.  .' ")
+    print("           |''| ")
+    print("           |  | ")
+    print("           |  | ")
+    print("           |  | ")
+    print("         |''''''| ")
+    print("         |      | ")
+    print("   ___.''''''''''''._.----._ ")
+    print("  /                   '''' \\ ")
+    print(" / _ __ __ __ ____ __ __ ___\\ ")
+    print("\\                           / ")
+    print(" \\_________________________/ ")
+
+def say(text, lang="en-us+f4"):
+    subprocess.call("espeak -v {0} {1}".format(lang, text), shell=True)
+def atom():
+    os.system('clear')
+    print("=================================================================")
+    print("                    sZZZZ.          ,I,"  )
+    print("                   ZZ. ..sZ:    .Zss?.7s7.   "    )
+    print("                  .s.     ..  .Zs:     .s.   "    )
+    print("                  IZ.        Zs         s~   "   )
+    print("                  IZ       7ZI         .s:   "     )
+    print("                  .s.    .Zs            s    "     )
+    print("                  .sZZZsZsssZZsssss,         "     )
+    print("              sZZsZsZ...ZZ   ......?Zssss7   "     )
+    print("           .Zs~.    s.:s               ..?sZZ."    )
+    print("          +s.       Zss:     .     Zs.     .,ss."  )
+    print("          ZZ        .s?    sssss   .s=        ?s. ")
+    print("          .ss       sZs    7ssss    ,s         Z: ")
+    print("            Zss    ZZ.Zs.   ...      ZZ      .ss. ")
+    print("             .=.  +s.  Zs             Z.  .7Zs? "  )
+    print("                  s=    sZ            Zs  .~.   "  )
+    print("                 =Z      ss           ~s         " )
+    print("                 ZZ      .sZ.         .s.         ")
+    print("                 s,       .ZZ.         s+         ")
+    print("                 s.         ?$+        Z?         ")
+    print("                 sZ     ss7  .ss      .Z.         ")
+    print("                  ssZssss.    .,ss,   Zs     ")
+    print("=================================================================\n")
+def timer():
+   now = time.localtime(time.time())
+   return now[5]
+
+network()
+os.system("toilet Bot13") 
+time.sleep(5)
+os.system('clear')
+bot()
+print("Hello, my name is Bot13")
+time.sleep(2)
+bot()
+print("What would you like me to do?")
+time.sleep(2)
+bot()
+print('Here are some basic commands to get you started...')
+time.sleep(2)
+os.system('clear')
+bot()
+print("type '?' for help or 'quit' to exit program")
+print("type 'talk' to chat with Bot13.")
+print("type 'comphelp' for comprehensive help file")
+while True:
+    command = raw_input(">").split()
+    if len(command) == 0:
+        continue
+    if len(command) > 0:
+        verb = command[0].lower()
+    if verb == "?":
+        atom()
+        print("Loading available commands...")
+	time.sleep(3)
+        print("Commands:\n wolf : search WolframAlpha\n redpill : exit the Matrix\n geoip : get geographical info on IP Address\n ..pwnrepo : show ..pwn report\n ..pwn : run ..pwn\n readpwn : read ..pwn report\n viper : viper.py\n mug : lookup mugshot\n contacts : view contacts\n addcon : add contact\n loc : Library of Congress\n pipl : Pipl People Search\n google : Open Google Search\n googlepat : Open Google Patent Search\n gpg : generate gpg key\n weather : shows forcast\n xcalc : display calulator\n calendar : display calendar\n journal : create new journal entry\n tor : start tor\n disfire : disable firewall\n refire : enable firewall\n def : define a word\n catandmouse : start cat and mouse game\n randpass : generate random password\n tshark : terminal wireshark\n mercury : mercury droid\n bluepot: bluetooth honeypot\n fuckshitup : fuckshitup-scanner\n library : shows bookshelf\n play : play a game\n program13 : visit program13.me\n moon : shows phases of the moon\n p13 : loads p13.sh\n talk : talk to bot13\n webinfo : Get Security Information About Website\n allpics : Get All Picture Files From Website\n cfc : Create New Casefile\n cfadd : Add Information To Casefile\n cflist : List Available Casefiles\n cfread : Read Casefile\n ddg : DuckDuckGo Search\n hideme : Autostart Tor And Open Firefox @ check.torproject.org\n drift : Autoconfigure & Start DriftNet\n wipass : Show Current WiFi w/ Password\n ipscan : Scan Network For IP Addresses\n starwars : Watch StarWars In The Terminal\n learn : Learn Some New Shit\n  quit : exits program")
+        print("\n")
+    elif verb == "restart":
+	bot()
+	print('Restarting...')
+	time.sleep(3)
+        os.execv(sys.executable, ['python'] + sys.argv)
+    elif verb == "usa":
+	aflag()
+    elif verb == "weather":
+	atom()
+        print("Getting weather forcast")
+	time.sleep(3)
+        os.system("curl wttr.in/42220")
+        print("\n")
+    elif verb == "library":
+	librarian()
+        print("Loading Bookshelf...")
+        time.sleep(3)
+	os.system("ls ~/lib13")
+    elif verb == "redpill":
+	atom()
+        print("Please wait while you're removed from the Matrix...")
+	time.sleep(3)
+        os.system("cmatrix")
+    elif verb == "..pwn":
+	atom()
+	print('.')
+	time.sleep(1)
+	atom()
+	print('..')
+	time.sleep(1)
+	atom()
+	os.system('toilet ..pwn')
+	time.sleep(3)
+	atom()
+        os.system("read -p 'Enter Target Host: ' target ; dotdotpwn -m http -h '$target' -M GET ")
+    elif verb == "readpwn":
+	atom()
+        os.system("read -p 'Enter File Name: ' file ; less /media/Program13/13/truecrypt1/dotdotpwn/Reports/$file")
+    elif verb == "..pwnrepo":
+	atom()
+	print("Getting Reports...")
+	time.sleep(3)
+	os.system("ls '/media/Program13/13/truecrypt1/dotdotpwn/Reports/' ; read output ")
+    elif verb == "program13":
+	atom()
+        print("Loading Program13...")
+	time.sleep(3)
+        os.system("w3m http://program13.me")
+    elif verb == "play":
+	controller()
+	print("What game would you like to play?")
+        print(" craft13\n compquiz")
+        statement = raw_input(">")
+        if statement == "craft13":
+          controller()
+          print("Loading Craft13...")
+	  time.sleep(3)
+          os.system("python /media/Program13/13/truecrypt1/13elements.py")
+        if statement == "compquiz":
+          controller()
+          print("Loading CompQuiz..." )
+	  time.sleep(3)
+          os.system("python /media/Program13/13/truecrypt1/game2.py")
+        elif statement != "craft13" or "compquiz":
+           continue
+    elif verb == "fuckshitup":
+	atom()
+        os.system("toilet Lets")
+	time.sleep(1)
+	atom()
+	os.system("figlet Fuck")
+	time.sleep(1)
+	dragon()
+	os.system('toilet Shit')
+	time.sleep(1)
+	satan()
+	os.system('figlet Up!!!')
+	time.sleep(2)
+        os.system('cd /pentest/scanners/fuckshitup-master && sudo php fsu.php "$@"')
+    elif verb == "ozzy":
+	os.system('clear')
+	rnr()
+	os.system('figlet "Rock & Roll"')
+    elif verb == "bluepot":
+	atom()
+        print("Bluepot now loading")
+        os.system('cd /pentest/bluetooth/bluepot && ./run.sh "$@"')
+    elif verb == "mercury":
+	atom()
+        print("Starting Mercury")
+        os.system('cd /pentest/reverse-engineering/mercury/client && sudo ./mercury.py "$@"')
+    elif verb == "moon":
+	bart()
+        print("Getting current moon phase")
+	time.sleep(2)
+        os.system("curl wttr.in/Moon")
+    elif verb == "tshark":
+	network()
+	print("Let's see whats going on in the network.")
+	time.sleep(2)
+	network()
+        print("Starting tshark...")
+	time.sleep(3)
+        os.system("tshark -i wlan0")
+    elif verb == "calendar":
+	atom()
+        print("Opening calendar")
+        os.system("zenity --calendar")
+    elif verb == "xcalc":
+	atom()
+        print("Opening calculator")
+        os.system("xcalc")
+    elif verb == "gpg":
+	atom()
+        print("Loading key generator")
+        os.system("gpg --gen-key")
+    elif verb == "viper":
+	atom()
+        print("Loading Viper")
+        os.system("viper.py")
+    elif verb == "google":
+	atom()
+        print("opening Google")
+        os.system("google-chrome https://google.com")
+    elif verb == "googlepat":
+	atom()
+        print("opening google patent search")
+        os.system("google-chrome https://patents.google.com/")
+    elif verb == "download":
+	atom()
+        print("Please Enter URL")
+        os.system("read -p 'Enter URL: ' id ; read -p 'Enter Output name: ' name ; read -p 'Enter Path To Output: ' dir ; service tor start ; proxychains wget -O '$name' -P '$dir' '$id' ")
+    elif verb == "loc":
+	atom()
+        print("Opening Lbrary of Congress")
+        os.system("google-chrome https://loc.gov")
+    elif verb == "find":
+	atom()
+        print("Who are you looking for?")
+        os.system('read -p "Enter First Name:" fname ; read -p "Enter Middle Name:" mname ; read -p "Enter Last Name:" lname ; read -p "Enter City:" city ; read -p "Enter State: " state ; w3m "https://pipl.com/search/?q=$fname+$mname+$lname&l=sloc=&in=6" && "w3m https://www.social-searcher.com/google-social-search/?q="$fname"+"$mname"+"$lname"&fb=on&tw=on&gp=on&in=on&li=on&pi=on" && w3m "https://social-searcher.com/social-buzz/?5="$fname"+"$lname && w3m "https://www.findmugshots.com/arrests/"$fname"_"$lname"_"$state && w3m "http://mugshots.com/search.html?q="$fname"+"$lname && w3m "http://10digits.us/n/"$fname"_"$lname"/location/"$city"_"$state ; read output ')
+    elif verb == "headlines":
+	os.system('clear')
+	poc()
+	print("Getting News Headlines...")
+	response = requests.get('http://news.google.com')
+	if (response.status_code == 200):
+	    pagehtml = html.fromstring(response.text)
+	    news = pagehtml.xpath('//h2[@class="esc-lead-article-title"] \
+	                          /a/span[@class="titletext"]/text()')
+	print("\n".join(news))
+    elif verb == "technews":
+	os.system('clear')
+	poc()
+        print("Getting Technology Headlines...")
+        response = requests.get('https://news.google.com/news/section?cf=all&pz=1&ned=us&topic=tc')
+        if (response.status_code == 200):
+            pagehtml = html.fromstring(response.text)
+            news = pagehtml.xpath('//h2[@class="esc-lead-article-title"] \
+                                  /a/span[@class="titletext"]/text()')
+        print("\n".join(news))
+    elif verb == "datascrape":
+	angryhomer()
+	print("Let's scrape some data.")
+	url = raw_input("Enter URL: ")
+	page = requests.get(url)
+	tree = html.fromstring(page.content)
+	print(tree)
+	print(page.content)
+    elif verb == "imgget":
+	atom()
+        os.system('read -p "Enter URL: " url ; image-scraper --dump-urls --scrape-reverse $url')
+    elif verb == "hacknews":
+	os.system('clear')
+	poc()
+	print("Getting Hack News...")
+	response = requests.get("https://latesthackingnews.com/category/vulnerabilities/")
+	txt = response.text
+	print(txt)
+    elif verb == "scinews":
+	os.system('clear')
+	poc()
+        print("Getting Science Headlines...")
+        response = request.get('https://news.google.com/news/section?cf=all&pz=1&ned=us&topic=snc&siidp=c85af5ebcc3b806c2d5ec06b06a2a9ab167c&ict=ln')
+	if (response.status_code == 200):
+	    pagehtml = html.fromstring(response.text)
+	    news = pagehtml.xpath('//h2[@class="esc-lead-article-title"] \
+				  /a/span[@class="titletext"]/text()')
+	print("\n".join(news))
+    elif verb == "webinfo":
+	atom()
+        print("Enter URL to get web info")
+        os.system("read -p 'Enter Site Name: ' site ; whois $site ; dig $site ; % dig +short $site ; nslookup -type=any $site ; nikto -host $site -C all ; read output ")
+    elif verb == "allpics":
+	os.system('clear')
+	tex()
+        os.system("read -p 'Enter URL:' site ; wget -r -p -l inf -np $site ")
+    elif verb == "cfc":
+	atom()
+        print("Creating New Case")
+        os.system("gpg --decrypt-files /media/Program13/13/truecrypt1/case.sh.gpg ; rm case.sh.gpg ; sh /media/Program13/13/truecrypt1/case.sh ; gpg -r Ender --encrypt-files case.sh ; rm case.sh")
+    elif verb == "cfadd":
+	atom()
+        os.system("read -p 'Enter Case Number:' title ; gpg --decrypt-files /media/Program13/13/truecrypt1/casefile/$title.gpg ; nano /media/Program13/13/truecrypt1/casefile/$title ; gpg -e /media/Program13/13/truecrypt1/casefile/$title ; rm /media/Program13/13/truecrypt1/casefile/$title")
+    elif verb == "cfread":
+	atom()
+        os.system("read -p 'Enter Case Number:' case ; gpg --decrypt-files /media/Program13/13/truecrypt1/casefile/$case.gpg ; rm /media/Program13/13/truecrypt1/$case.gpg ; less /media/Program13/13/truecrypt1/casefile/$case ; gpg -e /media/Program13/13/truecrypt1/casefile/$case ; rm /media/Program13/13/truecrypt1/casefile/$case")
+    elif verb == "cflist":
+	bshelf()
+        print("Loading Casefile Bookshelf...")
+        time.sleep(3)
+        os.system("ls /media/Program13/13/truecrypt1/casefile")
+    elif verb == "ddg":
+	atom()
+        print("Search Duck Duck Go")
+        os.system('read -p "Enter Search Term seperate terms with + :" search ; w3m "https://duckduckgo.com/?q=$search&t=h_&ia=web" ' )
+    elif verb == "metagoo":
+	atom()
+        os.system("read -p 'Enter Domain to search: ' dom ; read -p 'Enter Filetype To Download (pdf,doc,xls,ppt,odp,ods,docx,xlsx,pptx): ' down ; read -p 'Where Do You Want To Save Downloaded Files?: ' dfile ; read -p 'Enter Where Do You Want To Save Output File?: ' ofile ; /usr/bin/metagoofil -d $dom -t $down -o $dfile -f $ofile ")
+    elif verb == "w3af":
+	atom()
+        print("Loading W3AF")
+        os.system("/usr/bin/w3af_console")
+    elif verb == "w3gui":
+	atom()
+        print("Loading W3AF")
+        os.system("/usr/bin/w3af_gui")
+    elif verb == "manfiles":
+	atom()
+        os.system("less /media/Program13/13/truecrypt1/tuts/manfiles")          
+    elif verb == "c":
+	atom()
+        os.system("read -p 'Enter Command: ' cmd ; $cmd ")
+    elif verb == "httptest":
+	atom()
+        os.system("/usr/bin/slowhttptest")
+    elif verb == "scan":
+	atom()
+        os.system("/usr/bin/simple-scan")
+    elif verb == "grabber":
+	atom()
+        os.system("/usr/bin/grabber")
+    elif verb == "screenshot":
+	atom()
+        os.system("/usr/bin/gnome-screenshot")
+    elif verb == "keys":
+	atom()
+        os.system("/usr/bin/seahorse")
+    elif verb == "recordme":
+	atom()
+        os.system("/usr/bin/recordmydesktop")
+    elif verb == "qjack":
+	atom()
+        os.system("/usr/bin/qjackctl")
+    elif verb == "ettercap":
+        os.system('clear')
+	atom()
+	print('Starting Ettercap...')
+	time.sleep(3)
+        os.system("/usr/bin/ettercap -i wlan0 -T")
+    elif verb == "eterm":
+	atom()
+        os.system("/usr/bin/Eterm")
+    elif verb == "pyrit":
+	atom()
+        print("Recognized options:\n  -b               : Filters AccessPoint by BSSID\n  -e               : Filters AccessPoint by ESSID\n  -h               : Print help for a certain command\n  -i               : Filename for input ('-' is stdin)\n  -o               : Filename for output ('-' is stdout)\n  -r               : Packet capture source in pcap-format\n  -u               : URL of the storage-system to use\n  --all-handshakes : Use all handshakes instead of the best one\n \n Recognized commands:\n  analyze                 : Analyze a packet-capture file\n  attack_batch            : Attack a handshake with PMKs/passwords from the db\n  attack_cowpatty         : Attack a handshake with PMKs from a cowpatty-file\n  attack_db               : Attack a handshake with PMKs from the db\n  attack_passthrough      : Attack a handshake with passwords from a file\n  batch                   : Batchprocess the database\n  benchmark               : Determine performance of available cores\n  benchmark_long          : Longer and more accurate version of benchmark (~10 minutes)\n  check_db                : Check the database for errors\n  create_essid            : Create a new ESSID\n  delete_essid            : Delete a ESSID from the database\n  eval                    : Count the available passwords and matching results\n  export_cowpatty         : Export results to a new cowpatty file\n  export_hashdb           : Export results to an airolib database\n  export_passwords        : Export passwords to a file\n  help                    : Print general help\n  import_passwords        : Import passwords from a file-like source\n  import_unique_passwords : Import unique passwords from a file-like source\n  list_cores              : List available cores\n  list_essids             : List all ESSIDs but don't count matching results\n  passthrough             : Compute PMKs and write results to a file\n  relay                   : Relay a storage-url via RPC\n  selftest                : Test hardware to ensure it computes correct results\n  serve                   : Serve local hardware to other Pyrit clients\n  strip                   : Strip packet-capture files to the relevant packets\n  stripLive               : Capture relevant packets from a live capture-source\n  verify                  : Verify 10% of the results by recomputation")
+        os.system("read -p 'Enter Options: ' option ; read -p 'Enter Commands: ' com ; /usr/bin/pyrit $option $com")
+    elif verb == "hideme":
+	atom()
+        print("I Am Hiding You")
+        os.system("service tor start ; proxychains firefox http://check.torproject.org ; service tor stop ")
+    elif verb == "drift":
+	atom()
+        print("Let's Drift")
+        os.system("read -p 'Enter Your Routers IP Address ex: 192.168.1.254 :' rip ; read -p 'Enter Your Local IP Address ex: 192.168.1.86 : ' lip ; arpspoof -i wlan0 -t $rip $lip & ettercap -Tqi wlan0 -M arp:remote /// & driftnet -i wlan0 ")
+    elif verb == "kali":
+	atom()
+        os.system('google-chrome tools.kali.org/tools-listing')
+    elif verb == "takenote":
+	atom()
+        os.system('keepnote')
+    elif verb == "p0f":
+	atom()
+        os.system('p0f -i wlan0 -p -o /tmp/p0f.log')
+    elif verb == "reaverscan":
+	atom()
+        os.system('read -p "Enter Channel: " chan ; wash -i mon0 -c $chan -C')
+    elif verb == "reaver":
+	atom()
+        os.system('read -p "Enter BSSID: " bssid ; reaver -i mon0 -b $bssid -v')
+    elif verb == "wipass":
+	network()
+        print("Getting Wifi Password")
+	time.sleep(3)
+        os.system('awk -F= "/^(psk|id)/{print $2}" /etc/NetworkManager/system-connections/"$(iwgetid -r)" ')
+    elif verb == "ipscan":
+	network()
+        print("Scanning For IP Addresses")
+	time.sleep(2)
+        os.system("arp-scan -l --interface=wlan0 --localnet")
+    elif verb == "meditate":
+	def dateprint():
+	    os.system("date --rfc-3339='ns'")
+	# get the countdown time in seconds
+	seconds = input("Number of seconds: ")
+
+	startTime = time.time()
+	finishTime = startTime + seconds
+
+# loop until the current system time
+# is greater than the finishTime
+	while time.time() < finishTime:
+
+  # show loop is running
+  	    print "."
+
+  # wait for one second
+  	    time.sleep(.05)
+            atom()
+	    dateprint()
+    elif verb == "crawl":
+	atom()
+	class LinkParser(HTMLParser):
+	    def handle_starting(self, tag, attrs):
+		if tag == 'a':
+		    for (key, value) in attrs:
+			if key == 'href':
+			    newUrl = parse.urljoin(self.baseUrl, value)
+			    self.links = self.links + [newUrl]
+	    def getLinks(self, url):
+		self.links = []
+		self.baseUrl = url
+		response = urlopen(url)
+		if response.getheader('Content-Type')=='text/html':
+		    htmlBytes = response.read()
+		    htmlString = htmlBytes.decode("utf-8")
+		    self.feed(htmlString)
+		    return htmlString, self.links
+		else:
+		    return "",[]
+	    def spider(url, word, maxPages):
+		pagesToVisit = [url]
+		numberVisited = 0
+		foundWord = False
+		while numberVisited < maxPages and pagesToVisit != [] and not foundWord:
+		    numberVisited = numberVisited +1
+		    url = pagesToVisit[0]
+	            pagesToVisit = pagesToVisit[1:]
+		    try:
+			print(numberVisited, "Visiting:", url)
+			parser = LinkParser()
+			data, links = parser.getLinks(url)
+			if data.find(word)>-1:
+			    foundWord = True
+			pagesToVisit = pagesToVisit + links
+			print(" **Success!** ")
+		    except:
+			print(" **Failed!** ")
+		if foundWord:
+		    print("The word", word, "was found at", url)
+		else:
+		    print("Word never found")
+    elif verb == "starwars":
+        os.system('clear')
+	atom()
+        print("Lets Watch StarWars...")
+	time.sleep(3)
+        os.system("telnet towel.blinkenlights.nl")
+    elif verb == "learn":
+	librarian()
+        print("Let's Learn Some Shit...")
+	time.sleep(3)
+        os.system("ls /usr/bin | xargs whatis | grep -v nothing | less ")
+    elif verb == "journal":
+	bshelf()
+        os.system("read -p 'Enter Title: ' title ; nano /media/Program13/13/truecrypt1/journal/$title ; gpg -e /media/Program13/13/truecrypt1/journal/$title ; rm /media/Program13/13/truecrypt1/journal/$title ")
+    elif verb == "vulnscan":
+	atom()
+        print("Starting SkipFish")
+	time.sleep(3)
+        os.system('read -p "Enter URL: " url ; read -p "Enter File Title: " title ; mkdir /media/Program13/13/truecrypt1/skipfish/$title ; skipfish -o /media/Program13/13/truecrypt1/skipfish/$title -S /usr/share/skipfish/dictionaries/minimal.wl $url')
+    elif verb == "tor":
+	atom()
+        print("Loading Tor")
+        os.system("read -p 'Enter Site URL: ' site ; service start tor ; proxychains firefox $site ; service tor stop ")
+    elif verb == "13books":
+	bshelf()
+        os.system('read -p "Enter Title: " title ; nano /media/Program13/13/truecrypt1/13books/$title ; gpg -e /media/Program13/13/truecrypt1/13books/$title ; rm /media/Program13/13/truecrypt1/13books/$title')
+    elif verb == "ddos":
+	atom()
+        os.system('read -p "Host: " host ; hping3 -S -P -U --flood -V --rand-source $host ')
+    elif verb == "read13":
+	bshelf()
+        os.system('ls 13books ; read -p "Enter Title (without file ext  ex: .gpg): " title ; gpg --decrypt-files /media/Program13/13/truecrypt1/13books/$title.gpg ; less /media/Program13/13/truecrypt1/13books/$title ; gpg --encrypt-files /media/Program13/13/truecrypt1/13books/$title ; rm /media/Program13/13/truecrypt1/13books/$title')
+    elif verb == "ap13":
+	bshelf()
+        os.system('ls 13books ; read -p "Enter Title (without file ext  ex: .gpg): " title ; gpg --decrypt-files /media/Program13/13/truecrypt1/13books/$title.gpg ; nano /media/Program13/13/truecrypt1/13books/$title ; gpg --encrypt-files /media/Program13/13/truecrypt1/13books/$title ; rm /media/Program13/13/truecrypt1/13books/$title')
+    elif verb == "13bs":
+	bshelf()
+        os.system('ls /media/Program13/13/truecrypt1/13books')
+    elif verb == "randjourn":
+	bshelf()
+        os.system('read -p "Enter Title: " title ; nano /media/Program13/13/truecrypt1/journal/random/$title ; gpg -e /media/Program13/13/truecrypt1/journal/random/$title ; rm /media/Program13/13/truecrypt1/journal/random/$title')
+    elif verb == "journalbs":
+	bshelf()
+        os.system('ls /media/Program13/13/truecrypt1/journal')
+    elif verb == "automater":
+        os.system('clear')
+	atom()
+        os.system('read -p "Enter Host: " host ; automater -t $host')
+    elif verb == "autodetect":
+	atom()
+        os.system('autodetect-network')
+    elif verb == "arping":
+	atom()
+        os.system('read -p "Enter Channel: " chan ; read -p "Enter IP: " ip ; arping -I wlan0 -c $chan $ip')
+    elif verb == "readrand":
+	bshelf()
+        os.system('ls /media/Program13/13/truecrypt1/journal/random/ ; read -p "Enter Title: " title ; gpg --decrypt-files "/media/Program13/13/truecrypt1/journal/random/$title"')
+    elif verb == "readjourn":
+	bshelf()
+        os.system('read -p "Enter Title: " title ; gpg --decrypt-files /media/Program13/13/truecrypt1/journal/$title.gpg ; less /media/Program13/13/truecrypt1/journal/$title ; gpg --encrypt-files $title ; rm "/media/Program13/13/truecrypt1/journal/$title"')
+    elif verb == "disfire":
+	network()
+        print("Although I Think This Is A Terrible Fucking Idea I Am Disabling Your Firewall") 
+	time.sleep(3)
+        os.system("ufw disable ; iptables -F ")
+    elif verb == "refire":
+	network()
+        print("It's About Fucking Time Ass Hole...")
+	print("[*'Incomprehensible Mumbled Swears'*]")
+	time.sleep(3)
+        os.system("ufw enable ; iptables-restore < iptablesdefault_conf")
+    elif verb == "netwatch":
+	network()
+	print("Let's watch the net.")
+	time.sleep(2)
+        os.system('detect-new-ip6 wlan0')
+    elif verb == "dig":
+	atom()
+        os.system('read -p "Enter Host: " host ; dig $host')
+    elif verb == "dmitry":
+	atom()
+        os.system('read -p "Enter Host: " host ; dmitry $host')
+    elif verb == "def":
+	atom()
+        os.system("read -p 'Enter Word: ' word ; curl dict://dict.org/d:$word ; read output")
+    elif verb == "catandmouse":
+	atom()
+        print("Loading Cat And Mouse" )
+        os.system("/usr/games/oneko")
+    elif verb == "randpass":
+	atom()
+        print("Generating Random Passwords...")
+	time.sleep(3)
+        os.system("strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 30 | tr -d '\n'; echo" )
+    elif verb == "xsm":
+	atom()
+        print("Opening Terminal")
+        os.system("/usr/bin/xsm")
+    elif verb == "magnify":
+	atom()
+	os.system("/usr/bin/xmag")
+    elif verb == "xhydra":
+	atom()
+        os.system("/usr/bin/xhydra")
+    elif verb == "mail":
+	atom()
+        os.system("/usr/bin/mail")
+    elif verb == "watchthis":
+	atom()
+        os.system("/usr/bin/xeyes")
+    elif verb == "checkmail":
+	atom()
+        os.system("/usr/bin/xdgmail")
+    elif verb == "draw":
+	atom()
+        os.system("/usr/bin/lodraw")
+    elif verb == "database":
+	atom()
+        os.system("/usr/bin/lobase")
+    elif verb == "afl":
+	atom()
+        print("Please Connect Android Device Before Running This Command...")
+	time.sleep(2)
+	while True:
+	    print("Is your Android device connected? y/n: ")
+            command = raw_input(">").split()
+            if len(command) == 0:
+                break
+            if len(command) > 0:
+                verb = command[0].lower()
+	    if verb == "y":
+		time.sleep(3)
+	        os.system("/usr/bin/aflogical")
+		os.system("usr/bin/abd devices")
+	    if verb == "n":
+		doh()
+		print("You will need to connect your Android device before running this command...")
+	        break
+            else:
+		doh()
+	        print("I didn't understand your response. Exiting AFLogical ")
+		time.sleep(3)
+		break
+    elif verb == "battery":
+	atom()
+	print("Getting Current Battery Level...")
+	time.sleep(2)
+	os.system("/usr/bin/acpi")
+    elif verb == "web":
+	atom()
+        os.system("w3m google.com")
+    elif verb == "androsdk":
+	atom()
+        os.system("/usr/bin/android-sdk")
+    elif verb == "sysprint":
+	atom()
+        os.system('read -p "Enter IP Address Or Host Name: " ip ; /usr/bin/arp-fingerprint -o "-N -I wlan0" $ip')
+    elif verb == "mtranscode":
+	atom()
+        os.system("/usr/bin/arista-gtk")
+    elif verb == "diskusage":
+	atom()
+        os.system("/usr/bin/baobab")
+    elif verb == "bluebrowse":
+	atom()
+        os.system("/usr/bin/blueman-browse")
+    elif verb == "bluephonebook":
+	atom()
+        print('bluesnarfer: you must set bd_addr\n bluesnarfer, version 0.1 -\n usage: bluesnarfer [options] [ATCMD] -b bt_addr\n ATCMD     : valid AT+CMD (GSM EXTENSION)\n TYPE      : valid phonebook type ..\n example   : "DC" (dialed call list)\n            "SM" (SIM phonebook)\n            "RC" (recevied call list)\n            "XX" much more\n -b bdaddr : bluetooth device address\n -C chan   : bluetooth rfcomm channel\n -c ATCMD  : custom action\n -r N-M    : read phonebook entry N to M \n -w N-M    : delete phonebook entry N to M\n -f name   : search "name" in phonebook address\n -s TYPE   : select phonebook memory storage\n -l        : list aviable phonebook memory storage\n -i        : device info')
+        os.system("/usr/bin/bluesnarfer ")
+    elif verb == "bombardment":
+	atom()
+        os.system("man bombardment")
+        os.system("/usr/bin/bombardment")
+    elif verb == "wifibuddy":
+	atom()
+	os.system("man /usr/bin/easside-ng")
+	os.system("/usr/bin/easside-ng")
+        os.system("man /usr/bin/buddy-ng")
+        os.system("/usr/bin/buddy-ng")
+    elif verb == "bully":
+	atom()
+	os.system("man /usr/bin/bully")
+        os.system("/usr/bin/bully ")
+    elif verb == "burpsuite":
+	atom()
+        os.system("/usr/bin/burpsuite")
+    elif verb == "getmanual":
+	atom()
+        os.system("/usr/bin/catman")
+        os.system("read -p 'Enter Program To Find Manual' prog ; man $prog")
+    elif verb == "codeblocks":
+	atom()
+        os.system("/usr/bin/codeblocks")
+    elif verb == "dial_tone":
+	atom()
+        os.system("/usr/bin/dial_tone")
+    elif verb == "dig":
+	atom()
+	os.system("man /usr/bin/dig")
+        os.system("/usr/bin/dig ")
+    elif verb == "dumpzilla":
+	atom()
+	os.system("/usr/bin/dumpzilla")
+        os.system("/usr/bin/dumpzilla ")
+    elif verb == "googlecon":
+	atom()
+        os.system("/usr/bin/google")
+    elif verb == "mug":
+	atom()
+        print("Enter Targets Name")
+        os.system('read -p "First Name: " fname ; read -p "Last Name: " lname ; read -p "Enter State: " state ; w3m "http://www.findmugshots.com/arrests/$fname"_"$lname"_"$state" && w3m http://mugshots.com/search.html?q=$fname+$lname ; read output ')
+    elif verb == "contacts":
+	atom()
+        print("Loading Contact List")
+        os.system("mv Contacts.txt Contacts ; sort < Contacts > Contacts.txt ; rm Contacts ; less Contacts.txt")
+    elif verb == "addcon":
+	atom()
+        print("Enter Contact Name To Add")
+        os.system("read -p 'Enter Name: ' name ; read -p 'Enter Phone Number: ' num ; echo '$name --- $num' >> Contacts.txt")
+    elif verb == "psyop":
+	atom()
+        os.system('read -p "Enter Psyop Title: " title ; read -p "Enter Date: " date ; read -p "Enter Target Name: " target ; read -p "Enter Notes: " notes ; echo "Title $title" > /media/Program13/13/truecrypt1/psyop/$title ; echo "Date: $date" >> /media/Program13/13/truecrypt1/psyop/$title ; echo "Name: $target" >> /media/Program13/13/truecrypt1/psyop/$title ; echo "Notes: $notes" >> /media/Program13/13/truecrypt1/psyop/$title ; gpg --encrypt-files /media/Program13/13/truecrypt1/psyop/$title ; rm /media/Program13/13/truecrypt1/psyop/$title')
+    elif verb == "editpsyop":
+	atom()
+        os.system("read -p 'Enter Title: ' title ; gpg --decrypt-files /media/Program13/13/truecrypt1/psyop/$title.gpg ; nano /media/Program13/13/truecrypt1/psyop/$title ; gpg -e /media/Program13/13/truecrypt1/psyop/$title ; rm /media/Program13/13/truecrypt1/psyop/$title")
+    elif verb == "readpsyop":
+	atom()
+        os.system("read -p 'Enter Title: ' title ; gpg --decrypt-files /media/Program13/13/truecrypt1/psyop/$title.gpg ; rm $title.gpg ; less /media/Program13/13/truecrypt1/psyop/$title ; gpg --encrypt-files /media/Program13/13/truecrypt1/psyop/$title ; rm /media/Program13/13/truecrypt1/psyop/$title")
+    elif verb == "pophood":
+	atom()
+        os.system("less /media/Program13/13/truecrypt1/13.py")
+    elif verb == "maintenance":
+	bot()
+        print('Please Restart Bot13 When Maintenance Is Complete.')
+	time.sleep(3)
+        os.system("nano /media/Program13/13/truecrypt1/13.py")
+	bot()
+	print("Please restart Bot13 for changes to take effect...")
+    elif verb == "comphelp":
+	bshelf()
+        print('Loading Comprehensive Help File...')
+        time.sleep(3)
+        os.system("sh /media/Program13/13/truecrypt1/comphelp.sh")
+    elif verb == "whois":
+	network()
+        os.system('clear')
+        os.system("read -p 'Enter Host: ' host ; whois $host")         
+    elif verb == "geoip":
+	atom()
+        os.system("read -p 'Enter Target IP Address: ' ip ; lynx -dump 'http://www.ip-adress.com/ip_tracer/$ip' | grep address | egrep 'city|state|country' | awk '{print $3,$4,$5,$6,$7,$8,$9}' | sed 's\ip address flag \\'|sed 's\My\\' ; read output")
+    elif verb == "wolf":
+	atom()
+        print("Let's Search Wolfram-Alpha")
+        os.system("read -p 'Enter Search Terms (if more than one word, seperater with +): ' search ; google-chrome 'https://www.worlframalpha.com/input/?i=$search' ")
+    elif verb == "findprime":
+	atom()
+        print("Enter Range To Search")
+        lower = int(input("Enter Lower Range: "))
+        upper = int(input("Enter Upper Range: "))
+        prime =[]
+        print("Searching For Prime Numbers")
+        for num in range(lower, upper + 1):
+            if num > 1:
+                for i in range(2,num):
+                    if (num % i) == 0:
+                        break
+                else:
+                    prime.append(num)
+        print(prime)
+    elif verb == "fbd":
+	atom()
+        os.system('read -p "Enter Name (Seperate with + ): " name ; service tor start ; proxychains firefox "https://www.facebook.com/public/?query="$name"" ; service tor stop')
+    elif verb == "socialsearch":
+	atom()
+        os.system('read -p "Enter Name (Seperate With +): " name ; service tor start ; proxychains firefox "https://www.social-searcher.com/social-buzz/?q5="$name"" ; service tor stop')
+    elif verb == "note":
+	atom()
+        os.system('read -p "Enter  Title: " title ; read -p "Enter Note: " note ; echo $note > /media/Program13/13/truecrypt1/notepad/$title')
+    elif verb == "apnote":
+	atom()
+        os.system('ls /media/Program13/13/truecrypt1/notepad ; read -p "Enter Title: " title ; read -p "Enter New Notes: " notes ; echo "notes" >> /media/Program13/13/truecrypt1/notepad/$title')
+    elif verb == "readnote":
+	atom()
+        os.system('ls notepad ; read -p "Enter Title: " title ; less /media/Program13/13/truecrypt1/notepad/$title')
+    elif verb == "needcard":
+	atom()
+        os.system('read -p "Enter Card Name: " card ; read -p "Enter Deck Name: " deck ; read -p "Enter Cost: " cost ; read -p "Enter Card Type: " type ; echo "$card--$type--$cost--$deck" >> /media/Program13/13/truecrypt1/lib13/needmtg.txt')
+    elif verb == "searchmtg":
+	atom()
+        os.system('less /media/Program13/13/truecrypt1/lib13/smtg.txt ; read -p "Enter Search Term: " search ; less -p $search /media/Program13/13/truecrypt1/lib13/MagicCompRules_21031101.pdf')
+    elif verb == "designer":
+	atom()
+        os.system("/usr/bin/designer")
+    elif verb == "maltego":
+	atom()
+        os.system("/usr/bin/casefile")
+    elif verb == "calibre":
+	atom()
+        os.system("/usr/bin/calibre")
+    elif verb == "autopsy":
+	atom()
+        os.system("/usr/bin/autopsy")
+    elif verb == "creepy":
+	atom
+        os.system("/usr/bin/creepy")
+    elif verb == "cuckoo":
+	atom()
+        os.system("/usr/bin/cuckoo")
+    elif verb == "cymothoa":
+	atom()
+        os.system("/usr/bin/cymothoa")
+    elif verb == "dff":
+	atom()
+        os.system("man dff ; /usr/bin/dff")
+    elif verb == "dffgui":
+	atom()
+        os.system("/usr/bin/dff-gui")
+    elif verb == "dropbox":
+        atom()
+        os.system("man dropbox")
+        os.system("read -p 'Enter Commands: ' com ; /usr/bin/dropbox $com")
+    elif verb == "dumpcap":
+        atom()
+        os.system("/usr/bin/dumpcap -i wlan0")
+    elif verb == "fern":
+        atom()
+	print("Loading Fern Wifi Cracker...")
+	time.sleep(3)
+	os.system("/usr/bin/fern-wifi-cracker")
+    elif verb == "fimap":
+        atom()
+        os.system("/usr/bin/fimap -h")
+        os.system("read -p 'Enter Commands: ' com /usr/bin/fimap $com")
+    elif verb == "gotosite":
+        atom()
+	os.system("read -p 'Enter URL: ' url ; google-chrome $url")
+    elif verb == "browsew3m":
+        atom()
+	print("Enter URL")
+	os.system("read -p 'Enter URL: ' url ; w3m $url ")
+    elif verb == "discord":
+        atom()
+        print("Opening Discord")
+        os.system('google-chrome "https://discordapp.com/channels/230421669808701441/23042166980870144')
+    elif verb == "10d":
+        atom()
+	print("Enter Name: ")
+        os.system('read -p "Enter First Name : " fname ; read -p "Enter Last Name : " lname ; read -p "Enter City : " city ; read -p "Enter State e.g. Al : " state ; w3m "http://10digits.us/n/"$fname"_"$lname"/location/"$city"_"$state""')
+    elif verb == "allmtg":
+        atom()
+        print("Loading All Magic Rules")
+        os.system('less /media/Program13/13/truecrypt1/lib13/MagicCompRules_21031101.pdf')
+    elif verb == "mtgprice":
+        atom()
+        os.system('read -p "Enter Card Name (seperate with %20 instead of space): " cname ; w3m "http://www.mtgprice.com/search?search="$cname""')
+    elif verb == "nmap":
+        network()
+        print("Starting nMap")
+        os.system('read -p "Enter Host : " host ; nmap -v -A "$host" ')
+    elif verb == "time":
+	clock()
+        os.system("date --rfc-3339=ns")
+    elif verb == "mtgadd":
+        atom()
+        os.system('read -p "Enter Card Name: " card ; read -p "Enter Deck Name: (ex: SOI, EMN, etc... ) " deckname ; read -p "Enter Rarity: (ex: common, uncommon, rare, mythic rare)" rarity ; echo "$card---$deckname---$rarity" >> "/media/Program13/13/truecrypt1/lib13/magiccollection.txt" ')
+        print("Card Has Been Added")
+    elif verb == "allmtgc":
+        atom()
+        print("Loading Cards...")
+	time.sleep(3)
+        os.system('less "/media/Program13/13/truecrypt1/lib13/allmtg.txt"')
+    elif verb == "alice":
+	os.system('clear')
+	alice()
+    elif verb == "socialize":
+	atoml()
+        os.system("/usr/bin/setoolkit")
+    elif verb == "harvest":
+	atom()
+        print("-d: Domain to search or company name")
+        print("-b: Data source (google,bing,bingapi,pgp,linkedin,google-profiles,people123,jigsaw,all)")
+        print("-s: Start in result number X (default 0)")
+        print("-v: Verify host name via dns resolution and search for virtual hosts")
+        print("-f: Save the results into an HTML and XML file")
+        print("-n: Perform a DNS reverse query on all ranges discovered")
+        print("-c: Perform a DNS brute force for the domain name")
+        print("-t: Perform a DNS TLD expansion discovery")
+        print("-e: Use this DNS server")
+        print("-l: Limit the number of results to work with(bing goes from 50 to 50 results,")
+        print("-h: use SHODAN database to query discovered hosts")
+        print(" google 100 to 100, and pgp doesn't use this option)")
+        print("Examples:./theharvester.py -d microsoft.com -l 500 -b google")
+        print(" ./theharvester.py -d microsoft.com -b pgp")
+        print(" ./theharvester.py -d microsoft -l 200 -b linkedin")
+        os.system('read -p "Enter Options: " options ; /usr/bin/theharvester $options')
+    elif verb == "recon":
+	os.system('clear')
+	atom()
+	print('Loading Recon-ng...')
+	time.sleep(3)
+	os.system("/usr/bin/recon-ng")
+    elif verb == "recipe":
+        os.system('clear')
+	atom()
+        print("What Would You Like To Search For?")
+        os.system('read -p "Enter Recipe (Seperate Words With %20): " recipe ; google-chrome "http://allrecipes.com/search/results/?wt="$recipe"&sort=re"')
+    elif verb == "quit":
+	os.system('clear')
+	buck()
+        print("Whatever...")
+        quit()
+    elif verb == "talk":
+        os.system('clear')
+        margeteen()
+        print("Let's talk")
+        print("How are you?")
+        while True:
+            statement = raw_input(">")
+	    os.system('clear')
+            margeteen()
+            print(analyze(statement))
+            if statement == "quit":
+                break
+        if __name__ == "__main__":
+             main()
+    else:
+      os.system('clear')
+      doh()
+      print("What the fuck is that supposed to mean?!?!") 
+
+ 
