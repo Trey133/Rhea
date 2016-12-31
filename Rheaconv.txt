@@ -239,3 +239,17 @@ Rhea started by:  Trey
 01:26:08   RHEA:   
 
 Rhea terminated at:  01:26:08  31/12/2016
+
+Rhea started at:  17:33:10  31/12/2016
+
+Rhea started by:  Trey
+17:33:51   USER:  ?
+17:33:52   RHEA:   
+17:35:40   USER:  chat
+17:35:40   RHEA:   
+17:36:27   USER:  chat
+17:36:27   RHEA:   
+
+Rhea started at:  17:37:11  31/12/2016
+
+Rhea started by:  Trey
