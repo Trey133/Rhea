@@ -496,6 +496,174 @@ while True:
 ### SCAN LOCAL NETWORK [VIA WIFI] FOR IP ADDRESSES
         os.system("arp-scan -l --interface=wlan0 --localnet")
 ########################################################  
+### CRAWL
+########################################################
+########################################################
+###          *** DOESN'T CURRENTLY WORK ***          ### 
+########################################################
+###    elif statement == "crawl":
+###     bot.atom()
+###     class LinkParser(HTMLParser):
+###         def handle_starting(self, tag, attrs):
+###             if tag == 'a':
+###                 for (key, value) in attrs:
+###                     if key == 'href':
+###                         newUrl = parse.urljoin(self.baseUrl, value)
+###                         self.links = self.links + [newUrl]
+###         def getLinks(self, url):
+###             self.links = []
+###             self.baseUrl = url
+###             response = urlopen(url)
+###             if response.getheader('Content-Type')=='text/html':
+###                 htmlBytes = response.read()
+###                 htmlString = htmlBytes.decode("utf-8")
+###                 self.feed(htmlString)
+###                 return htmlString, self.links
+###             else:
+###                 return "",[]
+###         def spider(url, word, maxPages):
+###             pagesToVisit = [url]
+###             numberVisited = 0
+###             foundWord = False
+###             while numberVisited < maxPages and pagesToVisit != [] and not foundWord:
+###                 numberVisited = numberVisited +1
+###                 url = pagesToVisit[0]
+###                 pagesToVisit = pagesToVisit[1:]
+###                 try:
+###                     print(numberVisited, "Visiting:", url)
+###                     parser = LinkParser()
+###                     data, links = parser.getLinks(url)
+###                     if data.find(word)>-1:
+###                         foundWord = True
+###                     pagesToVisit = pagesToVisit + links
+###                     print(" **Success!** ")
+###                 except:
+###                     print(" **Failed!** ")
+###             if foundWord:
+###                 print("The word", word, "was found at", url)
+###             else:
+###                 print("Word never found")
+########################################################
+########################################################  
+### JOURNAL
+########################################################
+    elif statement == "journal":
+        bot.bshelf()
+        os.system("read -p 'Enter Title: ' title ; nano /usr/bin/rhea/journal/$title ; gpg -e /usr/bin/rhea/journal/$title ; rm /usr/bin/rhea/journal/$title ")
+########################################################  
+### VULNSCAN
+########################################################
+    elif statement == "vulnscan":
+        bot.atom()
+        print("Starting SkipFish")
+        time.sleep(3)
+        os.system('read -p "Enter URL: " url ; read -p "Enter File Title: " title ; mkdir /usr/bin/rhea/skipfish/$title; skipfish -o /usr/bin/rhea/skipfish/$title -S /usr/share/skipfish/dictionaries/minimal.wl $url')
+########################################################  
+### TOR
+########################################################
+    elif statement == "tor":
+        bot.atom()
+        print("Loading Tor")
+        os.system("read -p 'Enter Site URL: ' site ; service start tor ; proxychains firefox $site ; service tor stop ")
+########################################################  
+### DDOS
+########################################################
+    elif statement == "ddos":
+        bot.network()
+        os.system('read -p "Target: " target ; hping3 -S -P -U --flood -V --rand-source $target ')
+########################################################  
+### RANDJOURN
+########################################################
+    elif statement == "randjourn":
+        bot.bshelf()
+        os.system('read -p "Enter Title: " title ; nano /usr/bin/rhea/journal/random/$title ; gpg -e /usr/bin/rhea/journal/random/$title ; rm /usr/bin/rhea/journal/random/$title')
+########################################################  
+### JOURNALBS
+########################################################
+    elif statement == "journalbs":
+        bot.bshelf()
+        os.system('ls /usr/bin/rhea/journal')
+########################################################  
+### AUTOMATER
+########################################################
+    elif statement == "automater":
+        os.system('clear')
+        bot.atom()
+        os.system('read -p "Enter Host: " host ; automater -t $host')
+########################################################  
+### AUTODETECT
+########################################################
+    elif statement == "autodetect":
+        bot.network()
+        print"Loading Autodetect"
+        time.sleep(3)
+        os.system('autodetect-network')
+########################################################  
+### ARPING
+########################################################
+    elif statement == "arping":
+        bot.network()
+        print("Loading Arping...")
+        time.sleep(3)
+        os.system('read -p "Enter Channel: " chan ; read -p "Enter IP: " ip ; arping -I wlan0 -c $chan $ip')
+########################################################  
+### READRAND
+########################################################
+    elif statement == "readrand":
+        bot.bshelf()
+        os.system('ls /usr/bin/rhea/journal/random/ ; read -p "Enter Title: " title ; gpg --decrypt-files "/usr/bin/rhe
+a/journal/random/$title"')
+########################################################  
+### READJOURN
+########################################################
+    elif statement == "readjourn":
+        bot.bshelf()
+        os.system('read -p "Enter Title: " title ; gpg --decrypt-files /usr/bin/rhea/journal/$title.gpg ; less /usr/bin
+/rhea/journal/$title ; gpg --encrypt-files $title ; rm "/usr/bin/rhea/journal/$title"')
+########################################################  
+### DISFIRE
+########################################################
+    elif statement == "disfire":
+        bot.network()
+        print("Although I Think This Is A Terrible Fucking Idea I Am Disabling Your Firewall")
+        time.sleep(3)
+        os.system("ufw disable ; iptables -F ")
+########################################################  
+### REFIRE
+########################################################
+    elif statement == "refire":
+        bot.network()
+        print("It's About Fucking Time Ass Hole...")
+        print("[*'Incomprehensible Mumbled Swears'*]")
+        time.sleep(3)
+        os.system("ufw enable ; iptables-restore < iptablesdefault_conf")
+########################################################  
+### NETWATCH
+########################################################
+    elif statement == "netwatch":
+        bot.network()
+        print("Let's watch the net.")
+        time.sleep(2)
+        os.system('detect-new-ip6 wlan0')
+########################################################  
+### DIG
+########################################################
+    elif statement == "dig":
+        bot.atom()
+        os.system('read -p "Enter Host: " host ; dig $host')
+########################################################  
+### DMITRY
+########################################################
+    elif statement == "dmitry":
+        bot.atom()
+        os.system('read -p "Enter Host: " host ; dmitry $host')
+########################################################  
+### XHYDRA
+########################################################
+    elif statement == "xhydra":
+        bot.atom()
+        os.system("/usr/bin/xhydra")
+########################################################  
 ### QUIT
 ########################################################
     elif statement == "quit":
