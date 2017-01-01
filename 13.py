@@ -396,52 +396,6 @@ while True:
 				  /a/span[@class="titletext"]/text()')
 	print("\n".join(news))
 ########################################################  
-### WEBINFO
-########################################################
-    elif statement == "webinfo":
-	bot.atom()
-        print("Enter URL to get web info")
-### RUN VULNERABILITY SCAN ON TARGET WEBSITE
-        os.system("read -p 'Enter Site Name: ' site ; whois $site ; dig $site ; % dig +short $site ; nslookup -type=any $site ; nikto -host $site -C all ; read output ")
-########################################################  
-### ALLPICS
-########################################################
-    elif statement == "allpics":
-	os.system('clear')
-	bot.tex()
-### DOWNLOAD ALL IMAGES FROM WEBSITE
-        os.system("read -p 'Enter URL:' site ; wget -r -p -l inf -np $site ")
-########################################################  
-### CFC
-########################################################
-    elif statement == "cfc":
-	bot.atom()
-        print("Creating New Case")
-        os.system("gpg --decrypt-files /usr/bin/rhea/case.sh.gpg ; rm /usr/bin/rhea/case.sh.gpg ; sh /usr/bin/rhea/case.sh ; gpg -r Ender --encrypt-files /usr/bin/rhea/case.sh ; rm /usr/bin/rhea/case.sh")
-########################################################  
-### CFADD
-########################################################
-    elif statement == "cfadd":
-	bot.atom()
-### EDIT OR ADD INFORMATION TO A CASEFILE
-        os.system("read -p 'Enter Case Number:' title ; gpg --decrypt-files /usr/bin/rhea/casefile/$title.gpg ; nano /usr/bin/rhea/casefile/$title ; gpg -e /usr/bin/rhea/casefile/$title ; rm /usr/bin/rhea/casefile/$title")
-########################################################  
-### CFREAD
-########################################################
-    elif statement == "cfread":
-	bot.atom()
-### READ AN EXISTING CASEFILE
-        os.system("read -p 'Enter Case Number:' case ; gpg --decrypt-files /usr/bin/rhea/casefile/$case.gpg ; rm /usr/bin/rhea/$case.gpg ; less /usr/bin/rhea/casefile/$case ; gpg -e /usr/bin/rhea/casefile/$case ; rm /usr/bin/rhea/casefile/$case")
-########################################################  
-### CFLIST
-########################################################
-    elif statement == "cflist":
-        bot.bshelf()
-        print("Loading Casefile Bookshelf...")
-        time.sleep(3)
-### LIST CURRENT CASEFILES
-        os.system("ls /usr/bin/rhea/casefile")
-########################################################  
 ### DDG
 ########################################################
     elif statement == "ddg":
@@ -449,29 +403,6 @@ while True:
         print("Search Duck Duck Go")
 ### SEARCH DUCKDUCKGO.COM FROM TERMINAL
         os.system('read -p "Enter Search Term seperate terms with + :" search ; w3m "https://duckduckgo.com/?q=$search&t=h_&ia=web" ' )
-########################################################  
-### METAGOO
-########################################################
-    elif statement == "metagoo":
-	bot.atom()
-### START METAGOOFIL
-        os.system("read -p 'Enter Domain to search: ' dom ; read -p 'Enter Filetype To Download (pdf,doc,xls,ppt,odp,ods,docx,xlsx,pptx): ' down ; read -p 'Where Do You Want To Save Downloaded Files?: ' dfile ; read -p 'Enter Where Do You Want To Save Output File?: ' ofile ; /usr/bin/metagoofil -d $dom -t $down -o $dfile -f $ofile ")
-########################################################  
-### W3AF
-########################################################
-    elif statement == "w3af":
-	bot.atom()
-        print("Loading W3AF")
-### RUN W3AF IN TERMINAL
-        os.system("/usr/bin/w3af_console")
-########################################################  
-### W3GUI
-########################################################
-    elif statement == "w3gui":
-	bot.atom()
-        print("Loading W3AF")
-### OPEN W3AF [GUI] APPLICATION
-        os.system("/usr/bin/w3af_gui")
 ########################################################  
 ### MANFILES
 ########################################################
@@ -487,39 +418,12 @@ while True:
 ### RUN BASH COMMANDS FROM RHEA PROMPT
         os.system("read -p 'Enter Command: ' cmd ; $cmd ")
 ########################################################  
-### HTTPTEST
-########################################################
-    elif statement == "httptest":
-	bot.atom()
-### START SLOWHTTPTEST
-        os.system("/usr/bin/slowhttptest")
-########################################################  
-### SCAN
-########################################################
-    elif statement == "scan":
-	bot.atom()
-### START SIMPLE-SCAN [DOCUMENT SCANNER]
-        os.system("/usr/bin/simple-scan")
-########################################################  
-### GRABBER
-########################################################
-    elif statement == "grabber":
-	bot.atom()
-        os.system("/usr/bin/grabber")
-########################################################  
 ### SCREENSHOT
 ########################################################
     elif statement == "screenshot":
 	bot.atom()
 ### TAKE SCREENSHOT OF CURRENT SCREEN
         os.system("/usr/bin/gnome-screenshot")
-########################################################  
-### KEYS
-########################################################
-    elif statement == "keys":
-	bot.atom()
-### START SEAHORSE [PASSWORDS AND KEYS MANAGER]
-        os.system("/usr/bin/seahorse")
 ########################################################  
 ### RECORDME
 ########################################################

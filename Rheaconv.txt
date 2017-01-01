@@ -329,3 +329,5 @@ Rhea terminated at:  16:26:10  01/01/2017
 16:53:16   RHEA:  I just smoked a bunch of crack... : )
 16:53:20   USER:  awesome
 16:53:20   RHEA:   
+17:16:23   USER:  restart
+17:16:23   RHEA:   
