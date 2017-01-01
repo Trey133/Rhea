@@ -439,57 +439,6 @@ while True:
 ### CREATE JACK AUDIO SERVER
         os.system("/usr/bin/qjackctl")
 ########################################################  
-### ETTERCAP
-########################################################
-    elif statement == "ettercap":
-        os.system('clear')
-	bot.atom()
-	print('Starting Ettercap...')
-	time.sleep(3)
-### START ETTERCAP [CONFIGURED FOR WLAN0]
-        os.system("/usr/bin/ettercap -i wlan0 -T")
-########################################################  
-### ETERM
-########################################################
-    elif statement == "eterm":
-	bot.atom()
-### OPEN ANOTHER TERMINAL [ETERM IS A LOT SMALLER THAN GNOME TERMINAL. YOU MAY HAVE TROUBLE READING TEXT]
-        os.system("/usr/bin/Eterm")
-########################################################  
-### PYRIT
-########################################################
-    elif statement == "pyrit":
-	bot.atom()
-        print("Recognized options:\n  -b               : Filters AccessPoint by BSSID\n  -e               : Filters AccessPoint by ESSID\n  -h               : Print help for a certain command\n  -i               : Filename for input ('-' is stdin)\n  -o               : Filename for output ('-' is stdout)\n  -r               : Packet capture source in pcap-format\n  -u               : URL of the storage-system to use\n  --all-handshakes : Use all handshakes instead of the best one\n \n Recognized commands:\n  analyze                 : Analyze a packet-capture file\n  attack_batch            : Attack a handshake with PMKs/passwords from the db\n  attack_cowpatty         : Attack a handshake with PMKs from a cowpatty-file\n  attack_db               : Attack a handshake with PMKs from the db\n  attack_passthrough      : Attack a handshake with passwords from a file\n  batch                   : Batchprocess the database\n  benchmark               : Determine performance of available cores\n  benchmark_long          : Longer and more accurate version of benchmark (~10 minutes)\n  check_db                : Check the database for errors\n  create_essid            : Create a new ESSID\n  delete_essid            : Delete a ESSID from the database\n  eval                    : Count the available passwords and matching results\n  export_cowpatty         : Export results to a new cowpatty file\n  export_hashdb           : Export results to an airolib database\n  export_passwords        : Export passwords to a file\n  help                    : Print general help\n  import_passwords        : Import passwords from a file-like source\n  import_unique_passwords : Import unique passwords from a file-like source\n  list_cores              : List available cores\n  list_essids             : List all ESSIDs but don't count matching results\n  passthrough             : Compute PMKs and write results to a file\n  relay                   : Relay a storage-url via RPC\n  selftest                : Test hardware to ensure it computes correct results\n  serve                   : Serve local hardware to other Pyrit clients\n  strip                   : Strip packet-capture files to the relevant packets\n  stripLive               : Capture relevant packets from a live capture-source\n  verify                  : Verify 10% of the results by recomputation")
-### START PYRIT 
-        os.system("read -p 'Enter Options: ' option ; read -p 'Enter Commands: ' com ; /usr/bin/pyrit $option $com")
-########################################################  
-### HIDEME
-########################################################
-    elif statement == "hideme":
-	bot.atom()
-        print("I Am Hiding You")
-        os.system("service tor start ")
-	
-########################################################  
-### DRIFT
-########################################################
-    elif statement == "drift":
-	bot.atom()
-        print("Let's Drift")
-### START DRIFTNET [ALREADY CONFIGURED FOR USE WITH WLAN0
-### { IF USING ETHERNET, CHANGE ALL INSTANCES OF WLAN0 TO 
-### ETH0 OR ETH1 DEPENDING ON YOUR SYSTEM CONFIGURATION}]
-        os.system("read -p 'Enter Your Routers IP Address ex: 192.168.1.254 :' rip ; read -p 'Enter Your Local IP Address ex: 192.168.1.86 : ' lip ; arpspoof -i wlan0 -t $rip $lip & ettercap -Tqi wlan0 -M arp:remote /// & driftnet -i wlan0 ")
-########################################################  
-### KALI
-########################################################
-    elif statement == "kali":
-	bot.atom()
-### GO TO KALI LINUX TOOLS LISTING USING GOOGLE-CHROME
-        os.system('google-chrome tools.kali.org/tools-listing')
-
-########################################################  
 ### TAKENOTE
 ########################################################
     elif statement == "takenote":

@@ -408,6 +408,55 @@ while True:
 ### START SEAHORSE [PASSWORDS AND KEYS MANAGER]
         os.system("/usr/bin/seahorse")
 ########################################################  
+### ETTERCAP
+########################################################
+    elif statement == "ettercap":
+        os.system('clear')
+        bot.atom()
+        print('Starting Ettercap...')
+        time.sleep(3)
+### START ETTERCAP [CONFIGURED FOR WLAN0]
+        os.system("/usr/bin/ettercap -i wlan0 -T")
+########################################################  
+### ETERM
+########################################################
+    elif statement == "eterm":
+        bot.atom()
+### OPEN ANOTHER TERMINAL [ETERM IS A LOT SMALLER THAN GNOME TERMINAL. YOU MAY HAVE TROUBLE READING TEXT]
+        os.system("/usr/bin/Eterm")
+########################################################  
+### PYRIT
+########################################################
+    elif statement == "pyrit":
+        bot.atom()
+        print("Recognized options:\n  -b               : Filters AccessPoint by BSSID\n  -e               : Filters Access$
+### START PYRIT 
+        os.system("read -p 'Enter Options: ' option ; read -p 'Enter Commands: ' com ; /usr/bin/pyrit $option $com")
+########################################################  
+### HIDEME
+########################################################
+    elif statement == "hideme":
+        bot.atom()
+        print("I Am Hiding You")
+        os.system("service tor start ")
+########################################################  
+### DRIFT
+########################################################
+    elif statement == "drift":
+        bot.atom()
+        print("Let's Drift")
+### START DRIFTNET [ALREADY CONFIGURED FOR USE WITH WLAN0
+### { IF USING ETHERNET, CHANGE ALL INSTANCES OF WLAN0 TO 
+### ETH0 OR ETH1 DEPENDING ON YOUR SYSTEM CONFIGURATION}]
+        os.system("read -p 'Enter Your Routers IP Address ex: 192.168.1.254 :' rip ; read -p 'Enter Your Local IPAddress ex: 192.168.1.86 : ' lip ; arpspoof -i wlan0 -t $rip $lip & ettercap -Tqi wlan0 -M arp:remote /// & driftnet -i wlan0 ")
+########################################################  
+### KALI
+########################################################
+    elif statement == "kali":
+        bot.atom()
+### GO TO KALI LINUX TOOLS LISTING USING GOOGLE-CHROME
+        os.system('google-chrome tools.kali.org/tools-listing')
+########################################################  
 ### QUIT
 ########################################################
     elif statement == "quit":
