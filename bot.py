@@ -972,6 +972,11 @@ def clock():
  `'''''''''''''''''''''''`
 \n
 """)
+
+def fuckoff():
+    print("Fuck off " + name + ".")
+    quit()
+
 def aflag():
     os.system('clear')
     print("""
