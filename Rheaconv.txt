@@ -253,3 +253,33 @@ Rhea started by:  Trey
 Rhea started at:  17:37:11  31/12/2016
 
 Rhea started by:  Trey
+17:41:18   USER:  wipass
+17:41:18   RHEA:   
+17:49:53   USER:  ?
+17:49:54   RHEA:   
+17:52:10   USER:  chat
+17:52:10   RHEA:   
+
+Rhea started at:  17:52:52  31/12/2016
+
+Rhea started by:  Trey
+17:53:27   USER:  disfire
+17:53:27   RHEA:   
+17:53:44   USER:  chat
+17:53:44   RHEA:   
+
+Rhea started at:  17:54:18  31/12/2016
+
+Rhea started by:  Trey
+17:54:33   USER:  chat
+17:54:33   RHEA:   
+
+Rhea started at:  17:54:55  31/12/2016
+
+Rhea started by:  Trey
+17:55:07   USER:  chat
+17:55:07   RHEA:   
+
+Rhea started at:  17:55:26  31/12/2016
+
+Rhea started by:  Trey
