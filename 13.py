@@ -293,14 +293,6 @@ while True:
         print("Loading key generator")
 ### GENERATE A NEW GPG KEY
         os.system("gpg --gen-key")
-########################################################  
-### VIPER
-########################################################
-    elif statement == "viper":
-	bot.atom()
-        print("Loading Viper")
-### RUN VIPER.PY
-        os.system("viper.py")
 ########################################################
 ### CHAT
 ########################################################
@@ -362,14 +354,6 @@ while True:
 ### OPEN LIBRARY OF CONGRESS IN GOOGLE-CHROME
         os.system("google-chrome https://loc.gov")
 ########################################################  
-### FIND
-########################################################
-    elif statement == "find":
-        bot.atom()
-        print("Who are you looking for, " + name + "?")
-### SEARCH FOR INFORMATION ON TARGET WITH NAME AND STATE
-        os.system('read -p "Enter First Name:" fname ; read -p "Enter Middle Name:" mname ; read -p "Enter Last Name:" lname ; read -p "Enter City:" city ; read -p "Enter State: " state ; w3m "https://pipl.com/search/?q=$fname+$mname+$lname&l=sloc=&in=5" && w3m "https://www.findmugshots.com/arrests/"$fname"_"$lname"_"$state && w3m "http://mugshots.com/search.html?q="$fname"+"$lname && w3m "http://10digits.us/n/"$fname"_"$lname"/location/"$city"_"$state ; read output ')
-########################################################  
 ### HEADLINES
 ########################################################
     elif statement == "headlines":
@@ -397,40 +381,6 @@ while True:
             news = pagehtml.xpath('//h2[@class="esc-lead-article-title"] \
                                   /a/span[@class="titletext"]/text()')
         print("\n".join(news))
-########################################################  
-### DATASCRAPE
-########################################################
-    elif statement == "datascrape":
-	bot.angryhomer()
-	print("Let's scrape some data.")
-### PERFORM DATA SCRAPE ON WEBSITE
-	url = raw_input("Enter URL: ")
-	page = requests.get(url)
-	tree = html.fromstring(page.content)
-	print(tree)
-	print(page.content)
-########################################################  
-### IMGGET
-########################################################
-    elif statement == "imgget":
-	bot.atom()
-### GET ALL IMAGES FROM WEBPAGE [TO GET ALL IMAGES FROM ENTIE SITE, SEE 'ALLPICS']
-        os.system('read -p "Enter URL: " url ; image-scraper --dump-urls --scrape-reverse $url')
-################################################################################################
-############################  GET CURRENT HACKING HEADLINES  ###################################
-############################  ***DOES NOT CURRENTLY WORK***  ###################################
-################################################################################################ 
-### elif statement == "hacknews":                                                            ###
-###	os.system('clear')                                                                   ###
-###	bot.poc()                                                                            ###
-###	print("Getting Hack News...")                                                        ###
-###	response = requests.get("https://latesthackingnews.com/category/vulnerabilities/")   ###
-########################   ADD HTML2TEXT   #####################################################
-###	txt = response.text                                                                  ###
-###	print(txt)                                                                           ###
-################################################################################################
-################################################################################################
-################################################################################################
 ########################################################  
 ### SCINEWS
 ########################################################
