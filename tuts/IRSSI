@@ -1,0 +1,565 @@
+  • Ubuntu
+  • Community
+  • Ask!
+  • Developer
+  • Design
+  • 
+  • Discourse
+  • Hardware
+  • Insights
+  • Juju
+  • Shop
+  • More ›
+      □ Apps
+      □ Help
+      □ Forum
+      □ Launchpad
+      □ MAAS
+      □ Canonical
+
+current community
+
+  • chat
+     
+    Ask Ubuntu
+  • 
+     
+    Ask Ubuntu Meta
+
+your communities
+
+Sign up or log in to customize your list.
+
+more stack exchange communities
+
+company blog
+Stack Exchange Inbox Reputation and Badges
+sign up log in tour help
+
+  • Tour Start here for a quick overview of the site
+  • Help Center Detailed answers to any questions you might have
+  • Meta Discuss the workings and policies of this site
+  • About Us Learn more about Stack Overflow the company
+  • Business Learn more about hiring developers or posting ads with us
+
+[                    ]
+
+Ask Ubuntu
+
+  • Questions
+  • Tags
+  • Users
+  • Badges
+  • Unanswered
+
+  • Ask Question
+
+_
+Ask Ubuntu is a question and answer site for Ubuntu users and developers. Join
+them; it only takes a minute:
+
+Sign up
+Here's how it works:
+
+ 1. Anybody can ask a question
+ 2. Anybody can answer
+ 3. The best answers are voted up and rise to the top
+
+How do I configure irssi?
+
+          I am using irssi client for IRC chat and I would like to know how to
+          configure the ~/.irssi/config file so that I can put in my username
+          and password (I have a registered Nick in the IRC). Also I'd like to
+          know if I can configure it to open multiple terminals(as in
+          gnome-terminal windows) to connect to different channels like #ubuntu
+          , #ubuntu-in and so on. Or should I alias the command with different
+up vote   parameters so as to connect to different channels from different
+47 down   terminals.
+vote
+favorite  configuration irc irssi
+19
+                                    edited Jan 14 '12 at asked Sep 15 '11 at
+                                                    7:28 13:49
+          share|improve this                              
+          question                                 [0b5] [b9b]
+                                              daviesgeek Nitin Venkatesh
+                                                  160110 12.6k84979
+
+          
+               It is preferred if you can post separate questions instead of
+               combining your questions into one. That way, it helps the people
+               answering your question and also others hunting for atleast one
+               of your questions. Thanks! – guntbert Dec 22 '15 at 17:56
+
+          add a comment |   
+
+2 Answers 2
+
+active oldest votes
+
+                    You've asked a lot of questions in one, but I'll help you with as many of them
+                    as I can.
+
+                    First, you need to add your IRC server of choice - fire up irssi, and type the
+                    following:
+
+                    /server add -auto -network Freenode irc.freenode.net 6667
+
+                    That will add the Freenode IRC network to your IRSSI config, and will
+                    automatically connect when you run irssi.
+
+                    /network add -nick <your-nick> Freenode
+
+                    That will add your nick to the new Freenode network, and will automatically use
+                    that nick whenever connecting to the network.
+
+                    /channel add -auto #ubuntu Freenode
+
+                    That will make you join #ubuntu on Freenode everytime you run irssi.
+
+                    Assuming you have your nick registered, you can do this to identify
+                    automatically:
+
+                    /network add -autosendcmd "/msg nickserv identify password ;wait 2000" Freenode
+
+                    You can switch between channels with Alt-2, Alt-3, etc, with each channel being
+                    Alt-Number
+
+                    If you're interested, here is my ~/.irrsi/config file:
+
+                    servers = (
+                      { address = "irc.ubuntu.com"; chatnet = "Ubuntu"; port = "8001"; },
+                      #There is actually very little difference between irc.ubuntu.com
+                      # and irc.freenode.net - irc.u.c is just a redirect
+                      {
+                        address = "irc.freenode.net";
+                        chatnet = "Freenode";
+                        port = "6667";
+                        use_ssl = "no";
+                        ssl_verify = "no";
+                        autoconnect = "yes";
+                      }
+                    );
+                    # I'm a freenode user all the way man
+                    chatnets = {
+                      Freenode = {
+                        type = "IRC";
+                        nick = "changeme";
+                        autosendcmd = "/msg nickserv identify <password removed> ;wait 2000";
+                      };
+                    };
+
+                    # Channels I hang out in a lot. Change these to your own.
+                    channels = (
+                      { name = "#2buntu"; chatnet = "Freenode"; autojoin = "yes"; },
+                    );
+
+                    aliases = {
+                      J = "join";
+                      WJOIN = "join -window";
+                      WQUERY = "query -window";
+                      LEAVE = "part";
+                      BYE = "quit";
+                      EXIT = "quit";
+                      SIGNOFF = "quit";
+                      DESCRIBE = "action";
+                      DATE = "time";
+                      HOST = "userhost";
+                      LAST = "lastlog";
+                      SAY = "msg *";
+                      WI = "whois";
+                      WII = "whois $0 $0";
+                      WW = "whowas";
+                      W = "who";
+                      N = "names";
+                      M = "msg";
+                      T = "topic";
+                      C = "clear";
+                      CL = "clear";
+                      K = "kick";
+                      KB = "kickban";
+                      KN = "knockout";
+                      BANS = "ban";
+                      B = "ban";
+                      MUB = "unban *";
+                      UB = "unban";
+                      IG = "ignore";
+                      UNIG = "unignore";
+                      SB = "scrollback";
+                      UMODE = "mode $N";
+                      WC = "window close";
+                      WN = "window new hide";
+                      SV = "say Irssi $J ($V) - http://irssi.org/";
+                      GOTO = "sb goto";
+                      CHAT = "dcc chat";
+                      RUN = "SCRIPT LOAD";
+                      CALC = "exec - if command -v bc >/dev/null 2>&1\\; then printf '%s=' '$*'\\; echo '$*' | bc -l\\; else echo bc was not found\\; fi";
+                      SBAR = "STATUSBAR";
+                      INVITELIST = "mode $C +I";
+                      Q = "QUERY";
+                      "MANUAL-WINDOWS" = "set use_status_window off;set autocreate_windows off;set autocreate_query_level none;set autoclose_windows off;set reuse_unused_windows on;save";
+                      EXEMPTLIST = "mode $C +e";
+                      ATAG = "WINDOW SERVER";
+                      UNSET = "set -clear";
+                      RESET = "set -default";
+                    };
+
+                    statusbar = {
+                      # formats:
+                      # when using {templates}, the template is shown only if it's argument isn't
+                      # empty unless no argument is given. for example {sb} is printed always,
+                      # but {sb $T} is printed only if $T isn't empty.
+
+                      items = {
+                        # start/end text in statusbars
+                        barstart = "{sbstart}";
+up vote 65 down         barend = "{sbend}";
+vote accepted
+                        topicbarstart = "{topicsbstart}";
+                        topicbarend = "{topicsbend}";
+
+                        # treated "normally", you could change the time/user name to whatever
+                        time = "{sb $Z}";
+                        user = "{sb {sbnickmode $cumode}$N{sbmode $usermode}{sbaway $A}}";
+
+                        # treated specially .. window is printed with non-empty windows,
+                        # window_empty is printed with empty windows
+                        window = "{sb $winref:$tag/$itemname{sbmode $M}}";
+                        window_empty = "{sb $winref{sbservertag $tag}}";
+                        prompt = "{prompt $[.15]itemname}";
+                        prompt_empty = "{prompt $winname}";
+                        topic = " $topic";
+                        topic_empty = " Irssi v$J - http://www.irssi.org";
+
+                        # all of these treated specially, they're only displayed when needed
+                        lag = "{sb Lag: $0-}";
+                        act = "{sb Act: $0-}";
+                        more = "-- more --";
+                      };
+
+                      # there's two type of statusbars. root statusbars are either at the top
+                      # of the screen or at the bottom of the screen. window statusbars are at
+                      # the top/bottom of each split window in screen.
+                      default = {
+                        # the "default statusbar" to be displayed at the bottom of the window.
+                        # contains all the normal items.
+                        window = {
+                          disabled = "no";
+
+                          # window, root
+                          type = "window";
+                          # top, bottom
+                          placement = "bottom";
+                          # number
+                          position = "1";
+                          # active, inactive, always
+                          visible = "active";
+
+                          # list of items in statusbar in the display order
+                          items = {
+                            barstart = { priority = "100"; };
+                            time = { };
+                            user = { };
+                            window = { };
+                            window_empty = { };
+                            lag = { priority = "-1"; };
+                            act = { priority = "10"; };
+                            more = { priority = "-1"; alignment = "right"; };
+                            barend = { priority = "100"; alignment = "right"; };
+                          };
+                        };
+
+                        # statusbar to use in inactive split windows
+                        window_inact = {
+                          type = "window";
+                          placement = "bottom";
+                          position = "1";
+                          visible = "inactive";
+                          items = {
+                            barstart = { priority = "100"; };
+                            window = { };
+                            window_empty = { };
+                            more = { priority = "-1"; alignment = "right"; };
+                            barend = { priority = "100"; alignment = "right"; };
+                          };
+                        };
+
+                        # we treat input line as yet another statusbar :) It's possible to
+                        # add other items before or after the input line item.
+                        prompt = {
+                          type = "root";
+                          placement = "bottom";
+                          # we want to be at the bottom always
+                          position = "100";
+                          visible = "always";
+                          items = {
+                            prompt = { priority = "-1"; };
+                            prompt_empty = { priority = "-1"; };
+                            # treated specially, this is the real input line.
+                            input = { priority = "10"; };
+                          };
+                        };
+
+                        # topicbar
+                        topic = {
+                          type = "root";
+                          placement = "top";
+                          position = "1";
+                          visible = "always";
+                          items = {
+                            topicbarstart = { priority = "100"; };
+                            topic = { };
+                            topic_empty = { };
+                            topicbarend = { priority = "100"; alignment = "right"; };
+                          };
+                        };
+                      };
+                    };
+                    settings = {
+                      core = { real_name = "Unknown"; user_name = "<your_user_name>"; nick = "<your_nick>"; };
+                      "fe-text" = { actlist_sort = "refnum"; };
+                    };
+
+                    If you're someone who likes to add all sorts of cool functionality, then you
+                    should take a look at the irssi scripts site - there are all sorts of little
+                    gems there.
+
+                                                   edited Sep 11 '13 at      answered Sep 15 '11 at
+                                                                  14:39                       14:18
+                    share|improve this answer                                                      
+                                                                  [78b]                       [de8]
+                                                               cprofitt                      James♦
+                                                             5,62211948               31.3k44133224
+
+                    
+                          Thanks for the quick reply. Awesome answer! Totally working and helped me
+                          understand irssi commands better as well! – Nitin Venkatesh Sep 15 '11 at
+                          14:34
+                          @nitstorm You're welcome! Glad to help. :) – James♦ Sep 15 '11 at 15:52
+
+                          How do you msg? I cant' seem to use the msg command in Irssi :( – 
+                          streetlight Feb 14 '14 at 13:32
+                    1     @streetlight I just do "/msg username message", and it opens up a new tab.
+                          – James♦ Feb 14 '14 at 15:29
+                          Sorry, yeah that helps. Didn't get a hang of the windows system yet.
+                          Thanks! – streetlight Feb 14 '14 at 16:07
+
+                     |  show 1 more comment
+
+         If you start irssi in Ubuntu, it create a default configuration file
+         in ~/.irssi/config already containing your data taken from system
+         (nick and ident set to your username and realname to your Full Name).
+
+         There is the connection to freenode network already setup, just write
+         /connect Ubuntu, then /join #ubuntu, and repeat for other favorite
+         channels.
+
+         You can switch between channel with Alt-2, Alt-3, etc.
+
+         You can change nick with /nick nitstorm once connected to server, or
+         change globally, executing the command /set nick nitstorm, then /save
+         to modify permanently your config file. The same way you can change
+         real_name and user_name with /set.
+
+up vote  You can add autojoin channels with
+6 down
+vote     /channel add -auto #ubuntu Ubuntu
+
+         (see /help channel for help).
+
+         You could also modify the config file by hand, but is better to
+         execute commands to modify it inside irssi, then save the
+         configuration.
+
+         You terminate your sessione with /quit.
+
+                                   answered Sep 15 '11 at 14:16
+                                                               
+         share|improve this answer                        [088]
+                                                        enzotib
+                                                    45.2k497130
+
+         
+              Thanks for the quick response. A very nice answer :) – Nitin
+              Venkatesh Sep 15 '11 at 14:32
+
+         add a comment |   
+
+Your Answer
+
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+[                                                                                            ]
+ 
+draft saved
+draft discarded
+[                    ]
+
+Sign up or log in
+
+Sign up using Google
+
+Sign up using Facebook
+
+Sign up using Email and Password
+
+[Submit]
+
+Post as a guest
+
+Name [                              ]
+Email [                              ]
+
+Post as a guest
+
+Name [                              ]
+Email [                              ]
+
+[Post Your Answer] discard
+
+By posting your answer, you agree to the privacy policy and terms of service.
+
+Not the answer you're looking for? Browse other questions tagged configuration 
+irc irssi or ask your own question.
+
+asked  5 years ago
+
+viewed 51100 times
+
+active 3 years ago
+
+Related
+
+ 
+3
+Splitting channel list in irssi?
+ 
+13
+How can I get desktop notifications on irssi?
+ 
+0
+Hybrid 7 IRC server: How can I set a server password?
+ 
+6
+How do I do Xdcc downloads on the command line?
+ 
+2
+How to configure socks5 proxy in irssi
+ 
+4
+How can I avoid saving my irssi (irc) password in plain text (yet still log in
+automatically)?
+ 
+0
+key-shortcut accessible command-history (in gnome-terminal) for irssi sessions
+needed!
+ 
+2
+How do I run weechat and screen as an upstart service without error?
+ 
+1
+Cycle windows with Irssi
+ 
+0
+How to configure two servers with two charsets on Irssi
+
+Hot Network Questions
+
+  • 
+    Work done by gravity
+  • 
+    Count trailing truths
+  • 
+    Primenary Strings
+  • 
+    In vino (est?) veritas
+  • 
+    Why is this C++ code faster than my hand-written assembly for testing the
+    Collatz conjecture?
+  • 
+    what does "short brake" mean
+  • 
+    Is it safe to use cheap USB data cables?
+  • 
+    Ballpark salary equivalent today of "healthcare benefits" in the US?
+  • 
+    Figuring out why I'm going over hard-drive quota
+  • 
+    If I receive written permission to use content from a paper without citing,
+    is it plagiarism?
+  • 
+    Greek letters do not function inside tabular even with dollar sign
+  • 
+    Real numbers which are writable as a differences of two transcendental
+    numbers
+  • 
+    An easy calculus inequality that I can't prove
+  • 
+    Why is using `let` inside a `for` loop so slow on Chrome?
+  • 
+    RaspberryPi serial port
+  • 
+    Filtering a list by comparing enums against a user choice
+  • 
+    Can I use verb "to split" in meaning to "to run"?
+  • 
+    Do students wear muggle clothing while not in classes at Hogwarts (like
+    they do in the films)?
+  • 
+    Advisor professor asks for my dissertation research source-code
+  • 
+    On 1941 Dec 7, could Japan have destroyed the Panama Canal instead of Pearl
+    Harbor in a surprise attack?
+  • 
+    What are 'hacker fares' at a flight search-engine?
+  • 
+    How to iterate over a list using a Regex
+  • 
+    What did John Templeton mean when he said that the four most dangerous
+    words in investing are: ‘this time it’s different'?
+  • 
+    Can I hint the optimizer by giving the range of an integer?
+
+more hot questions
+question feed
+*
+about us tour help blog chat data legal privacy policy work here advertising
+info mobile contact us feedback
+
+                              Technology                                       Life / Arts                Culture / Recreation                    Science                Other
+                  1. Software                                           1. Photography
+                     Engineering                                        2. Science                   1. English
+                  2. Unix &                                                Fiction &                    Language &                     1. MathOverflow
+ 1. Stack            Linux                                                 Fantasy                      Usage                          2. Mathematics
+    Overflow      3. Ask          1. Database           1. Code Review  3. Graphic                   2. Skeptics      1. Bicycles      3. Cross                        1. Meta
+ 2. Server Fault     Different       Administrators     2. Magento         Design                    3. Mi Yodeya     2. Role-playing     Validated                       Stack
+ 3. Super User       (Apple)      2. Drupal Answers     3. Signal       4. Movies & TV                  (Judaism)        Games            (stats)                         Exchange
+ 4. Web           4. WordPress    3. SharePoint            Processing   5. Music:                    4. Travel        3. Anime &       4. Theoretical                  2. Stack
+    Applications     Development  4. User Experience    4. Raspberry       Practice &   1. Academia  5. Christianity     Manga            Computer      1. Philosophy     Apps
+ 5. Ask Ubuntu    5. Geographic   5. Mathematica           Pi              Theory       2. more (8)  6. English       4. Motor            Science       2. more (3)    3. Area 51
+ 6. Webmasters       Information  6. Salesforce         5. Programming  6. Seasoned                     Language         Vehicle       5. Physics                      4. Stack
+ 7. Game             Systems      7. ExpressionEngine®     Puzzles &       Advice                       Learners         Maintenance   6. Chemistry                       Overflow
+    Development   6. Electrical      Answers               Code Golf       (cooking)                 7. Japanese         & Repair      7. Biology                         Talent
+ 8. TeX - LaTeX      Engineering  8. Cryptography       6. more (7)     7. Home                         Language      5. more (17)     8. Computer
+                  7. Android                                               Improvement               8. Arqade                            Science
+                     Enthusiasts                                        8. Personal                     (gaming)
+                  8. Information                                           Finance &
+                     Security                                              Money
+
+site design / logo © 2016 Stack Exchange Inc; user contributions licensed under
+cc by-sa 3.0 with attribution required
+rev 2016.11.5.4168
+Ubuntu and Canonical are registered trademarks of Canonical Ltd.
+Ask Ubuntu works best with JavaScript enabled[p-c1rF4kxg]

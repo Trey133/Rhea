@@ -1,0 +1,240 @@
+Toggle navigation
+Cyborg Linux
+
+  • Home
+  • Gallery
+  • Download
+  • Tools
+  • Documentation
+  • Tutorials
+  • Blog
+  • Login
+  • Register
+  • Contact us
+  •  
+    [                    ]
+  •  
+
+WebSPY
+
+cyborg, November 16, 2015December 7, 2015, Network Sniffers, Privilege Escalation, SNIFFING, Tutorials, Web Sniffers,
+cyborg, webspy, WebSPY example, WebSPY sniffing tool, WebSPY tutorial, WebSPY web sniffing, WebSPY web sniffing tool,
+ztrela, 0
+[INS::INS]
+
+Description
+
+WebSPY sends URLs sniffed from a client to your local Netscape browser for display, updated in real-time (as the target
+surfs, your browser surfs along with them, automagically). Netscape must be running on your local X display ahead of time.
+
+It  is an interesting tool from the dsniff family of tools including dsniff (password sniffer), arpspoof (ARP poisoning
+tool), dnsspoof (DNS spoofing tool), msgsnarf (view messages from IM clients), mailsnarf (view email messages), tcpkill
+(kill tcp connections on a local LAN), tcpnice (force other connections to “play nice” with their tcp connections) and
+webspy (view a targets web browsing in real time). When properly setup it will intercept web browsing requests from the
+victim and display them in the attackers web browser in real time. it places information at your fingertips, empowering
+you to improve many aspects of your business. It saves network and system administrators time when reporting on web usage,
+investigating bandwidth issues, Internet misuse, and other network problems.
+
+Web Spy is a web reporting tool that automates the process of importing log data from over 200 common network devices,
+transforming it into useful information, and securely delivering meaningful reports to the right person.
+
+It also saves network and system administrators time when reporting on web usage, investigating bandwidth issues, Internet
+misuse, and other network problems. Don’t trawl through log files. Generate a useful report with the key information you
+need to know about.
+
+Usage
+
+Syntax
+
+webspy [-i interface | -p pcapfile] host
+
+Example
+
+    cyborg@cyborg:~$ sudo webspy -i eth0  192.168.1.6
+    web spy: listening on eth0
+
+[INS::INS]
+Share this
+0 likes      
+Related Articles
+
+  • Format Mifare 1k Value Blocks
+
+    cyborg, November 2, 2015December 9, 2015, NETWORK, RFID/NFC Tools, RFIDIOT-ACG, Tutorials, cyborg, format mifare 1k
+    value blocks, Format Mifare 1k Value Blocks example, Format Mifare 1k Value Blocks rfid tool, format mifare 1k value
+    blocks tutorial, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description Format Mifare 1k Value Blocks format Mifare1K data blocks according to the MIFARE value block standard
+    (with value...
+
+  • MMLS
+
+    cyborg, October 23, 2015December 9, 2015, ACQUISITION, Forensics, Tutorials, cyborg, forensics tool, linux, mmls, MMLS
+    example, MMLS forensics tool, mmls tutorial, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description mmls displays the layout of the partitions in a volume system, which include partition tables and disk
+    labels.s...
+
+  • THC-SSL-DoS
+
+    cyborg, September 10, 2015December 9, 2015, DOS, Stress Testing, Tutorials, Web Application Fuzzer, cyborg, Stress
+    Testing tool, thc ssl dos example, THC SSL DoS stress testing tool, thc ssl dos tutorial, thc-ssl-dos, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description THC-SSL-DOS is a tool to verify the performance of SSL. Establishing a secure SSL connection requires 15x
+    more...
+
+  • Linux Malware Detect
+
+    cyborg, September 10, 2015December 8, 2015, Malware Analysis, MALWARE LAB, Tutorials, cyborg, linux malware detect,
+    linux malware detect example, Linux Malware Detect Malware Analysis, linux malware detect tutorial, MALWARE LAB,
+    ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description Linux Malware Detect (LMD) is a malware scanner for Linux released under the GNU GPLv2 license, that is...
+
+  • PDGmail
+
+    cyborg, October 29, 2015December 8, 2015, Forensics, FORENSICS EVALUATION TOOLS, Tutorials, cyborg, pdgmail, pdgmail
+    example, pdgmail forensics tool, pdgmail tutorial, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description PDGmail is a Python script that analyzes Windows and Linux browser process dumps where the browser had
+    Gmail...
+
+  • KillerBee
+
+    cyborg, November 3, 2015December 9, 2015, MISC TOOLS, Tutorials, Wireless Toolkit, cyborg, killerbee, killerbee
+    example, killerbee tutorial, killerbee wireless tool, wireless tool, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description KillerBee is a Python based framework and tool set for exploring and exploiting the security of ZigBee
+    and...
+
+  • RPCClient
+
+    cyborg, November 7, 2015December 9, 2015, Hash Brief, Password Analysis, PASSWORD ATTACKS, Privilege Escalation,
+    Tutorials, cyborg, rpcclient, RPCClient example, RPCClient password cracking tool, RPCClient tutorial, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description This tool is part of the samba suite. rpcclient is a utility initially developed to test MS-RPC
+    functionality in...
+
+  • Reset Hitag2 Tag
+
+    cyborg, November 2, 2015December 8, 2015, NETWORK, RFID/NFC Tools, RFIDIOT-FROSCH, Tutorials, cyborg, how to use reset
+    hitag2 tag, nfc tools, reset hitag2 tag, reset hitag2 tag example, reset hitag2 tag tutorial, reverse engineering,
+    rfid nfc tool, rfid tool, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description Reset Hitag2 Tag to native r/w mode. If a Hitag2 TAG has been set to emulate Unique or...
+
+  
+WebMITMDriftNet
+0 Comments
+
+Leave a reply Click here to cancel the reply
+
+You must be logged in to post a comment.
+
+Username [                    ] Password [                    ]
+[ ] Remember Me
+[Log In]
+[                    ] [Search]
+Recent Posts
+
+  • Zanti2
+  • Iphone Backup Analyzer (gui)
+  • Android BruteForce Encryption
+  • AFLogical Open Source Edition
+  • Bluez Package
+
+The Next Generation Penetration Testing Distro.
+
+The most advanced, powerful and yet beautiful penetration testing distribution ever created.Lined up with ultimate
+collection of tools for pro Ethical Hackers and Cyber Security Experts.
+
+Categories
+
+Categories[Select Category           ]
+
+Tags
+
+Analyzing Live Host cyborg data recovery tool data recovery tools Dns Evolution exploitation toolkit exploiting tool
+forensics forensics tool forensics toolkit IDS/IPS Information Gathering information gathering tool information gethering
+linux metasploit metasploit tutorial mobile security tool NETWORK INVESTIGATION Network Scanners nfc tool nfc tools Open
+Source Intelligence OS Backstairs tool Privilege Escalation reverse engineering Reverse Engineering tool rfid tool Route
+Evolution Service Fingerprinting sniffing tool SSL Breakdown Stress Testing tool Traffic Monitor Tunneling Utensil tool
+voip tools vulnerability assessment Vulnerability Assessment tool WEB INVENTORY wifi hacking tool wifi hacking tools wifi
+password cracking wifi password hacking zenmap ztrela
+
+About us
+
+Cyborg Linux project was the initiative of Ztrela Knowledge Solutions Pvt. Ltd. which is came to existence in Dec 4 2014 .
+The project was managed in a way that penetration tester can utilize it in the best possible way.
+
+Categories
+
+Categories[Select Category                          ]
+
+RSS Cyborg Linux
+
+  • Zanti2 November 18, 2015
+    Description zANTI2 is a mobile penetration testing toolkit that lets security managers assess the risk level of a
+    network with the push of a button. This easy to use mobile toolkit enables IT Security Administrators to simulate an
+    advanced attacker to identify the malicious techniques they use in the wild to compromise the corporate network. […]
+    cyborg
+
+Recents posts
+
+  • Zanti2
+  • Iphone Backup Analyzer (gui)
+  • Android BruteForce Encryption
+  • AFLogical Open Source Edition
+  • Bluez Package
+
+ 
+ 
+
+CONTACT US
+
+We're are building as a community and a team. Be a part of it.
+
+[                    ][                    ][                    ] Send
+Sending
+©2016 Ztrela Knowledge Solutions Pvt. Ltd
+
+ 
+
+  • Home
+  • Gallery
+  • Download
+  • Tools
+  • Documentation
+  • Tutorials
+  • Blog
+  • Login
+  • Register
+  • Contact us
+
+  •  
+    Twitter
+  •  
+    Facebook
+  •  
+    Google+
+  •  
+    Youtube
+
+ 
+
+Log in with your credentials
+
+[                    ] [                    ]
+Sign in [ ] Remember me Lost your password?
+Forgot your details?
+
+[                    ]
+Reset Password I remember my details

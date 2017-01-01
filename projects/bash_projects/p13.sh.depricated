@@ -1,0 +1,121 @@
+#!/bin/bash
+trap '' 2  # ignore control + c
+while true
+do
+  clear # clear screen for each loop of menu
+  echo "================================================================="
+echo "		          sZZZZ.          ,I,"  
+echo "		         ZZ. ..sZ:    .Zss?.7s7.   "    
+echo "		        .s.     ..  .Zs:     .s.   "    
+echo "		        IZ.        Zs         s~   "   
+echo "		        IZ       7ZI         .s:   "    
+echo "		        .s.    .Zs            s    "    
+echo "		        .sZZZsZsssZZsssss,         "    
+echo "		    sZZsZsZ...ZZ   ......?Zssss7   "    
+echo "		 .Zs~.    s.:s               ..?sZZ."    
+echo "		+s.       Zss:     .     Zs.     .,ss."  
+echo "		ZZ        .s?    sssss   .s=        ?s. "
+echo "		.ss       sZs    7ssss    ,s         Z: "
+echo "		  Zss    ZZ.Zs.   ...      ZZ      .ss. "
+echo "		   .=.  +s.  Zs             Z.  .7Zs? "  
+echo "		        s=    sZ            Zs  .~.   "  
+echo "		       =Z      ss           ~s         " 
+echo "		       ZZ      .sZ.         .s.         "
+echo "		       s,       .ZZ.         s+         "
+echo "		       s.         ?$+        Z?         "
+echo "		       sZ     ss7  .ss      .Z.         "
+echo "		        ssZssss.    .,ss,   Zs     "
+toilet Program13 ;
+  echo  "================================================================"
+  echo 'drift, 13games, site, editsite, contacts, addcon, ipscan, 13books, read13, ap13, 13bs, wipass, starwars, note, apnote, readnote, 99bot, comcom, funfact, learn, ffh, fff, hide-me, lib13, program13, tshark, busy, geoip, google, journal, journalbs, readjournal, randjourn, readrand, fbd, ss, download, def, webinfo, pipl, yp, wolf, 10d, ddg, allpics, weather, nmap, moon, fire, imthirsty, cm, myip, redpill, randpass, ..pwn, ..pwnrepo, ..pwnread, discord, cfc, cfread, cfadd, cflist, mug, smtg, mtgc, allmtgc, allmtg, mtgadd, Hulu, Netflix, Prime'
+  echo "Enter help for help:"
+  echo "Enter q to quit q:"
+  echo -e "Please Enter Op Name Now And Press <return> .. c"
+  read answer  # create variable to retains the answer
+  case "$answer" in
+   drift) arpspoof -i wlan0 -t 192.168.1.254 192.168.1.86 & ettercap -Tqi wlan0 -M arp:remote /// & driftnet -i wlan0 ;;
+   ipscan) arp-scan -l --interface=wlan0 --localnet ;;
+   wipass) awk -F= '/^(psk|id)/{print $2}' /etc/NetworkManager/system-connections/"$(iwgetid -r)" ;;
+   starwars) telnet towel.blinkenlights.nl ;;
+   99bot) echo {1..199}" bottles of beer on the wall, cold bottle of beer, take one down, pass it around, one less bottle of beer on the wall,, " | espeak -v english -s 140 ;;
+   comcom) awk '{print $2}' | sort | uniq -c | sort -rn | head ;;
+   funfact) wget randomfunfacts.com -O - 2>/dev/null | grep \ | sed "s;^.*\(.*\).*$;\1;" ;;
+   learn) ls /usr/bin | xargs whatis | grep -v nothing | less ;;
+   ffh) sqlite3 ~/.mozilla/firefox/*.[dD]efault/places.sqlite "SELECT strftime('%d.%m.%Y %H:%M:%S', visit_date/1000000, 'unixepoch', 'localtime'),url FROM moz_places, moz_historyvisits WHERE moz_places.id = moz_historyvisits.place_id ORDER BY visit_date;" ;;
+   fff) cd ~/.mozilla/firefox/ && sqlite3 `cat profiles.ini | grep Path | awk -F= '{print $2}'`/formhistory.sqlite "select * from moz_formhistory" && cd - > /dev/null ;;
+   hide-me) service tor start ; proxychains firefox http://check.torproject.org ;;
+   lib13) sh lib13.sh ;;
+   program13) w3m http://program13.me ;;
+   geoip) read -p "Enter the IP Address e.g. 123.456.78.901 : " ip ;  lynx -dump "http://www.ip-adress.com/ip_tracer/$ip"|grep address|egrep 'city|state|country'|awk '{print $3,$4,$5,$6,$7,$8,$9}'|sed 's\ip address flag \\'|sed 's\My\\' ; read output ;;
+   google) read -p "Enter search term : " search ; Q="$search" ; GOOG_URL="http://www.google.com/search?q="; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}\"${Q/\ /+}\"" | grep -oP '\/url\?q=.+?&' | sed 's/\/url?q=//;s/&//'); echo -e "${stream//\%/\x}" ; read output ;;
+   download) read -p "Enter URL: " id ; read -p "Enter Output Name: " name ; read -p "Enter Path To Output: " dir ; service tor start; proxychains wget -O "$name" -P "$dir" "$id" ;;
+   def) read -p "Enter word : " word ; curl dict://dict.org/d:$word ; read output ;;
+   webinfo) read -p "Enter site name : " site ; whois $site ; dig $site ; % dig +short $site ; nslookup -type=any $site ; nikto -host $site -C all ; read output ;;
+   pipl) read -p "Enter First Name : " fname ; read -p "Enter Middle Name : " mname ; read -p "Enter Last Name : " lname ; w3m "https://pipl.com/search/?q=$fname+$mname+$lname&l=&sloc=&in=6" ; read output ;;
+   yp) read -p "Enter First Name : " fname ; read -p "Enter Last Name : " lname ; read -p "Enter State e.g. AL: " state ; w3m "http://people.yellowpages.com/whitepages?first="$fname"&last="$lname"&zip=&state="$state"" ; read output ;;
+   wolf) read -p "Enter search term IF MORE THAN ONE WORD ADD + BETWEEN TERMS : " search ; google-chrome "https://www.wolframalpha.com/input/?i=$search" ;;
+   10d) read -p "Enter First Name : " fname ; read -p "Enter Last Name : " lname ; read -p "Enter City : " city ; read -p "Enter State e.g. Al : " state ; w3m "http://10digits.us/n/"$fname"_"$lname"/location/"$city"_"$state"" ;;
+   ddg) read -p "Enter search term IF MORE THAN ONE TERM, SEPERATE WITH + : " search ; w3m "https://duckduckgo.com/?q="$search"&t=h_&ia=web" ;;
+   discord) google-chrome "https://discordapp.com/channels/230421669808701441/230421669808701441" ;;
+   weather) read -p "Enter Your Zip Code : " zip ; curl wttr.in/$zip ;;
+   moon) curl wttr.in/Moon ;;
+   fire) aafire ;;
+   imthirsty) curl -s http://artscene.textfiles\.com/vt100/wineglas.vt | pv -L9600 -q ;;
+   cm) /usr/games/oneko ;;
+   redpill) cmatrix ;;
+   readwebsec) ls skipfish ; read -p "Enter File Name: " fn ; google-chrome /media/truecrypt1/skipfish/$fn/index.html ;;
+   nmap) read -p "Enter Host : " host ; nmap -v -A "$host" ;;
+   randpass) strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 30 | tr -d '\n'; echo ;;
+   allpics) read -p "Enter Site Name : " site ; wget -r -p -l inf -np "$site" ;;
+   ..pwn) read -p "Enter Host : " host ; dotdotpwn  -m http -h "$host" -M GET ;;
+   ..pwnrepo) ls "dotdotpwn/Reports/" ; read output ;;
+   ..pwnread)read -p "Enter File Name : " file ; less "dotdotpwn/Reports/$file" ;;
+   cfc) sh case.sh ;;
+   cflist) ls /media/truecrypt1/casefile/ ;;
+   cfread) read -p "Enter Case Number: " case ; less "/media/truecrypt1/casefile/$case.txt" ;;
+   cfadd) read -p "Enter Case Number: " case ; nano "/media/truecrypt1/casefile/$case.txt" ;;
+   mug) read -p "First Name: " fname ; read -p "Last Name: " lname ; read -p "State: " state ; w3m "http://www.findmugshots.com/arrests/$fname"_"$lname"_"$state" && w3m http://mugshots.com/search.html?q=$fname+$lname ; read output ;;
+   fbd) read -p "Enter Name (Seperate with + ): " name ; service tor start ; proxychains firefox 'https://www.facebook.com/public/?query='$name'' ; service tor stop ;;
+   ss) read -p "Enter Name (Seperate With +): " name ; service tor start ; proxychains firefox 'https://www.social-searcher.com/social-buzz/?q5='$name'' ; service tor stop ;;
+   hulu) google-chrome http://www.hulu.com ;;
+   netflix) google-chrome https://www.netflix.com/browse ;;
+   prime) google-chrome "https://www.amazon.com/b/ref=pc_bw_piv?ie=UTF8&node=2676882011" ;;
+   myip) w3m https://www.google.com/search?sourceid=chrome-psyapi2&ion=1&espv=2&ie=UTF-8&q=my%20ip&oq=my%20ip&aqs=chrome..69i57j0l5.2204j0j7 ;;
+   chrome) read -p "URL: " url ; google-chrome $url ;;
+   disfire) ufw disable ; iptables -F ;;
+   smtg)less /home/cyborg/lib13/smtg.txt ; read -p "Enter Search Term: " search ; less -p $search /home/cyborg/lib13/MagicCompRules_21031101.pdf ;;
+   allmtg) less /home/cyborg/lib13/MagicCompRules_21031101.pdf ;;
+   mtgprice) read -p "Enter Card Name (seperate with %20 instead of space): " cname ; w3m "http://www.mtgprice.com/search?search="$cname"" ;;
+   mtgc) read -p "Enter Card Name: " card ; grep -r -A 7 -B 2 "$card" "/home/cyborg/lib13/allmtg.txt" ; read output ;;
+   mtgadd) read -p "Enter Card Name: " card ; read -p "Enter Deck Name: (ex: SOI, EMN, etc... ) " deckname ; read -p "Enter Rarity: (ex: common, uncommon, rare, mythic rare)" rarity ; echo "$card---$deckname---$rarity" >> "/home/cyborg/lib13/magiccollection.txt" ;;
+   allmtgc) less "/home/cyborg/lib13/allmtg.txt" ;;
+   nc) read -p "Enter Card Name: " card ; read -p "Enter Deck Name: " deck ; read -p "Enter Cost: " cost ; read -p "Enter Card Type: " type ; echo "$card--$type--$cost--$deck" >> /home/cyborg/lib13/needmtg.txt ;;
+   recipe) read -p "Enter Recipe (Seperate Words With %20): " recipe ; google-chrome "http://allrecipes.com/search/results/?wt="$recipe"&sort=re" ;;
+   tor) read -p "Enter Site Name: " site ; service tor start ; proxychains firefox "$site" ; service tor stop ;;
+   tshark) tshark -i wlan0 ;;
+   journal) read -p "Enter Title: " title ; nano journal/$title ; gpg -e journal/$title ; rm journal/$title ;;
+   websecrec) read -p "Enter URL: " url ; read -p "Enter File Title: " title ; mkdir $title ; skipfish -o /media/truecrypt1/skipfish/$title -S /usr/share/skipfish/dictionaries/minimal.wl $url ;;
+   readjournal) read -p "Enter Title: " title ; gpg --decrypt-files journal/$title.gpg ; less $title ; gpg --encrypt-files $title ; rm "/media/truecrypt/journal/$title" ;;
+   journalbs) ls /media/truecrypt1/journal ;;
+   randjourn) read -p "Enter Title: " title ; nano /media/truecrypt1/journal/random/$title ; gpg -e /media/truecrypt1/journal/random/$title ; rm /media/truecrypt1/journal/random/$title ;;
+   readrand) ls journal/random/ ; read -p "Enter Title: " title ; gpg -d "journal/random/$title" ;;
+   note) read -p "Enter  Title: " title ; read -p "Enter Note: " note ; echo $note > /media/truecrypt1/notepad/$title ;;
+   apnote) ls /media/truecrypt1/notepad ; read -p "Enter Title: " title ; read -p "Enter New Notes: " notes ; echo "notes" >> /media/truecrypt1/notepad/$title ;;
+   readnote) ls notepad ; read -p "Enter Title: " title ; less /media/truecrypt1/notepad/$title ;;
+   13books) read -p "Enter Title: " title ; nano /media/truecrypt1/13books/$title ; gpg -e /media/truecrypt1/13books/$title ; rm /media/truecrypt1/13books/$title ;;
+   read13) ls 13books ; read -p "Enter Title (without file ext  ex: .gpg): " title ; gpg --decrypt-files /media/truecrypt1/13books/$title.gpg ; less /media/truecrypt1/13books/$title ; gpg --encrypt-files /media/truecrypt1/13books/$title ; rm /media/truecrypt1/13books/$title ;;
+   ap13) ls 13books ; read -p "Enter Title (without file ext  ex: .gpg): " title ; gpg --decrypt-files /media/truecrypt1/13books/$title.gpg ; nano /media/truecrypt1/13books/$title ; gpg --encrypt-files /media/truecrypt1/13books/$title ; rm /media/truecrypt1/13books/$title ;;
+   13bs) ls 13books ;;
+   site) read -p "Enter Title: " title ; nano /media/truecrypt1/site/$title ;;
+   editsite) ls site ; read -p "Enter Title: " title ; nano /media/truecrypt1/site/$title ;;
+   busy) while [ true ]; do head -n 100 /dev/urandom; sleep .1; done | hexdump -C | grep "ca fe" ;;
+   addcon) read -p "Enter Contact Name: " name ; read -p "Enter Phone Number: " num ; echo "$name --- $num" >> /media/truecrypt1/Contacts.txt ;;
+   contacts) mv Contacts.txt /media/truecrypt1/Contacts ; sort < Contacts > Contacts.txt ; rm Contacts ; less /media/truecrypt1/Contacts.txt ;;
+   13games) sh elements.sh ;;
+   help)sh help.sh ;;
+   q) exit ;;
+  esac
+  echo -e "Hit the <return> key to continue.. c"
+  read input ##This causes a pause so we can read the output
+  #of the selection before the loop clear the screen
+done

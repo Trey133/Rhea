@@ -1,0 +1,256 @@
+Toggle navigation
+Cyborg Linux
+
+  • Home
+  • Gallery
+  • Download
+  • Tools
+  • Documentation
+  • Tutorials
+  • Blog
+  • Login
+  • Register
+  • Contact us
+  •  
+    [                    ]
+  •  
+
+DAMM
+
+cyborg, September 10, 2015December 8, 2015, Malware Analysis, MALWARE LAB, Tutorials, cyborg, damm, damm example, damm
+tutorial, MALWARE LAB, ztrela, 0
+[INS::INS]
+
+Description
+
+DAMM differential Analysis of Malware in Memory (DAMM) is a tool built on top of Volatility. Its main objective is as a
+test bed for some newer techniques in memory analysis, including performance enhancements via persistent SQLite storage of
+plugin results (optional); comparing in-memory objects across multiple memory samples, for example processes running in an
+uninfected samples versus those in an infected sample;
+
+data reduction via smart filtering (e.g., on a pid across several plugins); and encoding a set of expert domain knowledge
+to sniff out indicators of malicious activity, like hidden processes and DLLs, or windows built-in processes running form
+the wrong directory.
+
+Usage
+
+Syntax
+
+damm [-h] [-d DIR] [-p PLUGIN [PLUGIN …]] [-f FILE] [-k KDBG] [–db DB] [–profile PROFILE] [–debug] [–info] [–tsv]
+[–grepable] [–filter FILTER] [–filtertype FILTERTYPE] [–diff BASELINE] [-u FIELD [FIELD …]] [–warnings] [-q]
+
+Options
+
+      -h, --help            show this help message and exit
+      -d DIR                Path to additional plugin directory
+      -p PLUGIN [PLUGIN ...]
+                            Plugin(s) to run. For a list of options use --info
+      -f FILE               Memory image file to run plugin on
+      -k KDBG               KDBG address for the images (in hex)
+      --db DB               SQLite db file, for efficient input/output
+      --profile PROFILE     Volatility profile for the images (e.g. WinXPSP2x86)
+      --debug               Print debugging statements
+      --info                Print available volatility profiles, and DAMM plugins
+      --tsv                 Print screen formatted output.
+      --grepable            Print in grepable text format
+      --filter FILTER       Filter results on name:value pair, e.g., pid:42
+      --filtertype FILTERTYPE
+                            Filter match type; either "exact" or "partial",
+                            defaults to partial
+      --diff BASELINE       Diff the db with this db file as a baseline
+      -u FIELD [FIELD ...]  Use the specified fields to determine uniqueness of
+                            memobjs when diffing
+      --warnings            Look for suspicious objects
+      -q                    Query the supplied db (via --db)
+
+Example
+
+Please Visit : https://github.com/504ensicsLabs/DAMM#example-
+
+[INS::INS]
+Share this
+0 likes      
+Related Articles
+
+  • Valgrind
+
+    cyborg, September 16, 2015December 9, 2015, Debuggers, Reverse Engineering, Tutorials, cyborg, Reverse Engineering
+    tool, valgrind, Valgrind example, Valgrind Reverse Engineering tool, valgrind tutorial, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description Valgrind is an instrumentation framework for building dynamic analysis tools. There are Valgrind tools
+    that can automatically detect...
+
+  • GenPMK
+
+    cyborg, November 4, 2015December 8, 2015, Tutorials, WiFi, Wireless Toolkit, cyborg, genpmk, genpmk example, genpmk
+    tutorial, wifi hacking tool, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description GenPMK Generates Pairwise Master Key (PMK) for coWPAtty .gnpmk Usage Syntax gen pmk Options -f Dictionary
+    file -d...
+
+  • DBD
+
+    cyborg, September 11, 2015December 8, 2015, Maintaining Access, OS Backstairs, Tunneling Utensil, Tutorials, cyborg,
+    dbd, dbd example, DBD os backstairs tool, DBD Tunneling Utensil tool, dbd tutorial, OS Backstairs tool, Tunneling
+    Utensil tool, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description dbd is a Netcat-clone, designed to be portable and offer strong encryption. It runs on Unix-like operating
+    systems...
+
+  • BlueMaho+
+
+    BlueMaho
+
+    cyborg, November 18, 2015December 9, 2015, Blue-Package, Bluetooth, Tutorials, Wireless Toolkit, Blue Maho, Blue Maho
+    example, Blue Maho tutorial, bluemaho, BlueMaho example, BlueMaho tutorial, cyborg, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description BlueMaho is GUI-shell (interface) for suite of tools for testing security of bluetooth devices. It is
+    freeware, opensource,...
+
+  • BlueRanger
+
+    cyborg, November 18, 2015December 7, 2015, Blue-Package, Bluetooth, Tutorials, Wireless Toolkit, Blue Ranger, Blue
+    Ranger example, Blue Ranger tutorial, blueranger, cyborg, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description BlueRanger is a simple Bash script which uses Link Quality to locate Bluetooth device radios. It sends
+    l2cap...
+
+  • Fake -THC-IPV6
+
+    cyborg, November 17, 2015December 9, 2015, Privilege Escalation, SPOOFING, Tutorials, fake thc ip, fake thc ip tool,
+    fake thc ip tutorial, fake_advertise6, fake_dhcps6, fake_dns6d, fake_dnsupdate6, fake_mipv6, fake_mld26, fake_mld6,
+    fake_mldrouter6, fake_router26, fake_router6, fake_solicitate6, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Fake_Advertise6 Fake -THC-IPV6 – Advertise ipv6 address on the network (with own mac if not specified),sending it to
+    the...
+
+  • MacTime
+
+    cyborg, October 28, 2015December 8, 2015, Forensics, FORENSICS EVALUATION TOOLS, Tutorials, cyborg, mactime, mactime
+    example, mactime tiutorial, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description mactime creates an ASCII time line of file activity based on the body file specified by ’-b’ or...
+
+  • Viper Terminal
+
+    cyborg, September 10, 2015December 8, 2015, Malware Analysis, MALWARE LAB, cyborg, MALWARE LAB, Viper Terminal, Viper
+    Terminal example, Viper Terminal Malware Analysis, viper terminal tutorial, ztrela, 0
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   
+    Description Viper Terminal  is a binary analysis and management framework. Its fundamental objective is to provide a
+    solution to...
+
+  
+CuckooLinux Malware Detect
+0 Comments
+
+Leave a reply Click here to cancel the reply
+
+You must be logged in to post a comment.
+
+Username [                    ] Password [                    ]
+[ ] Remember Me
+[Log In]
+[                    ] [Search]
+Recent Posts
+
+  • Zanti2
+  • Iphone Backup Analyzer (gui)
+  • Android BruteForce Encryption
+  • AFLogical Open Source Edition
+  • Bluez Package
+
+The Next Generation Penetration Testing Distro.
+
+The most advanced, powerful and yet beautiful penetration testing distribution ever created.Lined up with ultimate
+collection of tools for pro Ethical Hackers and Cyber Security Experts.
+
+Categories
+
+Categories[Select Category           ]
+
+Tags
+
+Analyzing Live Host cyborg data recovery tool data recovery tools Dns Evolution exploitation toolkit exploiting tool
+forensics forensics tool forensics toolkit IDS/IPS Information Gathering information gathering tool information gethering
+linux metasploit metasploit tutorial mobile security tool NETWORK INVESTIGATION Network Scanners nfc tool nfc tools Open
+Source Intelligence OS Backstairs tool Privilege Escalation reverse engineering Reverse Engineering tool rfid tool Route
+Evolution Service Fingerprinting sniffing tool SSL Breakdown Stress Testing tool Traffic Monitor Tunneling Utensil tool
+voip tools vulnerability assessment Vulnerability Assessment tool WEB INVENTORY wifi hacking tool wifi hacking tools wifi
+password cracking wifi password hacking zenmap ztrela
+
+About us
+
+Cyborg Linux project was the initiative of Ztrela Knowledge Solutions Pvt. Ltd. which is came to existence in Dec 4 2014 .
+The project was managed in a way that penetration tester can utilize it in the best possible way.
+
+Categories
+
+Categories[Select Category                          ]
+
+RSS Cyborg Linux
+
+  • Zanti2 November 18, 2015
+    Description zANTI2 is a mobile penetration testing toolkit that lets security managers assess the risk level of a
+    network with the push of a button. This easy to use mobile toolkit enables IT Security Administrators to simulate an
+    advanced attacker to identify the malicious techniques they use in the wild to compromise the corporate network. […]
+    cyborg
+
+Recents posts
+
+  • Zanti2
+  • Iphone Backup Analyzer (gui)
+  • Android BruteForce Encryption
+  • AFLogical Open Source Edition
+  • Bluez Package
+
+ 
+ 
+
+CONTACT US
+
+We're are building as a community and a team. Be a part of it.
+
+[                    ][                    ][                    ] Send
+Sending
+©2016 Ztrela Knowledge Solutions Pvt. Ltd
+
+ 
+
+  • Home
+  • Gallery
+  • Download
+  • Tools
+  • Documentation
+  • Tutorials
+  • Blog
+  • Login
+  • Register
+  • Contact us
+
+  •  
+    Twitter
+  •  
+    Facebook
+  •  
+    Google+
+  •  
+    Youtube
+
+ 
+
+Log in with your credentials
+
+[                    ] [                    ]
+Sign in [ ] Remember me Lost your password?
+Forgot your details?
+
+[                    ]
+Reset Password I remember my details

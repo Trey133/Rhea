@@ -1,0 +1,785 @@
+Ubuntu Forums
+
+  • FAQ
+  • [Login with SSO]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Forum
+      □ Quick Links
+          ☆ Unanswered Posts
+          ☆ New Posts
+          ☆ View Forum Leaders
+          ☆ FAQ
+          ☆ Contact an Admin
+      □ Forum Community
+          ☆ Forum Council
+          ☆ FC Agenda
+          ☆ Forum Governance
+          ☆ Forum Staff
+          ☆ Ubuntu Forums Code of Conduct
+          ☆ Forum IRC Channel
+      □ Ubuntu Community
+          ☆ Ubuntu
+          ☆ Get Ubuntu
+          ☆ Get Kubuntu
+          ☆ Get Xubuntu
+          ☆ Get Lubuntu
+          ☆ Get UbuntuStudio
+          ☆ Get Mythbuntu
+          ☆ Get Edubuntu
+          ☆ Get Ubuntu-GNOME
+          ☆ Get UbuntuKylin
+          ☆ Ubuntu Code of Conduct
+          ☆ Ubuntu Wiki
+          ☆ Community Wiki
+      □ Other Support
+          ☆ Launchpad Answers
+          ☆ Ubuntu IRC Support
+          ☆ AskUbuntu
+          ☆ Official Documentation
+          ☆ User Documentation
+      □ Social Media
+          ☆ Facebook
+          ☆ Twitter
+      □ Useful Links
+          ☆ Distrowatch
+          ☆ Bugs: Ubuntu
+          ☆ PPAs: Ubuntu
+          ☆ Web Upd8: Ubuntu
+          ☆ OMG! Ubuntu
+          ☆ Ubuntu Insights
+          ☆ Planet Ubuntu
+  • Activity Page
+  • Please read before SSO login
+
+[                    ] [search]
+  • Advanced Search
+
+  • Home
+  • Forum
+  • The Ubuntu Forum Community
+  • Other Discussion and Support
+  • Tutorials
+  • [Howto] Setup irssi and join #ubuntu on Freenode
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ 1. Having an Issue With Posting ? Do you want to help us debug the posting issues ? < is the place to report it, thanks !
+
+Page 1 of 6 123 ... Next LastLast
+
+  • Jump to page: [    ] [Go]
+
+Results 1 to 10 of 59
+
+Thread: [Howto] Setup irssi and join #ubuntu on Freenode
+
+  • Thread Tools
+
+      □ Show Printable Version
+      □ Subscribe to this Thread…
+  • Display
+
+      □ Linear Mode
+      □ Switch to Hybrid Mode
+      □ Switch to Threaded Mode
+
+ 1. December 14th, 2008 #1
+    andrew.46's Avatar
+    andrew.46
+      □ View Profile
+      □ View Forum Posts
+      □ Private Message
+    andrew.46 is offline Still having fun... [rank_28]
+
+    Join Date
+        Dec 2006
+    Beans
+        7,320
+
+    [Howto] Setup irssi and join #ubuntu on Freenode
+
+        I am both a student and a huge fan of the Internet Relay Chat (IRC) program irssi. This brief guide aims to give
+        just a starting point for any like me who are keen to explore this amazing program. I shall do this by
+        demonstrating how to install irssi and some scripts, connect to Freenode with SSL and then access the #ubuntu
+        channel. The guide has most recently been tested with irssi 0.8.15 and Natty Narwhal but should work, perhaps with
+        some small modifications, for most Ubuntu releases.
+
+        Getting started ...
+
+        One important point in this guide is that where you are required to fill in your own details for such things as
+        passwords, email addresses etc I will mark the area this way: <password>. Change this for your own details and
+        omit the brackets in all cases. First let us download some required files from the repository using the following
+        single command:
+
+        Code:
+
+        sudo apt-get -y install irssi irssi-scripts ca-certificates \
+        libcrypt-blowfish-perl libcrypt-dh-perl libcrypt-openssl-bignum-perl \
+        libmath-bigint-gmp-perl
+
+        This will only be a small download, now start the program as follows:
+
+        Code:
+
+        irssi
+
+        You should then see the following screen:
+
+        Code:
+
+        10:24 -!- Irssi: Looks like this is the first time you've run irssi.
+        10:24 -!- Irssi: This is just a reminder that you really should go read
+        10:24 -!- Irssi: startup-HOWTO if you haven't already. You can find it
+        10:24 -!- Irssi: and more irssi beginner info at http://www.irssi.org
+        10:24 -!- Irssi:
+        10:24 -!- Irssi: For the truly impatient people who don't like any automatic
+        10:24 -!- Irssi: window creation or closing, just type: /MANUAL-WINDOWS
+        10:24 -!- Irssi:
+        10:24 -!- Irssi: For Ubuntu specific help type "/connect irc.ubuntu.com"
+        10:24 -!- Irssi: and "/join #ubuntu" (without the quotes) and ask your
+        10:24 -!- Irssi: question.
+
+        Well that never makes a great first impression does it? Never fear we are now going to make things a little
+        friendlier:
+
+        Connecting to Freenode and #ubuntu ...
+
+        No doubt like most people (including me) you will ignore the polite note in this opening window encouraging you to
+        first read some of the irssi documentation. At some stage I would suggest that this would be an excellent idea and
+        perhaps sooner rather than later. So to start we need to set a nick, usually a pithy and fairly cool one, and your
+        real name, don't forget to use your own details for <nick> and <Real Name>:
+
+        Code:
+
+        /set nick <nick>
+        /set real_name <Real Name>
+
+        Then manually connect to Freenode as follows:
+
+        Code:
+
+        /connect irc.freenode.net 8001
+
+        This connects and then to manually join #ubuntu simply run the following:
+
+        Code:
+
+        /join #ubuntu
+
+        And there you are in the thick of it, a very busy channel and a little chaotic too. For the moment we will leave
+        this channel:
+
+        Code:
+
+        /leave Put your witty parting shot here!!
+
+        This closes the active channel but leaves us still connected to Freenode so we can complete the setup.
+
+        Register with Freenode ...
+
+        It is a very good idea to formally register your nick with Freenode and it is easy enough to do. Don't forget to
+        substitute your own details here:
+
+        Code:
+
+        /msg nickserv REGISTER <password> <email>
+
+        NickServ will send an email to your email address with copy and paste instructions to verify you nick details. So
+        your email address is not obvious to all users (although this setting is usually the default) then issue the
+        following command:
+
+        Code:
+
+        /msg NickServ SET HIDEMAIL ON
+
+        It is not mandatory but often a good idea to create an alternate nick and then group this with your account. So
+        while logged on with your primary nick run the following:
+
+        Code:
+
+        /nick <alternate_nick>
+        /msg nickserv group
+
+        Finally check your setup with the following command:
+
+        Code:
+
+        /msg nickserv info
+
+        And that is the basics of our dealings with Freenode registration, although I would suggest that after 4 weeks you
+        go to #freenode and ask for an unaffiliated cloak to shield your IP details from the curious. But now to automate
+        the irssi connection and both connect with SSL and secure your password exchange with SASL.
+
+        Automatically connect with SSL/SASL ...
+
+        For the most secure connection it is best to connect with SSL and then shield the password verification with SASL.
+        First to setup the Freenode sasl perl script with the following single command:
+
+        Code:
+
+        mkdir -pv $HOME/.irssi/scripts/autorun && cd $HOME/.irssi/scripts && \
+        wget http://freenode.net/sasl/cap_sasl.pl && \
+        cd autorun && ln -sv ../cap_sasl.pl
+
+        Now load the script manually and add in the required settings:
+
+        Code:
+
+        /script load cap_sasl.pl
+        /sasl set Freenode <primary-nick> <password> DH-BLOWFISH
+        /sasl save
+        /save
+
+        Finally set irssi to automatically make an SSL connection to Freenode on startup and then automatically log on to
+        #ubuntu:
+
+        Code:
+
+        /network add Freenode
+        /server add -auto -ssl -ssl_verify -ssl_capath /etc/ssl/certs -network Freenode irc.freenode.net 7000
+        /channel add -auto #ubuntu Freenode
+        /save
+        /exit
+
+        Perhaps you should also cross your fingers when you restart irssi? If all is well you will see +Zi in the bar at
+        the base of the irssi window and in the irssi connection dialogue you should also see something like the
+        following:
+
+        Code:
+
+        10:51 -!- Irssi: SASL authentication successful
+
+        If all is not well retrace your steps and see if you can spot a problem. If however all is well close your chat
+        windows with /leave, close irssi using the /exit command and continue on as we add a few scripts to make life a
+        little more pleasant with this great irc application.
+
+        Add a few more scripts ...
+
+        I will now demonstrate how to automatically load scripts both from the Ubuntu script pack as well as from external
+        sources. Two great scripts are 'scriptassist.pl', which enables easy installation and upgrade of scripts, and
+        'mouse.pl' which allows some use of mouse in irssi. These are part of the Ubuntu script pack and can be
+        automatically loaded using the following single command:
+
+        Code:
+
+        cd $HOME/.irssi/scripts/autorun && \
+        ln -sv /usr/share/irssi/scripts/scriptassist.pl && \
+        ln -sv /usr/share/irssi/scripts/mouse.pl
+
+        The syntax for scriptassist can be seen by typing in '/scriptassist help' in the opening irssi window. Plenty more
+        scripts to explore in this script pack! I demonstrate also how to download a couple of external scripts.
+        'adv_windowlist.pl' allows easier navigation of multiple channel windows while 'hack-whois-in-current-window.pl'
+        shows the '/whois' window in the current window. The following is a single command:
+
+        Code:
+
+        cd $HOME/.irssi/scripts && \
+        wget http://anti.teamidiot.de/static/nei/*/Code/Irssi/adv_windowlist.pl && \
+        wget http://dgl.cx/irssi/hack-whois-in-current-window.pl && \
+        cd autorun && \
+        ln -sv ../adv_windowlist.pl && \
+        ln -sv ../hack-whois-in-current-window.pl
+
+        Details of well-written scripts can be seen by opening them with your favourite text editor and following the
+        instructions printed within. Plenty of scripts to explore and perhaps you might even consider writing a few
+        yourself?
+
+        And in conclusion ...
+
+        Experienced users of irssi and IRC know that I have omitted many, many areas that enhance the experience of using
+        this great program. However hopefully I have furnished a strong starting point for inexperienced users who will
+        subsequently explore the program a little more fully. Please feel free to ask questions in this thread if there
+        are problems or suggestions for improvement with this guide. And remember "Have Fun!!".
+
+        Andrew Strong
+        March 18, 2011
+
+        Last edited by andrew.46; June 11th, 2011 at 07:52 AM.
+
+        You think that's air you're breathing now?
+
+    [progress] Advanced reply Adv Reply  
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 2. December 17th, 2008 #2
+    Voorhees1979
+      □ View Profile
+      □ View Forum Posts
+      □ Private Message
+    Voorhees1979 is offline A Carafe of Ubuntu [rank_3]
+
+    Join Date
+        Mar 2008
+    Beans
+        85
+
+    Re: [Howto] Setup irssi and join #ubuntu on Freenode
+
+        Is there a blow fish for this?
+
+    [progress] Advanced reply Adv Reply  
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 3. December 17th, 2008 #3
+    andrew.46's Avatar
+    andrew.46
+      □ View Profile
+      □ View Forum Posts
+      □ Private Message
+    andrew.46 is offline Still having fun... [rank_28]
+
+    Join Date
+        Dec 2006
+    Beans
+        7,320
+
+    Re: [Howto] Setup irssi and join #ubuntu on Freenode
+
+        Hi Vorhees,
+
+        Quote Originally Posted by Voorhees1979 View Post
+        Is there a blow fish for this?
+        Lots of discussion here:
+
+        http://fish.sekure.us/forum/viewforum.php?f=3
+
+        but this is a little beyond the scope of this short guide.
+
+        All the best,
+
+        Andrew
+
+        You think that's air you're breathing now?
+
+    [progress] Advanced reply Adv Reply  
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 4. December 24th, 2008 #4
+    Lividity's Avatar
+    Lividity
+      □ View Profile
+      □ View Forum Posts
+      □ Private Message
+    Lividity is offline 5 Cups of Ubuntu [rank_1]
+
+    Join Date
+        Nov 2006
+    Beans
+        21
+    Distro
+        Ubuntu 10.10 Maverick Meerkat
+
+    Re: [Howto] Setup irssi and join #ubuntu on Freenode
+
+        great guide andrew ty very much
+
+    [progress] Advanced reply Adv Reply  
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 5. December 24th, 2008 #5
+    andrew.46's Avatar
+    andrew.46
+      □ View Profile
+      □ View Forum Posts
+      □ Private Message
+    andrew.46 is offline Still having fun... [rank_28]
+
+    Join Date
+        Dec 2006
+    Beans
+        7,320
+
+    Re: [Howto] Setup irssi and join #ubuntu on Freenode
+
+        Hi Lividity,
+
+        Quote Originally Posted by Lividity View Post
+        great guide andrew ty very much
+        It is my pleasure! I hope to see you on irc [icon_smile].
+
+        Andrew
+
+        You think that's air you're breathing now?
+
+    [progress] Advanced reply Adv Reply  
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 6. December 25th, 2008 #6
+    kevdog's Avatar
+    kevdog
+      □ View Profile
+      □ View Forum Posts
+      □ Private Message
+    kevdog is offline I Want My $2!! [rank_26]
+
+    Join Date
+        Mar 2007
+    Location
+        Denver, CO
+    Beans
+        7,701
+    Distro
+        Ubuntu Mate 16.04 Xenial Xerus
+
+    Re: [Howto] Setup irssi and join #ubuntu on Freenode
+
+        Do not like #ubuntu, but other forums are great.
+
+        Command Line Network Card Configuration / Port Knocking / Wireless Broadcom Reference /
+        Compile Pidgin from Source / GnuPG Advanced Concepts
+
+    [progress] Advanced reply Adv Reply  
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 7. March 23rd, 2009 #7
+    andrew.46's Avatar
+    andrew.46
+      □ View Profile
+      □ View Forum Posts
+      □ Private Message
+    andrew.46 is offline Still having fun... [rank_28]
+
+    Join Date
+        Dec 2006
+    Beans
+        7,320
+
+    Re: [Howto] Setup irssi and join #ubuntu on Freenode
+
+        Hi Voorhees,
+
+        Quote Originally Posted by Voorhees1979 View Post
+        Is there a blow fish for this?
+        Looks like a script has appeared on the irssi website called 'bl**job.pl' (my apologies for the name where I have
+        substituted '**' for 'ow'!):
+
+        Crypt IRC communication with blowfish encryption. Supports public #channels, !channels, +channel, querys and dcc
+        chat. Roadmap for Version 1.0.0 is to get some feedback and cleanup. Join #blowtest on freenode (irc.debian.org)
+        to get latest stuff available. Note to users upgrading from versions prior to 0.8.5: The blowjob.keys format has
+        changed.
+        Would this be what you are after?
+
+        Andrew
+
+    [progress] Advanced reply Adv Reply  
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 8. April 3rd, 2009 #8
+    ayeizajedi's Avatar
+    ayeizajedi
+      □ View Profile
+      □ View Forum Posts
+      □ Private Message
+    ayeizajedi is offline First Cup of Ubuntu [rank_1]
+
+    Join Date
+        May 2006
+    Beans
+        3
+
+    Re: [Howto] Setup irssi and join #ubuntu on Freenode
+
+        Thanks for the post, been a while since i used irssi and your post really helped.
+
+    [progress] Advanced reply Adv Reply  
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 9. April 3rd, 2009 #9
+    andrew.46's Avatar
+    andrew.46
+      □ View Profile
+      □ View Forum Posts
+      □ Private Message
+    andrew.46 is offline Still having fun... [rank_28]
+
+    Join Date
+        Dec 2006
+    Beans
+        7,320
+
+    Re: [Howto] Setup irssi and join #ubuntu on Freenode
+
+        Hi ayeizajedi,
+
+        Quote Originally Posted by ayeizajedi View Post
+        Thanks for the post, been a while since i used irssi and your post really helped.
+        My pleasure [icon_smile].
+
+        Andrew
+
+    [progress] Advanced reply Adv Reply  
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+10. June 24th, 2009 #10
+    andrew.46's Avatar
+    andrew.46
+      □ View Profile
+      □ View Forum Posts
+      □ Private Message
+    andrew.46 is offline Still having fun... [rank_28]
+
+    Join Date
+        Dec 2006
+    Beans
+        7,320
+
+    Re: [Howto] Setup irssi and join #ubuntu on Freenode
+
+        Having been prompted by a pleasant gentleman on #ubuntu-irc I modified my own irssi setup to include an alternate
+        nick and then grouped the nicks. Subsequently altered this guide to include these details [icon_smile].
+
+        Andrew
+
+        You think that's air you're breathing now?
+
+    [progress] Advanced reply Adv Reply  
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Page 1 of 6 123 ... Next LastLast
+
+  • Jump to page: [    ] [Go]
+
+Quick Navigation Tutorials Top
+
+  • Site Areas
+  • Settings
+  • Private Messages
+  • Subscriptions
+  • Who's Online
+  • Search Forums
+  • Forums Home
+  • Forums
+  • The Ubuntu Forum Community
+     1. Ubuntu Official Flavours Support
+         1. New to Ubuntu
+         2. General Help
+         3. Installation & Upgrades
+         4. Hardware
+         5. Desktop Environments
+         6. Networking & Wireless
+         7. Multimedia Software
+         8. Ubuntu Studio
+         9. Mythbuntu
+     2. Ubuntu Specialised Support
+         1. Ubuntu Phone and Tablet
+         2. Ubuntu Development Version
+         3. Security
+         4. Virtualisation
+         5. Ubuntu Servers, Cloud and Juju
+             1. Server Platforms
+             2. Ubuntu Cloud and Juju
+         6. Gaming & Leisure
+             1. Emulators
+         7. Wine
+         8. Development & Programming
+             1. Packaging and Compiling Programs
+             2. Development CD/DVD Image Testing
+             3. Ubuntu Application Development
+             4. Ubuntu Dev Link Forum
+             5. Programming Talk
+             6. Repositories & Backports
+                 1. Ubuntu Backports
+                     1. Bug Reports / Support
+         9. System76 Support
+        10. Apple Hardware Users
+     3. Ubuntu Community Discussions
+         1. Ubuntu, Linux and OS Chat
+             1. Recurring Discussions
+             2. Full Circle Magazine
+         2. The Cafe
+             1. Cafe Games
+         3. Market
+         4. Mobile Technology Discussions
+         5. Announcements & News
+         6. Weekly Newsletter
+         7. Membership Applications
+         8. The Fridge Discussions
+         9. Forum Council Agenda
+        10. Forum Feedback & Help
+             1. Request a LoCo forum
+        11. Resolution Centre
+     4. Other Discussion and Support
+         1. Other OS Support and Projects
+             1. Other Operating Systems
+                 1. Ubuntu/Debian BASED
+                 2. Debian
+                 3. MINT
+                 4. Arch and derivatives
+                 5. Fedora/RedHat and derivatives
+                 6. Mandriva/Mageia
+                 7. Slackware and derivatives
+                 8. openSUSE and SUSE Linux Enterprise
+                 9. Mac OSX
+                10. PCLinuxOS
+                11. Gentoo and derivatives
+                12. Windows
+                13. BSD
+                14. Any Other OS
+             2. Other Projects
+                 1. Ubuntu Christian Edition
+                 2. Ubuntuzilla
+                 3. Ubuntu Translations
+         2. Assistive Technology & Accessibility
+         3. Art & Design
+         4. Education & Science
+         5. Documentation and Community Wiki Discussions
+         6. Tutorials
+             1. Outdated Tutorials & Tips
+         7. Ubuntu Women
+         8. Ubuntu LoCo Team Forums
+             1. Americas LoCo Teams
+                 1. Argentina Team
+                     1. Software
+                     2. Hardware
+                     3. Comunidad
+                 2. Arizona Team - US
+                 3. Arkansas Team - US
+                 4. Brazil Team
+                 5. California Team - US
+                 6. Canada Team
+                 7. Centroamerica Team
+                 8. Chile Team
+                     1. Comunidad
+                     2. Hardware
+                     3. Software
+                     4. Instalación y Actualización
+                 9. Colombia Team - Colombia
+                10. Georgia Team - US
+                11. Illinois Team
+                12. Indiana - US
+                13. Kentucky Team - US
+                14. Maine Team - US
+                15. Minnesota Team - US
+                16. Mississippi Team - US
+                17. Nebraska Team - US
+                18. New Mexico Team - US
+                19. New York - US
+                20. North Carolina Team - US
+                21. Ohio Team - US
+                22. Oklahoma Team - US
+                23. Oregon Team - US
+                24. Pennsylvania Team - US
+                25. Peru Team
+                26. Texas Team - US
+                27. Uruguay Team
+                28. Utah Team - US
+                29. Virginia Team - US
+                30. West Virginia Team - US
+             2. Asia and Oceania LoCo Teams
+                 1. Australia Team
+                 2. Bangladesh Team
+                 3. Hong Kong Team
+                 4. Myanmar Team
+                 5. Philippine Team
+                 6. Singapore Team
+             3. Europe, Middle East, and African (EMEA) LoCo Teams
+                 1. Albania Team
+                 2. Catalan Team
+                 3. Egypt Team
+                 4. Georgia Team
+                 5. Ireland Team - Ireland
+                 6. Kenyan Team - Kenya
+                 7. Kurdish Team - Kurdistan
+                 8. Lebanon Team
+                 9. Morocco Team
+                10. Saudi Arabia Team
+                11. Sudan Team
+                12. Tunisia Team
+             4. Other Forums & Teams
+             5. LoCo Archive
+                 1. Afghanistan Team
+                 2. Alabama Team - US
+                 3. Alaska Team - US
+                 4. Algerian Team
+                 5. Andhra Pradesh Team - India
+                 6. Austria Team
+                 7. Bangalore Team
+                 8. Bolivia Team
+                 9. Cameroon Team
+                10. Colorado Team - US
+                11. Connecticut Team
+                12. Costa Rica Team
+                13. Delhi Team
+                14. Ecuador Team
+                15. El Salvador Team
+                16. Florida Team - US
+                17. Galician LoCo Team
+                18. Greek team
+                19. Hawaii Team - US
+                20. Honduras Team
+                21. Idaho Team - US
+                22. Iowa Team - US
+                23. Jordan Team
+                24. Kansas Team - US
+                25. Libya Team
+                26. Louisiana Team - US
+                27. Maryland Team - US
+                28. Massachusetts Team
+                29. Michigan Team - US
+                30. Missouri Team - US
+                31. Montana Team - US
+                32. Namibia Team
+                33. Nevada Team - US
+                34. New Hampshire Team - US
+                35. New Jersey Team - US
+                36. Northeastern Team - US
+                37. Panama Team
+                38. Paraguay Team
+                39. Qatar Team
+                40. Quebec Team
+                41. Rhode Island Team - US
+                42. Senegal Team
+                43. South Carolina Team - US
+                44. South Dakota Team - US
+                45. Switzerland Team
+                46. Tamil Team - India
+                47. Tennessee Team - US
+                48. Trinidad & Tobago Team
+                49. Uganda Team
+                50. United Kingdom Team
+                51. US LoCo Teams
+                52. Venezuela Team
+                53. Wales Team
+                54. Washington DC Team - US
+                55. Washington State Team - US
+                56. Wisconsin Team
+                57. Yemen Team
+                58. Za Team - South Africa
+                59. Zimbabwe Team
+
+« Previous Thread | Next Thread »
+
+Tags for this Thread
+
+#ubuntu, freenode, irc, irssi, scripts [11x11progr]
+
+View Tag Cloud
+
+Bookmarks
+
+Bookmarks
+
+  • Submit to Digg Digg
+  • Submit to del.icio.us del.icio.us
+  • Submit to StumbleUpon StumbleUpon
+  • Submit to Google Google
+
+[collapse_4] Posting Permissions
+
+  • You may not post new threads
+  • You may not post replies
+  • You may not post attachments
+  • You may not edit your posts
+  •  
+
+  • BB code is On
+  • Smilies are On
+  • [IMG] code is On
+  • [VIDEO] code is Off
+  • HTML code is Off
+
+Ubuntu Forums Code of Conduct
+
+[-- Ubuntu vB4.x       ]
+  • Ubuntu Forums
+  • Archive
+  • Top
+
+All times are GMT +1. The time now is 09:31 PM.
+vBulletin ©2000 - 2016, Jelsoft Enterprises Ltd. Ubuntu Logo, Ubuntu and Canonical © Canonical Ltd. Tango Icons © Tango
+Desktop Project.
+User contributions on this site are licensed under the Creative Commons Attribution Share Alike 4.0 International License.
+For details and our forum data attribution, retention and privacy policy, see here

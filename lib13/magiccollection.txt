@@ -1,0 +1,54 @@
+1	Burn Away	Khans of Tarkir	false	NM-M	U	0.05	Card Kingdom	0.23
+1	Swiftwater Cliffs	Khans of Tarkir	false	NM-M	C	0.02	ABUGames	0.2
+1	Spirit Bonds	M15	false	NM-M	R	0.04	ABUGames	0.39
+1	Angelic Renewal	Weatherlight	false	NM-M	C	0.05	ChannelFireball	0.27
+1	Hijack	Kaladesh	false	NM-M	null	0.01	CCG House	0.19
+1	Touch of the Void	Battle for Zendikar (Foil)	true	NM-M	C	0.02	ABUGames	0.66
+1	Crackling Doom	Khans of Tarkir	false	NM-M	R	0.02	ABUGames	0.66
+1	Planar Outburst	Battle for Zendikar	false	NM-M	R	0.1	ChannelFireball	0.61
+2	Timber Gorge	Oath of the Gatewatch	false	NM-M	U	0.05	Card Kingdom	0.23
+1	Warped Landscape	Shadows over Innistrad	false	NM-M	C			0.19
+1	Cathar's Companion	Shadows over Innistrad	false	NM-M	C			0.16
+2	Boros Charm	Gatecrash	false	NM-M	U	0.85	StrikeZone	2.61
+1	Beacon of Immortality	10th Edition	false	NM-M	R	3.5	ChannelFireball	5.69
+1	Acrobatic Maneuver	Kaladesh	false	NM-M	null	0.01	CCG House	0.17
+1	Meandering River	Oath of the Gatewatch	false	NM-M	U	0.05	Card Kingdom	0.21
+1	Giant Spectacle	Kaladesh	false	NM-M	null	0.01	CCG House	0.18
+1	Furious Reprisal	Kaladesh	false	NM-M	null			0.24
+1	Pious Evangel	Shadows over Innistrad	false	NM-M	U	0.02	CCG House	0.23
+2	Stone Quarry	Kaladesh	false	NM-M	null			0.0
+1	Forsaken Sanctuary	Shadows over Innistrad	false	NM-M	U	0.02	HotSauce Games	0.35
+1	Hordeling Outburst	Khans of Tarkir	false	NM-M	U	0.05	ChannelFireball	0.72
+1	Solemn Offering	M15	false	NM-M	C	0.05	Card Kingdom	0.18
+1	Chandra, Pyrogenius	Kaladesh (Foil)	true	NM-M	null			5.99
+1	Game Trail	Shadows over Innistrad	false	NM-M	R	1.05	ABUGames	2.49
+2	Tranquil Expanse	Oath of the Gatewatch	false	NM-M	U	0.05	Card Kingdom	0.23
+1	Revoke Privileges	Kaladesh	false	NM-M	null	0.01	CCG House	0.18
+2	Cinder Barrens	Oath of the Gatewatch	false	NM-M	U	0.05	Card Kingdom	0.23
+2	Boros Reckoner	Gatecrash	false	NM-M	R	1.01	CCG House	2.58
+2	Lifelink	M12	false	NM-M	C	0		0.19
+1	Give No Ground	Eldritch Moon	false	NM-M	U	0.01	CCG House	0.23
+1	Vessel of Ephemera	Shadows over Innistrad	false	NM-M	C			0.13
+1	Nearheath Chaplain	Shadows over Innistrad	false	NM-M	U			0.21
+3	Renegade Tactics	Kaladesh	false	NM-M	null	0.01	CCG House	0.18
+1	Desperate Sentry	Eldritch Moon	false	NM-M	C	0.01	CCG House	0.17
+2	Lightning Helix	Duel Decks Speed vs Cunning	false	NM-M	U	2.0	HotSauce Games	5.61
+1	Aegis Angel	M15	false	NM-M	R	0.1	HotSauce Games	0.59
+1	Felidar Sovereign	Battle for Zendikar	false	NM-M	R	0.1	HotSauce Games	0.72
+1	Burn from Within	Shadows over Innistrad	false	NM-M	R	0.09	ABUGames	0.39
+1	Firemantle Mage	Battle for Zendikar	false	NM-M	U	0.02	ABUGames	0.23
+1	Rolling Thunder	Battle for Zendikar	false	NM-M	U	0.02	ABUGames	0.24
+1	Captured by the Consulate	Kaladesh	false	NM-M	null			0.36
+1	Inspiring Vantage	Kaladesh (Foil)	true	NM-M	null	7.0	ChannelFireball	12.53
+1	Spectral Reserves	Eldritch Moon	false	NM-M	C	0.01	CCG House	0.18
+2	Uncaged Fury	Shadows over Innistrad	false	NM-M	C	0.01	CCG House	0.13
+1	Nephalia Academy	Eldritch Moon	false	NM-M	U	0.02	HotSauce Games	0.41
+2	Highland Lake	Shadows over Innistrad	false	NM-M	U	0.06	ABUGames	0.36
+Beast (TAC)---KLD---Common
+Eldrazi Scion (TC)---DDR---Common
+Morph---KTK---Common
+Eldrazi Scion (TC)---BFZ---Common
+4 Plant (TC)---DDR---Common
+Elemental---DDR---Common
+Spider (TC)---EMN---Common
+Kor Ally---BFZ---Common
