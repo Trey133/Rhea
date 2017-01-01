@@ -446,27 +446,6 @@ while True:
 ### OPEN KEEPNOTE
         os.system('keepnote')
 ########################################################  
-### P0F
-########################################################
-    elif statement == "p0f":
-	bot.atom()
-### START PASSIVE OS FINGERPRINTING UTILITY
-        os.system('p0f -i wlan0 -p -o /tmp/p0f.log')
-########################################################  
-### REAVERSCAN
-########################################################
-    elif statement == "wash":
-        bot.atom()
-### START WIFI PROTECTED SETUP SCAN TOOL
-        os.system('read -p "Enter Channel: " chan ; wash -i mon0 -c $chan -C')
-########################################################  
-### REAVER
-########################################################
-    elif statement == "reaver":
-	bot.atom()
-### START WIFI PROTRECTED SETUP ATTACK TOOL
-        os.system('read -p "Enter BSSID: " bssid ; reaver -i mon0 -b $bssid -v')
-########################################################  
 ### WIPASS
 ########################################################
     elif statement == "wipass":
@@ -475,15 +454,6 @@ while True:
 	time.sleep(3)
 ### DISPLAY CURRENT WIFI NETWORK NAME AND PASSWORD
         os.system('awk -F= "/^(psk|id)/{print $2}" /etc/NetworkManager/system-connections/"$(iwgetid -r)" ')
-########################################################  
-### IPSCAN
-########################################################
-    elif statement == "ipscan":
-	bot.network()
-        print("Scanning For IP Addresses")
-	time.sleep(2)
-### SCAN LOCAL NETWORK [VIA WIFI] FOR IP ADDRESSES
-        os.system("arp-scan -l --interface=wlan0 --localnet")
 ########################################################  
 ### TIMER
 ########################################################
