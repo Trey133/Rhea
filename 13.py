@@ -148,25 +148,6 @@ while True:
         print(" AT&T: ", bot.get_quote('AT&T'))
         print(" SpaceX", bot.get_quote('spacex'))
 ########################################################
-### MIRROR
-########################################################
-    elif statement == "mirror":
-	bot.rhea()
-	print("Let's clone a site, " + name)
-	time.sleep(2)
-	os.system('/usr/bin/httrack')
-########################################################
-### ALTLIB
-########################################################
-    elif statement == "altlib":
-	bot.rhea()
-	os.system('less /usr/bin/rhea/altlib.txt')
-	os.system("read -p 'Enter Title (INCLUDE PATH EX: /path/to/file.pdf): ' title ; less /media/Program13/241*/HD/EBooks/$title")
-########################################################
-### 
-########################################################
-
-########################################################
 ### MERICA
 ########################################################
     elif statement == "merica":
@@ -182,20 +163,6 @@ while True:
 ### GET 3 DAY WEATHER FORCAST FOR ZIPCODE 42220
         os.system("curl wttr.in/42220")
         print("\n")
-########################################################
-### GETSITE
-########################################################
-    elif statement == "getsite":
-	bot.rhea()
-	site = raw_input("Enter URL " + name + ": ")
-	response = requests.get(site)
-	print(response.text)
-########################################################
-###   GETTXT   ###   MUST HAVE HTML2TEXT INSTALLED   ###
-########################################################
-    elif statement == "gettxt":
-        bot.rhea()
-	os.system("read -p 'Enter URL: ' url ; wget -qO- $url | html2text")
 ########################################################
 ### LIBRARY
 ########################################################
@@ -225,39 +192,11 @@ while True:
 	print("When would you like to shutdown, " + name + "?")
 ### SHUTDOWN COMPUTER SYSTEM AT SPECIFIED TIME [IN MINS]
 	os.system('read -p "Enter Time Till Shutdown In Mins: " mins ; echo "SHUTTING DOWN IN $mins MINS...\n ^c TO CANCEL" ; shutdown -h +$mins')
-########################################################  
-### ..PWN
 ########################################################
-    elif statement == "..pwn":
-### PRINT SIMPLE ..PWN 'ANIMATION'
-	bot.atom()
-	print('.')
-	time.sleep(1)
-	bot.atom()
-	print('..')
-	time.sleep(1)
-	bot.atom()
-	os.system('toilet ..pwn')
-	time.sleep(3)
-	bot.atom()
-### START DOTDOTPWN WITH SPECIFIED TARGET
-        os.system("read -p 'Enter Target Host: ' target ; dotdotpwn -m http -h '$target' -M GET ")
-########################################################  
-### READPWN
+###
 ########################################################
-    elif statement == "readpwn":
-	bot.atom()
-### READ DOTDOTPWN REPORT
-        os.system("read -p 'Enter File Name: ' file ; less /usr/bin/rhea/dotdotpwn/Reports/$file")
-########################################################  
-### ..PWNREPO
-########################################################
-    elif statement == "..pwnrepo":
-	bot.atom()
-	print("Getting Reports...")
-	time.sleep(3)
-### PRINT LIST OF DOTDOTPWN REPORTS
-	os.system("ls '/usr/bin/rhea/dotdotpwn/Reports/' ; read output ")
+    elif statement == "kronos":
+	os.system('python /usr/bin/rhea/kronos.py')
 ########################################################  
 ### PROGRAM13
 ########################################################
@@ -314,25 +253,6 @@ while True:
         elif statement != "craft13" or "compquiz":
            continue
 ########################################################  
-### FUCKSHITUP
-########################################################
-    elif statement == "fuckshitup":
-### DISPLAY FUCKSHITUP 'ANIMATION'
-	bot.atom()
-        os.system("toilet Lets")
-	time.sleep(1)
-	bot.atom()
-	os.system("figlet Fuck")
-	time.sleep(1)
-	bot.dragon()
-	os.system('toilet Shit')
-	time.sleep(1)
-	bot.satan()
-	os.system('figlet Up!!!')
-	time.sleep(2)
-### LOAD FUCKSHITUP-SCANNER
-        os.system('cd /pentest/scanners/fuckshitup-master && sudo php fsu.php "$@"')
-########################################################  
 ### OZZY
 ########################################################
     elif statement == "ozzy":
@@ -340,22 +260,6 @@ while True:
 	os.system('clear')
 	bot.rnr()
 	os.system('figlet "Rock & Roll"')
-########################################################  
-### BLUEPOT
-########################################################
-    elif statement == "bluepot":
-        bot.atom()
-        print("Bluepot now loading")
-### LOAD BLUEPOT [BLUETOOTH HONEY POT CREATOR]
-        os.system('cd /pentest/bluetooth/bluepot && ./run.sh "$@"')
-########################################################  
-### MERCURY
-########################################################
-    elif statement == "mercury":
-	bot.atom()
-        print("Starting Mercury")
-### START MERCURY REVERSE ENGINEERING CLIENT
-        os.system('cd /pentest/reverse-engineering/mercury/client && sudo ./mercury.py "$@"')
 ########################################################  
 ### MOON
 ########################################################
@@ -365,18 +269,6 @@ while True:
 	time.sleep(2)
 ### GET CURRENT PHASE OF THE MOON
         os.system("curl wttr.in/Moon")
-########################################################  
-### TSHARK
-########################################################
-    elif statement == "tshark":
-	bot.network()
-	print("Let's see whats going on in the network, " + name + ".")
-	time.sleep(2)
-	bot.network()
-        print("Starting tshark...")
-	time.sleep(3)
-### RUN 'WIRESHARK' IN TERMINAL
-        os.system("tshark -i wlan0")
 ########################################################  
 ### CALENDAR
 ########################################################

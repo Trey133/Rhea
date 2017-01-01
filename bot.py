@@ -50,6 +50,30 @@ def rhea():
                         /d                        
                         ./                        
 """
+def kronos():
+    os.system('clear')
+    print"""
+             `.-//+o/.      ./o+//-.`             
+       `-+sdNNMMNd+.          .+dNMMNNds+-`       
+    -ohNMMMMMMNs.                .sNMMMMMMNho-    
+  :hMMMMMMMMMm-                    -mMMMMMMMMMh:  
+`yMMMMMMMMMMMs                      sMMMMMMMMMMMy`
+/MMMMMMMMMMMMNo.                  .oNMMMMMMMMMMMM/
+-NMMMMMMMMMMMMMNho:.`        `.:ohNMMMMMMMMMMMMMN-
+ -yNMMMMMMMMMMMMMMMNdhs:  :shdNMMMMMMMMMMMMMMMNy- 
+   ./sdmNMMMMMMMMMMMMMMh  hMMMMMMMMMMMMMMNmds/.   
+       .-:+oymMMMMMMMMMh  hMMMMMMMMMmyo+:-.       
+             `/hMMMMMMMh  hMMMMMMMh/`             
+               `:yNMMMMh  hMMMMNy:`               
+                  -dMMMh  hMMMd-                  
+                   `yMMh  hMMy`                   
+                    `hMh  hMh`                    
+                     -Nh  hN-                     
+                      od  do                      
+                      `y  y`                      
+                       .  .                       
+
+"""
 
 def unlock():
     os.system('clear')

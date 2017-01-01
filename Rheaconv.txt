@@ -283,3 +283,49 @@ Rhea started by:  Trey
 Rhea started at:  17:55:26  31/12/2016
 
 Rhea started by:  Trey
+
+Rhea started at:  02:51:08  01/01/2017
+
+Rhea started by:  Trey
+02:51:21   USER:  allpics
+02:51:21   RHEA:   
+
+Rhea started at:  15:19:22  01/01/2017
+
+Rhea started at:  15:20:17  01/01/2017
+
+Rhea started at:  15:20:43  01/01/2017
+
+Rhea started by:  Trey
+15:35:42   USER:  ?
+15:35:42   RHEA:   
+15:36:30   USER:  hry
+15:36:30   RHEA:   
+15:36:36   USER:  hey
+15:36:36   RHEA:  Hello.
+15:36:44   USER:  how are you
+15:36:44   RHEA:  I just smoked a bunch of crack... : )
+15:36:47   USER:  haha
+15:36:47   RHEA:  Is something funny
+15:36:50   USER:  nah
+15:36:50   RHEA:   
+15:58:44   USER:  
+15:58:44   RHEA:   
+16:26:07   USER:  quit
+16:26:07   RHEA:   
+
+Rhea terminated at:  16:26:07  01/01/2017
+16:26:10   USER:  quit
+16:26:10   RHEA:   
+
+Rhea terminated at:  16:26:10  01/01/2017
+16:52:59   USER:  ?
+16:52:59   RHEA:   
+16:53:11   USER:  cool
+16:53:11   RHEA:   
+16:53:13   USER:  hey
+16:53:13   RHEA:  Hello.
+16:53:16   USER:  how are you?
+16:53:16   RHEA:  I just smoked a bunch of crack... : )
+16:53:20   USER:  awesome
+16:53:20   RHEA:   
