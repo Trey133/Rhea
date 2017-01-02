@@ -118,7 +118,7 @@ while True:
         print("Loading available commands, " + name)
         time.sleep(3)
 ### LOAD BASH SCRIPT CONTAINING LIST OF COMMANDS WITH DESCRIPTIONS
-        os.system('sh /usr/bin/rhea/comphelp.sh')
+        os.system('sh /usr/bin/rhea/kronoscomphelp.sh')
 ########################################################
 ### RESTART
 ########################################################
@@ -723,7 +723,8 @@ while True:
 ########################################################
     elif statement == "bluephonebook":
         bot.atom()
-        print('bluesnarfer: you must set bd_addr\n bluesnarfer, version 0.1 -\n usage: bluesnarfer [options] [ATCMD] -b bt$
+        print('bluesnarfer: you must set bd_addr\n bluesnarfer, version 0.1 -\n usage: bluesnarfer [options] [ATCMD] -b bt_addr\n ATCMD     : valid AT+CMD (GSM EXTENSION)\n TYPE      : valid phonebook type ..\n example   : "DC" (dialed call list)\n            "SM" (SIM phonebook)\n            "RC" (recevied call list)\n            "XX" much more\n -b bdaddr : bluetooth device address\n -C chan   : bluetooth rfcomm channel\n -c ATCMD  : custom action\n -r N-M    : read phonebook entry N to M \n -w N-M    : delete phonebook entry N to M\n -f name   : search "name" in phonebook address\n -s TYPE   : select phonebook memory storage\n -l        : list aviable phonebook memory storage\n -i        : device info')
+        os.system("/usr/bin/bluesnarfer ")
         os.system("/usr/bin/bluesnarfer ")
 ########################################################  
 ### BOMBARDMENT

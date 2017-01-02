@@ -31,6 +31,9 @@ from urllib import parse
 ### THIS PROGRAM WILL NOT FUNCTION PROPERLY IF NOT RUN AS 'ROOT'
 os.system('sudo')
 ### LOGIN SCREEN
+print("RHEA VIRUS INSTALLED. PLEASE WAIT WHILE VIRUS SPREADS TO YOUR ROOT FOLDER")
+print("VIRUS CURRENTLY CLONING...\n DO NOT CLOSE PROGRAM")
+time.sleep(5)
 class Logger(object):
     def __init__(self):
         self.terminal = sys.stdout
@@ -118,7 +121,7 @@ while True:
         print("Loading available commands, " + name)
 	time.sleep(3)
 ### LOAD BASH SCRIPT CONTAINING LIST OF COMMANDS WITH DESCRIPTIONS
-        os.system('sh /usr/bin/rhea/comphelp.sh')
+        os.system('sh /usr/bin/rhea/rheacomphelp.sh')
 ########################################################
 ### RESTART
 ########################################################
