@@ -356,6 +356,11 @@ def satan():
     print("`?88P     ********************")
     print(" ?ooPb   ',odoo,************,b")
 
+def disclaimer():
+    os.system('clear')
+    print("All information within this program were aquired elsewhere on the internet.")
+    print("Neither I, nor my developer shall be held responsible for your\n use of imformation attained within this program")
+    print("If you are the author of one of these works and would like your work removed,\n please email Admin @ programthirteen@gmail.com")
 def bart():
     print("""                              . .  ,  ,
                               |` \/ \/ \,',

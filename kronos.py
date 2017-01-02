@@ -429,7 +429,7 @@ while True:
 ########################################################
     elif statement == "pyrit":
         bot.atom()
-        print("Recognized options:\n  -b               : Filters AccessPoint by BSSID\n  -e               : Filters Access$
+        print("Recognized options:\n  -b               : Filters AccessPoint by BSSID\n  -e               : Filters AccessPoint by ESSID\n  -h               : Print help for a certain command\n  -i               : Filename for input ('-' is stdin)\n  -o               : Filename for output ('-' is stdout)\n  -r               : Packet capture source in pcap-format\n  -u               : URL of the storage-system to use\n  --all-handshakes : Use all handshakes instead of the best one\n \n Recognized commands:\n  analyze                 : Analyze a packet-capture file\n  attack_batch            : Attack a handshake with PMKs/passwords from the db\n  attack_cowpatty         : Attack a handshake with PMKs from a cowpatty-file\n  attack_db               : Attack a handshake with PMKs from the db\n  attack_passthrough      : Attack a handshake with passwords from a file\n  batch                   : Batchprocess the database\n  benchmark               : Determine performance of available cores\n  benchmark_long          : Longer and more accurate version of benchmark (~10 minutes)\n  check_db                : Check the database for errors\n  create_essid            : Create a new ESSID\n  delete_essid            : Delete a ESSID from the database\n  eval                    : Count the available passwords and matching results\n  export_cowpatty         : Export results to a new cowpatty file\n  export_hashdb           : Export results to an airolib database\n  export_passwords        : Export passwords to a file\n  help                    : Print general help\n  import_passwords        : Import passwords from a file-like source\n  import_unique_passwords : Import unique passwords from a file-like source\n  list_cores              : List available cores\n  list_essids             : List all ESSIDs but don't count matching results\n  passthrough             : Compute PMKs and write results to a file\n  relay                   : Relay a storage-url via RPC\n  selftest                : Test hardware to ensure it computes correct results\n  serve                   : Serve local hardware to other Pyrit clients\n  strip                   : Strip packet-capture files to the relevant packets\n  stripLive               : Capture relevant packets from a live capture-source\n  verify                  : Verify 10% of the results by recomputation")
 ### START PYRIT 
         os.system("read -p 'Enter Options: ' option ; read -p 'Enter Commands: ' com ; /usr/bin/pyrit $option $com")
 ########################################################  
@@ -611,15 +611,13 @@ while True:
 ########################################################
     elif statement == "readrand":
         bot.bshelf()
-        os.system('ls /usr/bin/rhea/journal/random/ ; read -p "Enter Title: " title ; gpg --decrypt-files "/usr/bin/rhe
-a/journal/random/$title"')
+        os.system('ls /usr/bin/rhea/journal/random/ ; read -p "Enter Title: " title ; gpg --decrypt-files "/usr/bin/rhea/journal/random/$title"')
 ########################################################  
 ### READJOURN
 ########################################################
     elif statement == "readjourn":
         bot.bshelf()
-        os.system('read -p "Enter Title: " title ; gpg --decrypt-files /usr/bin/rhea/journal/$title.gpg ; less /usr/bin
-/rhea/journal/$title ; gpg --encrypt-files $title ; rm "/usr/bin/rhea/journal/$title"')
+        os.system('read -p "Enter Title: " title ; gpg --decrypt-files /usr/bin/rhea/journal/$title.gpg ; less /usr/bin/rhea/journal/$title ; gpg --encrypt-files $title ; rm "/usr/bin/rhea/journal/$title"')
 ########################################################  
 ### DISFIRE
 ########################################################
@@ -664,10 +662,733 @@ a/journal/random/$title"')
         bot.atom()
         os.system("/usr/bin/xhydra")
 ########################################################  
+### AFL
+########################################################
+    elif statement == "afl":
+        bot.atom()
+        print("Please Connect Android Device Before Running This Command...")
+        time.sleep(2)
+        while True:
+            print("Is your Android device connected? y/n: ")
+            statement = raw_input(">").split()
+            if len(statement) == 0:
+                break
+            if len(statement) > 0:
+                verb = statement[0].lower()
+            if statement == "y":
+                time.sleep(3)
+                os.system("/usr/bin/aflogical")
+                os.system("usr/bin/abd devices")
+            if statement == "n":
+                bot.doh()
+                print("You will need to connect your Android device before running this command...")
+                break
+            else:
+                bot.doh()
+                print("I didn't understand your response. Exiting AFLogical ")
+                time.sleep(3)
+                break
+########################################################  
+### ANDROSDK
+########################################################
+    elif statement == "androsdk":
+        bot.atom()
+        os.system("/usr/bin/android-sdk")
+########################################################  
+### SYSPRINT
+########################################################
+    elif statement == "sysprint":
+        bot.network()
+        os.system('read -p "Enter IP Address Or Host Name: " ip ; /usr/bin/arp-fingerprint -o "-N -I wlan0" $ip')
+########################################################  
+### MTRANSCODE
+########################################################
+    elif statement == "mtranscode":
+        bot.atom()
+        os.system("/usr/bin/arista-gtk")
+########################################################  
+### DISKUSAGE
+########################################################
+    elif statement == "diskusage":
+        bot.atom()
+        os.system("/usr/bin/baobab")
+########################################################  
+### BLUEBROWSE
+########################################################
+    elif statement == "bluebrowse":
+        bot.atom()
+        os.system("/usr/bin/blueman-browse")
+######################################################## 
+### BLUEPHONEBOOK
+########################################################
+    elif statement == "bluephonebook":
+        bot.atom()
+        print('bluesnarfer: you must set bd_addr\n bluesnarfer, version 0.1 -\n usage: bluesnarfer [options] [ATCMD] -b bt$
+        os.system("/usr/bin/bluesnarfer ")
+########################################################  
+### BOMBARDMENT
+########################################################
+    elif statement == "bombardment":
+        bot.atom()
+        os.system("man bombardment")
+        os.system("/usr/bin/bombardment")
+########################################################  
+### WIFIBUDDY
+########################################################
+    elif statement == "wifibuddy":
+        bot.network()
+        os.system("man /usr/bin/easside-ng")
+        os.system("/usr/bin/easside-ng")
+        os.system("man /usr/bin/buddy-ng")
+        os.system("/usr/bin/buddy-ng")
+########################################################  
+### BULLY
+########################################################
+    elif statement == "bully":
+        bot.atom()
+        os.system("man /usr/bin/bully")
+        os.system("/usr/bin/bully ")
+########################################################  
+### BURPSUITE
+########################################################
+    elif statement == "burpsuite":
+        bot.atom()
+        os.system("/usr/bin/burpsuite")
+########################################################  
+### DIG
+########################################################
+    elif statement == "dig":
+        bot.atom()
+        os.system("man /usr/bin/dig")
+        os.system("/usr/bin/dig ")
+########################################################  
+### DUMPZILLA
+########################################################
+    elif statement == "dumpzilla":
+        bot.atom()
+        os.system("/usr/bin/dumpzilla")
+        os.system("/usr/bin/dumpzilla ")
+########################################################  
+### MUG
+########################################################
+    elif statement == "mug":
+        bot.atom()
+        print("Enter Targets Name")
+        os.system('read -p "First Name: " fname ; read -p "Last Name: " lname ; read -p "Enter State: " state ; w3m"http://www.findmugshots.com/arrests/$fname"_"$lname"_"$state" && w3m http://mugshots.com/search.html?q=$fname+$lname ; read output ')
+########################################################  
+### PSYOP
+########################################################
+    elif statement == "psyop":
+        bot.atom()
+        os.system('read -p "Enter Psyop Title: " title ; read -p "Enter Date: " date ; read -p "Enter Target Name: "target ; read -p "Enter Notes: " notes ; echo "Title $title" > /usr/bin/rhea/psyop/$title ; echo "Date: $date" >> /usr/bin/rhea/psyop/$title ; echo "Name: $target" >> /usr/bin/rhea/psyop/$title ; echo "Notes: $notes" >> /usr/bin/rhea/psyop/$title ; gpg --encrypt-files /usr/bin/rhea/psyop/$title ; rm /usr/bin/rhea/psyop/$title')
+########################################################  
+### EDITPSYOP
+########################################################
+    elif statement == "editpsyop":
+        bot.atom()
+        os.system("read -p 'Enter Title: ' title ; gpg --decrypt-files /usr/bin/rhea/psyop/$title.gpg ; nano /usr/bin/rhea/psyop/$title ; gpg -e /usr/bin/rhea/psyop/$title ; rm /usr/bin/rhea/psyop/$title")
+########################################################  
+### READPSYOP
+########################################################
+    elif statement == "readpsyop":
+        bot.atom()
+        os.system("read -p 'Enter Title: ' title ; gpg --decrypt-files /usr/bin/rhea/psyop/$title.gpg ; rm /usr/bin/rhea/psyop/$title.gpg ; less /usr/bin/rhea/psyop/$title ; gpg --encrypt-files /usr/bin/rhea/psyop/$title ; rm /usr/bin/rhea/psyop/$title")
+########################################################  
+### POPHOOD
+########################################################
+    elif statement == "pophood":
+###############################################################
+### LOAD FUNCTION 'LOCK()' FROM FILE 'BOT.PY'
+        bot.lock()
+###############################################################
+        print("Login:")
+        username = raw_input("Username: ")
+        if username == "13":
+            print("Sounds Legit...")
+        else:
+            bot.rhea()
+            print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
+            quit()
+        bot.rhea()
+### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
+        os.system("stty -echo")
+        password = raw_input("Please Enter Password: ")
+### TURN PRINT TO STDOUT BACK ON 
+        os.system("stty echo")
+        print("\n")
+        if password == "[Getthefuckout13###]":
+            bot.unlock()
+            print("Access Granted")
+            print("Please Wait While System Loads...")
+### WAIT FOR (2) SECONDS BEFORE CONTINUING
+            time.sleep(2)
+            bot.atom()
+            os.system("less /usr/bin/rhea/13.py")
+        else:
+            break
+########################################################  
+### MAINTENANCE
+########################################################
+    elif statement == "maintenance":
+###############################################################
+### LOAD FUNCTION 'LOCK()' FROM FILE 'BOT.PY'
+        bot.lock()
+###############################################################
+        print("Login:")
+        username = raw_input("Username: ")
+        if username == "13":
+            print("Sounds Legit...")
+        else:
+            bot.rhea()
+            print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
+            quit()
+        bot.rhea()
+### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
+        os.system("stty -echo")
+        password = raw_input("Please Enter Password: ")
+### TURN PRINT TO STDOUT BACK ON 
+        os.system("stty echo")
+        print("\n")
+        if password == "[Getthefuckout13###]":
+            bot.unlock()
+            print("Access Granted")
+            print("Please Wait While System Loads...")
+### WAIT FOR (2) SECONDS BEFORE CONTINUING
+            time.sleep(2)
+            bot.rhea()
+            print('Please Restart Rhea When Maintenance Is Complete.')
+            time.sleep(3)
+            os.system("nano /usr/bin/rhea/13.py")
+            bot.rhea()
+            print("Please restart Rhea for changes to take effect...")
+        else:
+            break
+########################################################
+########################################################  
+### WHOIS
+########################################################
+    elif statement == "whois":
+        bot.network()
+        os.system('clear')
+        os.system("read -p 'Enter Host: ' host ; whois $host")
+########################################################  
+### GEOIP
+########################################################
+    elif statement == "geoip":
+        bot.atom()
+        os.system("read -p 'Enter Target IP Address: ' ip ; lynx -dump 'http://www.ip-adress.com/ip_tracer/$ip' | grepaddress | egrep 'city|state|country' | awk '{print $3,$4,$5,$6,$7,$8,$9}' | sed 's\ip address flag \\'|sed 's\My\\' ; read output")
+########################################################  
+### FBD
+########################################################
+    elif statement == "fbd":
+        bot.atom()
+        os.system('read -p "Enter Name (Seperate with + ): " name ; service tor start ; proxychains firefox "https://www.facebook.com/public/?query="$name"" ; service tor stop')
+########################################################  
+### SOCIALSEARCH
+########################################################
+    elif statement == "socialsearch":
+        bot.atom()
+        os.system('read -p "Enter Name (Seperate With +): " name ; service tor start ; proxychains firefox "https://www.social-searcher.com/social-buzz/?q5="$name"" ; service tor stop')
+########################################################  
+### MALTEGO
+########################################################
+    elif statement == "maltego":
+        bot.atom()
+        os.system("/usr/bin/casefile")
+########################################################  
+### CALIBRE
+########################################################
+    elif statement == "calibre":
+        bot.atom()
+        os.system("/usr/bin/calibre")
+########################################################  
+### AUTOPSY
+########################################################
+    elif statement == "autopsy":
+        bot.atom()
+        os.system("/usr/bin/autopsy")
+########################################################  
+### CREEPY
+########################################################
+    elif statement == "creepy":
+        bot.atom()
+        os.system("/usr/bin/creepy")
+########################################################  
+### CUCKOO
+########################################################
+    elif statement == "cuckoo":
+        bot.atom()
+        os.system("/usr/bin/cuckoo")
+########################################################  
+### CYMOTHOA
+########################################################
+    elif statement == "cymothoa":
+        bot.atom()
+        os.system("/usr/bin/cymothoa")
+########################################################  
+### DFF
+########################################################
+    elif statement == "dff":
+        bot.atom()
+        os.system("man dff ; /usr/bin/dff")
+########################################################  
+### DFFGUI
+########################################################
+    elif statement == "dffgui":
+        bot.atom()
+        os.system("/usr/bin/dff-gui")
+########################################################  
+### DUMPCAP
+########################################################
+    elif statement == "dumpcap":
+        bot.atom()
+        os.system("/usr/bin/dumpcap -i wlan0")
+########################################################  
+### FERN
+########################################################
+    elif statement == "fern":
+        bot.network()
+        print("Loading Fern Wifi Cracker...")
+        time.sleep(3)
+        os.system("/usr/bin/fern-wifi-cracker")
+########################################################  
+### FIMAP
+########################################################
+    elif statement == "fimap":
+        bot.atom()
+        os.system("/usr/bin/fimap -h")
+        os.system("read -p 'Enter Commands: ' com ; /usr/bin/fimap $com")
+########################################################  
+### 10D
+########################################################
+    elif statement == "10d":
+        bot.atom()
+        print("Enter Name: ")
+        os.system('read -p "Enter First Name : " fname ; read -p "Enter Last Name : " lname ; read -p "Enter City : " city ; read -p "Enter State e.g. Al : " state ; w3m "http://10digits.us/n/"$fname"_"$lname"/location/"$city"_"$state""')
+########################################################  
+### NMAP
+########################################################
+    elif statement == "nmap":
+        bot.network()
+        print("Starting nMap")
+        os.system('read -p "Enter Host : " host ; nmap -v -A "$host" ')
+########################################################  
+### SOCIALIZE
+########################################################
+    elif statement == "socialize":
+        bot.atoml()
+        os.system("/usr/bin/setoolkit")
+########################################################  
+### HARVEST
+########################################################
+    elif statement == "harvest":
+        bot.atom()
+        print("-d: Domain to search or company name")
+        print("-b: Data source (google,bing,bingapi,pgp,linkedin,google-profiles,people123,jigsaw,all)")
+        print("-s: Start in result number X (default 0)")
+        print("-v: Verify host name via dns resolution and search for virtual hosts")
+        print("-f: Save the results into an HTML and XML file")
+        print("-n: Perform a DNS reverse query on all ranges discovered")
+        print("-c: Perform a DNS brute force for the domain name")
+        print("-t: Perform a DNS TLD expansion discovery")
+        print("-e: Use this DNS server")
+        print("-l: Limit the number of results to work with(bing goes from 50 to 50 results,")
+        print("-h: use SHODAN database to query discovered hosts")
+        print(" google 100 to 100, and pgp doesn't use this option)")
+        print("Examples:./theharvester.py -d microsoft.com -l 500 -b google")
+        print(" ./theharvester.py -d microsoft.com -b pgp")
+        print(" ./theharvester.py -d microsoft -l 200 -b linkedin")
+        os.system('read -p "Enter Options: " options ; /usr/bin/theharvester $options')
+########################################################  
+### RECON
+########################################################
+    elif statement == "recon":
+        os.system('clear')
+        bot.atom()
+        print('Loading Recon-ng...')
+        time.sleep(3)
+        os.system("/usr/bin/recon-ng")
+###############################################
+###          LEARN SOME NEW SHIT            ###
+###       (Some Files Need Editing)         ###
+###############################################
+########################################################  
+###    CREDITCARDFRAUD
+########################################################
+    elif statement == "creditcardfraud":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/ccf')
+########################################################  
+###    PICKMASTERLOCK
+########################################################
+    elif statement == "pickmasterlock":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/pml')
+########################################################  
+###    SMOKEBOMB
+########################################################
+    elif statement == "smokebomb":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/smoke')
+########################################################  
+###    LOCKPICKING
+########################################################
+    elif statement == "lockpicking":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/apl')
+########################################################  
+###    BEIGEBOX
+########################################################
+    elif statement == "beigebox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/beige')
+########################################################  
+###    JAMRADAR
+########################################################
+    elif statement == "jamradar":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/jamr')
+########################################################  
+###    HOTWIRE
+########################################################
+    elif statement == "hotwire":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/hwire')
+########################################################  
+###    UNLISTEDPHONE
+########################################################
+    elif statement == "unlistedphone":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/uphone')
+########################################################  
+###    CHEMICALEQUIV
+########################################################
+    elif statement == "chemicalequiv":
+###############################################################
+### LOAD FUNCTION 'LOCK()' FROM FILE 'BOT.PY'
+        bot.lock()
+###############################################################
+        print("Login:")
+        username = raw_input("Username: ")
+        if username == "13":
+            print("Sounds Legit...")
+        else: 
+            bot.rhea()
+            print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
+            quit()
+        bot.rhea()
+### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
+        os.system("stty -echo")
+        password = raw_input("Please Enter Password: ")
+### TURN PRINT TO STDOUT BACK ON 
+        os.system("stty echo")
+        print("\n")
+        if password == "[Getthefuckout13###]":
+            bot.unlock()
+            print("Access Granted")
+            print("Please Wait While System Loads...")
+### WAIT FOR (2) SECONDS BEFORE CONTINUING
+            time.sleep(2)
+            bot.rhea()
+            bot.disclaimer()
+            time.sleep(1)
+            print("Loading...")
+            time.sleep(3)
+            os.system('less /usr/bin/rhea/lib13/chemeq')
+        else:
+            break
+########################################################  
+###    PHONETAP
+########################################################
+    elif statement == "phonetap":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/tapphone')
+########################################################  
+###    PHONESYSTEM
+########################################################
+    elif statement == "phonesystem":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/phonesys')
+########################################################  
+###    AQUABOX
+########################################################
+    elif statement == "aquabox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/aqua')
+########################################################  
+###    BLACKBOX
+########################################################
+    elif statement == "blackbox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/black')
+########################################################  
+###    BLOTTOBOX
+########################################################
+    elif statement == "blottobox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/blotto')
+########################################################  
+###    BROWNBOX
+########################################################
+    elif statement == "brownbox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/brown')
+########################################################  
+###    CLEARBOX
+########################################################
+    elif statement == "clearbox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/clear')
+########################################################  
+###    CARFTMOD
+########################################################
+    elif statement == "carftmod":
+###############################################################
+### LOAD FUNCTION 'LOCK()' FROM FILE 'BOT.PY'
+        bot.lock()
+###############################################################
+        print("Login:")
+        username = raw_input("Username: ")
+        if username == "13":
+            print("Sounds Legit...")
+        else: 
+            bot.rhea()
+            print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
+            quit()
+        bot.rhea()
+### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
+        os.system("stty -echo")
+        password = raw_input("Please Enter Password: ")
+### TURN PRINT TO STDOUT BACK ON 
+        os.system("stty echo")
+        print("\n")
+        if password == "[Getthefuckout13###]":
+            bot.unlock()
+            print("Access Granted")
+            print("Please Wait While System Loads...")
+### WAIT FOR (2) SECONDS BEFORE CONTINUING
+            time.sleep(2)
+            bot.rhea()
+            bot.disclaimer()
+            time.sleep(1)
+            print("Loading...")
+            time.sleep(3)
+            os.system('less /usr/bin/rhea/lib13/carft')
+        else:
+            break
+########################################################  
+###    MACE
+########################################################
+    elif statement == "mace":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/mace')
+########################################################
+########################################################  
+###    BLUEBOX
+########################################################
+    elif statement == "bluebox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/blue')
+########################################################  
+###    RECOGNIZECC
+########################################################
+    elif statement == "recognizecc":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/reccreditcard')
+########################################################  
+###    NEWID
+########################################################
+    elif statement == "newid":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/newid')
+########################################################  
+###    PHONENUBERS
+########################################################
+    elif statement == "phonenumbers":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/phonenum')
+########################################################  
+###    REDBOX
+########################################################
+    elif statement == "redbox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/red')
+########################################################  
+###    SILVERBOX
+########################################################
+    elif statement == "silverbox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/silver')
+########################################################  
+###    WHITEBOX
+########################################################
+    elif statement == "whitebox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/white')
+########################################################  
+###    GOLDBOX
+########################################################
+    elif statement == "goldbox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/gold')
+########################################################  
+###    LUNCHBOX
+########################################################
+    elif statement == "lunchbox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/lunch')
+########################################################  
+###    OLIVEBOX
+########################################################
+    elif statement == "olivebox":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/olive')
+########################################################  
+###    TELNET
+########################################################
+    elif statement == "telnet":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/telnet')
+########################################################  
+###    INFINITYTRANS
+########################################################
+    elif statement == "infinitytrans":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/infinity')
+########################################################  
+###    MYRIGHTS
+########################################################
+    elif statement == "myrights":
+        bot.rhea()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/rights')
+###############################################
+###############################################
+###############################################
+########################################################  
 ### QUIT
 ########################################################
     elif statement == "quit":
-        with open("Rheaconv.txt", "a") as myfile:
+        with open("Kronosconv.txt", "a") as myfile:
             myfile.write("\nRhea terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
         os.system('clear')
         with open("Rhea.log", "a") as myfile:
