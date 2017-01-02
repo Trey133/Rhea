@@ -341,3 +341,15 @@ Rhea started by:  Trey
 21:09:10   RHEA:   
 
 Rhea started at:  21:09:17  01/01/2017
+
+Rhea started by:  Trey
+21:10:01   USER:   restart
+21:10:01   RHEA:   
+21:10:04   USER:  restart
+21:10:04   RHEA:   
+
+Rhea started at:  21:10:12  01/01/2017
+
+Rhea started by:  Trey
+21:13:24   USER:  kronos
+21:13:24   RHEA:   
