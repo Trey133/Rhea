@@ -633,8 +633,7 @@ while True:
     elif statement == "wolf":
 	bot.atom()
         print("Let's Search Wolfram-Alpha")
-        os.system("read -p 'Enter Search Terms (if more than one word, seperater with +): ' search ; google-chrome 'https
-://www.worlframalpha.com/input/?i=$search' ")
+        os.system("read -p 'Enter Search Terms (if more than one word, seperater with +): ' search ; google-chrome 'https://www.worlframalpha.com/input/?i=$search' ")
 ########################################################  
 ### FINDPRIME
 ########################################################
