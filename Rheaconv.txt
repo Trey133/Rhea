@@ -335,3 +335,9 @@ Rhea terminated at:  16:26:10  01/01/2017
 Rhea started at:  21:07:03  01/01/2017
 
 Rhea started at:  21:07:48  01/01/2017
+
+Rhea started by:  Trey
+21:09:09   USER:  restart
+21:09:10   RHEA:   
+
+Rhea started at:  21:09:17  01/01/2017
