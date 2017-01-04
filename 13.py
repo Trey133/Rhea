@@ -22,17 +22,21 @@ import bot#.PY       ### RHEA'S FUNCTIONS                 ###
 ### THESE FILES HOLD OUR FUNCTIONS AND RESPONSES FOR RHEA ###
 #############################################################
 #############################################################
-###   import image_scraper ### [THIS IS NEEDED FOR (1) COMMAND.]
+### import image_scraper ### [THIS IS NEEDED FOR (1) COMMAND.]
 #############################################################
 from lxml import html
 from html.parser import HTMLParser
 from urllib.request import urlopen
 from urllib import parse
-### THIS PROGRAM WILL NOT FUNCTION PROPERLY IF NOT RUN AS 'ROOT'
 os.system('sudo')
+os.system('clear')
+bot.atom()
+os.system("figlet Rhea")
+print("Developed by: 7R3Y @ Program13 // copyleft: 2016\n Program13.me // Programthirteen@gmail.com")
+time.sleep(5)
+### THIS PROGRAM WILL NOT FUNCTION PROPERLY IF NOT RUN AS 'ROOT'
+os.system('clear')
 ### LOGIN SCREEN
-print("RHEA VIRUS INSTALLED. PLEASE WAIT WHILE VIRUS SPREADS TO YOUR ROOT FOLDER")
-print("VIRUS CURRENTLY CLONING...\n DO NOT CLOSE PROGRAM")
 time.sleep(5)
 class Logger(object):
     def __init__(self):

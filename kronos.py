@@ -31,6 +31,9 @@ from urllib import parse
 ### THIS PROGRAM WILL NOT FUNCTION PROPERLY IF NOT RUN AS 'ROOT'
 os.system('sudo')
 ### LOGIN SCREEN
+os.system('clear')
+os.system('python /usr/bin/rhea/dc.py')
+import config
 class Logger(object):
     def __init__(self):
         self.terminal = sys.stdout
@@ -53,7 +56,7 @@ while True:
 ###############################################################
     print("Login:")
     username = raw_input("Username: ")
-    if username == "13":
+    if username == config.username:
         print("Sounds Legit...")
     else:
         bot.kronos()
@@ -69,8 +72,12 @@ while True:
 ### TURN PRINT TO STDOUT BACK ON 
     os.system("stty echo")
     print("\n")
-    if password == "13":
+    if password == config.password:
         bot.unlock()
+        os.system("gpg -e -r Ender /usr/bin/rhea/config.py --output '/usr/bin/rhea/config.py.gpg' ")
+	os.system('rm config.py')
+        os.system('rm config.pyc')
+	os.system('clear')
         print("Access Granted")
         print("Please Wait While System Loads...")
 ### WAIT FOR (2) SECONDS BEFORE CONTINUING
@@ -82,6 +89,10 @@ while True:
         with open("Kronos.log", "a") as myfile:
             myfile.write("\nKronos terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "Due to Incorrect Username.\n")
 ### IF PASSWORD IS INCORRECT, TERMINATE PROGRAM
+        os.system("gpg -e -u Ender /usr/bin/rhea/config.py --output '/usr/bin/rhea/config.py.gpg' ")
+        os.system('rm config.py')
+        os.system('rm config.pyc')
+	os.system('clear')
         quit()
 ### PROGRAM INTRODUCTION
 bot.kronos()
@@ -884,67 +895,67 @@ while True:
 ### FBD
 ########################################################
     elif statement == "fbd":
-        bot.atom()
+        bot.kronos()
         os.system('read -p "Enter Name (Seperate with + ): " name ; service tor start ; proxychains firefox "https://www.facebook.com/public/?query="$name"" ; service tor stop')
 ########################################################  
 ### SOCIALSEARCH
 ########################################################
     elif statement == "socialsearch":
-        bot.atom()
+        bot.kronos()
         os.system('read -p "Enter Name (Seperate With +): " name ; service tor start ; proxychains firefox "https://www.social-searcher.com/social-buzz/?q5="$name"" ; service tor stop')
 ########################################################  
 ### MALTEGO
 ########################################################
     elif statement == "maltego":
-        bot.atom()
+        bot.kronos()
         os.system("/usr/bin/casefile")
 ########################################################  
 ### CALIBRE
 ########################################################
     elif statement == "calibre":
-        bot.atom()
+        bot.kronos()
         os.system("/usr/bin/calibre")
 ########################################################  
 ### AUTOPSY
 ########################################################
     elif statement == "autopsy":
-        bot.atom()
+        bot.kronos()
         os.system("/usr/bin/autopsy")
 ########################################################  
 ### CREEPY
 ########################################################
     elif statement == "creepy":
-        bot.atom()
+        bot.kronos()
         os.system("/usr/bin/creepy")
 ########################################################  
 ### CUCKOO
 ########################################################
     elif statement == "cuckoo":
-        bot.atom()
+        bot.kronos()
         os.system("/usr/bin/cuckoo")
 ########################################################  
 ### CYMOTHOA
 ########################################################
     elif statement == "cymothoa":
-        bot.atom()
+        bot.kronos()
         os.system("/usr/bin/cymothoa")
 ########################################################  
 ### DFF
 ########################################################
     elif statement == "dff":
-        bot.atom()
+        bot.kronos()
         os.system("man dff ; /usr/bin/dff")
 ########################################################  
 ### DFFGUI
 ########################################################
     elif statement == "dffgui":
-        bot.atom()
+        bot.kronos()
         os.system("/usr/bin/dff-gui")
 ########################################################  
 ### DUMPCAP
 ########################################################
     elif statement == "dumpcap":
-        bot.atom()
+        bot.kronos()
         os.system("/usr/bin/dumpcap -i wlan0")
 ########################################################  
 ### FERN
@@ -958,14 +969,14 @@ while True:
 ### FIMAP
 ########################################################
     elif statement == "fimap":
-        bot.atom()
+        bot.kronos()
         os.system("/usr/bin/fimap -h")
         os.system("read -p 'Enter Commands: ' com ; /usr/bin/fimap $com")
 ########################################################  
 ### 10D
 ########################################################
     elif statement == "10d":
-        bot.atom()
+        bot.kronos()
         print("Enter Name: ")
         os.system('read -p "Enter First Name : " fname ; read -p "Enter Last Name : " lname ; read -p "Enter City : " city ; read -p "Enter State e.g. Al : " state ; w3m "http://10digits.us/n/"$fname"_"$lname"/location/"$city"_"$state""')
 ########################################################  
@@ -979,13 +990,13 @@ while True:
 ### SOCIALIZE
 ########################################################
     elif statement == "socialize":
-        bot.atoml()
+        bot.kronos()
         os.system("/usr/bin/setoolkit")
 ########################################################  
 ### HARVEST
 ########################################################
     elif statement == "harvest":
-        bot.atom()
+        bot.kronos()
         print("-d: Domain to search or company name")
         print("-b: Data source (google,bing,bingapi,pgp,linkedin,google-profiles,people123,jigsaw,all)")
         print("-s: Start in result number X (default 0)")
@@ -1007,7 +1018,7 @@ while True:
 ########################################################
     elif statement == "recon":
         os.system('clear')
-        bot.atom()
+        bot.kronos()
         print('Loading Recon-ng...')
         time.sleep(3)
         os.system("/usr/bin/recon-ng")
@@ -1019,7 +1030,7 @@ while True:
 ###    CREDITCARDFRAUD
 ########################################################
     elif statement == "creditcardfraud":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1029,7 +1040,7 @@ while True:
 ###    PICKMASTERLOCK
 ########################################################
     elif statement == "pickmasterlock":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1039,7 +1050,7 @@ while True:
 ###    SMOKEBOMB
 ########################################################
     elif statement == "smokebomb":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1049,7 +1060,7 @@ while True:
 ###    LOCKPICKING
 ########################################################
     elif statement == "lockpicking":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1059,7 +1070,7 @@ while True:
 ###    BEIGEBOX
 ########################################################
     elif statement == "beigebox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1069,7 +1080,7 @@ while True:
 ###    JAMRADAR
 ########################################################
     elif statement == "jamradar":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1079,7 +1090,7 @@ while True:
 ###    HOTWIRE
 ########################################################
     elif statement == "hotwire":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1089,7 +1100,7 @@ while True:
 ###    UNLISTEDPHONE
 ########################################################
     elif statement == "unlistedphone":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1108,11 +1119,11 @@ while True:
         if username == "13":
             print("Sounds Legit...")
         else: 
-            bot.rhea()
+            bot.kronos()
             print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
 ### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
             quit()
-        bot.rhea()
+        bot.kronos()
 ### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
         os.system("stty -echo")
         password = raw_input("Please Enter Password: ")
@@ -1125,7 +1136,7 @@ while True:
             print("Please Wait While System Loads...")
 ### WAIT FOR (2) SECONDS BEFORE CONTINUING
             time.sleep(2)
-            bot.rhea()
+            bot.kronos()
             bot.disclaimer()
             time.sleep(1)
             print("Loading...")
@@ -1137,7 +1148,7 @@ while True:
 ###    PHONETAP
 ########################################################
     elif statement == "phonetap":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1147,7 +1158,7 @@ while True:
 ###    PHONESYSTEM
 ########################################################
     elif statement == "phonesystem":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1157,7 +1168,7 @@ while True:
 ###    AQUABOX
 ########################################################
     elif statement == "aquabox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1167,7 +1178,7 @@ while True:
 ###    BLACKBOX
 ########################################################
     elif statement == "blackbox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1177,7 +1188,7 @@ while True:
 ###    BLOTTOBOX
 ########################################################
     elif statement == "blottobox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1187,7 +1198,7 @@ while True:
 ###    BROWNBOX
 ########################################################
     elif statement == "brownbox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1197,7 +1208,7 @@ while True:
 ###    CLEARBOX
 ########################################################
     elif statement == "clearbox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1216,11 +1227,11 @@ while True:
         if username == "13":
             print("Sounds Legit...")
         else: 
-            bot.rhea()
+            bot.kronos()
             print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
 ### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
             quit()
-        bot.rhea()
+        bot.kronos()
 ### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
         os.system("stty -echo")
         password = raw_input("Please Enter Password: ")
@@ -1233,7 +1244,7 @@ while True:
             print("Please Wait While System Loads...")
 ### WAIT FOR (2) SECONDS BEFORE CONTINUING
             time.sleep(2)
-            bot.rhea()
+            bot.kronos()
             bot.disclaimer()
             time.sleep(1)
             print("Loading...")
@@ -1245,7 +1256,7 @@ while True:
 ###    MACE
 ########################################################
     elif statement == "mace":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1256,7 +1267,7 @@ while True:
 ###    BLUEBOX
 ########################################################
     elif statement == "bluebox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1266,7 +1277,7 @@ while True:
 ###    RECOGNIZECC
 ########################################################
     elif statement == "recognizecc":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1276,7 +1287,7 @@ while True:
 ###    NEWID
 ########################################################
     elif statement == "newid":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1286,7 +1297,7 @@ while True:
 ###    PHONENUBERS
 ########################################################
     elif statement == "phonenumbers":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1296,7 +1307,7 @@ while True:
 ###    REDBOX
 ########################################################
     elif statement == "redbox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1306,7 +1317,7 @@ while True:
 ###    SILVERBOX
 ########################################################
     elif statement == "silverbox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1316,7 +1327,7 @@ while True:
 ###    WHITEBOX
 ########################################################
     elif statement == "whitebox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1326,7 +1337,7 @@ while True:
 ###    GOLDBOX
 ########################################################
     elif statement == "goldbox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1336,7 +1347,7 @@ while True:
 ###    LUNCHBOX
 ########################################################
     elif statement == "lunchbox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1346,7 +1357,7 @@ while True:
 ###    OLIVEBOX
 ########################################################
     elif statement == "olivebox":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1356,7 +1367,7 @@ while True:
 ###    TELNET
 ########################################################
     elif statement == "telnet":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1366,7 +1377,7 @@ while True:
 ###    INFINITYTRANS
 ########################################################
     elif statement == "infinitytrans":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1376,7 +1387,7 @@ while True:
 ###    MYRIGHTS
 ########################################################
     elif statement == "myrights":
-        bot.rhea()
+        bot.kronos()
         bot.disclaimer()
         time.sleep(1)
         print("Loading...")
@@ -1390,10 +1401,10 @@ while True:
 ########################################################
     elif statement == "quit":
         with open("Kronosconv.txt", "a") as myfile:
-            myfile.write("\nRhea terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
+            myfile.write("\nKronos terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
         os.system('clear')
-        with open("Rhea.log", "a") as myfile:
-            myfile.write("\nRhea terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
+        with open("Kronos.log", "a") as myfile:
+            myfile.write("\nKronos terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
         bot.buck()
         print('Whatever...')
         os.system('cp /usr/bin/rhea/kronos.py /media/Program13/13/truecrypt1/.backup/kronos.py.backup')

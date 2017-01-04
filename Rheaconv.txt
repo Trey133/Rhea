@@ -367,3 +367,27 @@ Rhea started at:  21:17:21  01/01/2017
 Rhea started by:  Trey
 21:17:32   USER:  kronos
 21:17:32   RHEA:   
+
+Rhea started at:  17:52:52  03/01/2017
+
+Rhea started at:  17:55:39  03/01/2017
+
+Rhea started at:  17:57:33  03/01/2017
+
+Rhea started at:  18:09:24  03/01/2017
+
+Rhea started at:  18:25:31  03/01/2017
+
+Rhea started at:  18:45:41  03/01/2017
+
+Rhea started at:  18:46:36  03/01/2017
+
+Rhea started at:  18:47:26  03/01/2017
+
+Rhea started at:  18:47:40  03/01/2017
+
+Rhea started at:  18:49:18  03/01/2017
+
+Rhea started at:  18:50:33  03/01/2017
+19:45:55   USER:  quit
+19:45:55   RHEA:   

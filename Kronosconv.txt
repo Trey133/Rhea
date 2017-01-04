@@ -2,3 +2,21 @@
 Kronos started at:  16:52:40  01/01/2017
 
 Kronos started by:  Trey
+
+Kronos started at:  19:30:53  03/01/2017
+
+Kronos started at:  19:31:20  03/01/2017
+
+Kronos started at:  19:33:13  03/01/2017
+
+Kronos started at:  19:35:47  03/01/2017
+
+Kronos started at:  19:39:35  03/01/2017
+
+Kronos started at:  19:43:58  03/01/2017
+
+Kronos started at:  19:45:29  03/01/2017
+
+Kronos started by:  Trey
+
+Kronos terminated at:  19:45:55  03/01/2017
