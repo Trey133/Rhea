@@ -74,7 +74,95 @@ def kronos():
                        .  .                       
 
 """
-
+def dp():
+    os.system('clear')
+    print"""
+                                  ``.`..``                                 
+                          `:+shdNNNNNNNNNNNmdyo/-`                         
+                      `:sdNMMMMMMMMMMMMMMMMMMMMMMNho-                      
+                   `:yNMMMMMMmhshMMMMMMMMdoshmMMMMMMMms-                   
+                 `omMMMMMds:.`  +MMMMMMMMy   `./smMMMMMNd/`                
+               `oNMMMMms-`      +MMMMMMMMy       `-sNMMMMMm+`              
+              /mMMMMm+`         +MMMMMMMMy          `+mMMMMMd:             
+            `yMMMMNo`           +MMMMMMMMy            `oNMMMMNo`           
+           .dMMMMd.             +MMMMMMMMy              -dMMMMMh`          
+          .mMMMMy`              +MMMMMMMMy               `hMMMMMh`         
+         `dMMMMy`               +MMMMMMMMy                `hMMMMMy         
+         yMMMMd`                +MMMMMMMMy                 `mMMMMM+        
+        -MMMMM:                 +MMMMMMMMy                  :MMMMMN`       
+        yMMMMd                  +MMMMMMMMy                   mMMMMM/       
+        mMMMMo   -              +MMMMMMMMy                   sMMMMMy       
+        MMMMM/   yd+-           +MMMMMMMMy            `:s.   +MMMMMd       
+        MMMMM/   .NMNh+.        +MMMMMMMMy         `:smMs    +MMMMMd       
+        NMMMMo    /MMMMNh+.     +MMMMMMMMy      `:smMMMd`    sMMMMMh       
+        yMMMMd     sMMMMMMNh/.  +MMMMMMMMy   `:smMMMMMN.     mMMMMM+       
+        -MMMMM:     +mMMMMMMNh. +MMMMMMMMy `odMMMMMMMN:     /MMMMMN`       
+         yMMMMm`     .:+oo+/-`  +MMMMMMMMy  :shmmmmds.     `mMMMMM+        
+         `mMMMMh`               +MMMMMMMMy      ```       `hMMMMMh         
+          -mMMMMh`              +MMMMMMMMy               `hMMMMMd`         
+           -mMMMMd-             +MMMMMMMMy              -mMMMMMh`          
+            .hMMMMNs.           +MMMMMMMMy            .sNMMMMNs`           
+              +mMMMMmo.         +MMMMMMMMy          .oNMMMMMd:             
+               `sNMMMMNy:`      +MMMMMMMMy       `:yNMMMMMm+`              
+                 .omMMMMMmy/.`  +MMMMMMMMy   `./ymMMMMMNd+`                
+                   `/yNMMMMMMmhydMMMMMMMMmoyhmMMMMMMMms:                   
+                      `:sdNMMMMMMMMMMMMMMMMMMMMMMNdo:                      
+                          `:+ydmNNMMMMMMMMNNmhs+-`                         
+                                 ..--::--.`                                
+"""
+def zues():
+    os.system('clear')
+    print"""
+                                 ``:.             
+            `-/osyhhyyso:`      `+mNs             
+        +hdmmy+::::/+ymNNd/     `mNN-             
+        ymh+`         .omNN+     hmm`             
+        `.              /NNm`    yNd              
+                         mNm`    oNy              
+                        `mmy     +Ns              
+                        :Nm.     /N+              
+                       `dm:      /N/              
+                      .hd-       /N-              
+                     :ds`        +N.              
+                   .sh:          +m`              
+                 `od/            sm`              
+               .oh/`             ym`              
+            `:yh:                hm`              
+        `.:sds-                  mN.      ```     
+     `/ymNNNd++++ooossssssyhhyssymmdhyyhhhmmd`    
+    `dNNNmmdhyssoo++++++++++ooosmNNmssyyhmdy.     
+     ./:.`                      `mm+              
+                                 mN/              
+                                `mN+              
+                                -Nmo              
+                                /NNd`             
+                                ommN:             
+                                .::.              
+"""
+def load():
+    os.system('clear')
+    zues()
+    print(".")
+    time.sleep(.5)
+    os.system('clear')
+    zues()
+    print("..")
+    time.sleep(.5)
+    os.system('clear')
+    zues()
+    print("...")
+    time.sleep(.5)  
+    os.system('clear')
+    zues()
+    print("....")
+    time.sleep(.5)
+    os.system('clear')
+    zues()
+    print(".....")
+    time.sleep(.5)
+    os.system('clear')
+    print("......")
+    time.sleep(.5)
 def unlock():
     os.system('clear')
     print"""

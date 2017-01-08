@@ -202,8 +202,10 @@ while True:
 ########################################################
 ###
 ########################################################
-    elif statement == "kronos":
+    elif statement == "-k":
 	os.system('python /usr/bin/rhea/kronos.py')
+    elif statement == "-z":
+        os.system('python /usr/bin/rhea/zues.py')
 ########################################################  
 ### PROGRAM13
 ########################################################
@@ -789,6 +791,7 @@ while True:
         os.system('cp /usr/bin/rhea/psych.py /media/Program13/13/truecrypt1/.backup/psych.py.backup')
         os.system('cp Rheaconv.txt /media/Program13/13/truecrypt1/.backup/Rheaconv.txt.backup')
         os.system('cp Rhea.log /media/Program13/13/truecrypt1/.backup/Rhea.log.backup')
+        os.system('cp 13.py /media/Program13/13/truecrypt1/13.py ; cp kronos.py /media/Program13/13/truecrypt1/kronos.py ; cp D43D9001.py /media/Program13/13/truecrypt1/D34D9001.py')
         quit()
 
         if __name__ == "__main__":

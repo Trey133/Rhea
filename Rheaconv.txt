@@ -391,3 +391,149 @@ Rhea started at:  18:49:18  03/01/2017
 Rhea started at:  18:50:33  03/01/2017
 19:45:55   USER:  quit
 19:45:55   RHEA:   
+15:46:07   USER:  zues
+15:46:07   RHEA:   
+15:46:15   USER:  zues
+15:46:15   RHEA:   
+15:47:45   USER:  quit
+15:47:45   RHEA:   
+15:58:47   USER:  ?
+15:58:47   RHEA:   
+16:01:08   USER:  ?
+16:01:08   RHEA:   
+16:01:49   USER:  viper
+16:01:49   RHEA:   
+16:02:26   USER:  ?
+16:02:26   RHEA:   
+16:02:31   USER:  ..pwn
+16:02:31   RHEA:   
+16:04:08   USER:  restart
+16:04:08   RHEA:   
+16:12:45   USER:  restart
+16:12:45   RHEA:   
+16:13:14   USER:  ..pwn
+16:13:15   RHEA:   
+16:14:07   USER:  restart
+16:14:07   RHEA:   
+16:14:42   USER:  ..pwn
+16:14:42   RHEA:   
+16:15:54   USER:  nmap
+16:15:54   RHEA:   
+16:22:17   USER:  restarrt
+16:22:17   RHEA:   
+16:22:20   USER:  restart
+16:22:20   RHEA:   
+16:22:48   USER:  cd
+16:22:48   RHEA:   
+16:23:10   USER:  c
+16:23:10   RHEA:   
+16:25:17   USER:  restart
+16:25:17   RHEA:   
+16:26:13   USER:  c
+16:26:13   RHEA:   
+16:26:17   USER:  cd
+16:26:17   RHEA:   
+16:26:32   USER:  
+16:26:32   RHEA:   
+16:26:34   USER:  c
+16:26:34   RHEA:   
+16:27:12   USER:  ..pwn
+16:27:12   RHEA:   
+16:29:40   USER:  zarp
+16:29:40   RHEA:   
+16:38:46   USER:  ?
+16:38:46   RHEA:   
+16:38:58   USER:  geoip
+16:38:58   RHEA:   
+16:39:19   USER:  
+16:39:19   RHEA:   
+16:39:22   USER:  ?
+16:39:22   RHEA:   
+16:39:34   USER:  xhydra
+16:39:34   RHEA:   
+16:41:35   USER:  xhydra
+16:41:35   RHEA:   
+16:44:07   USER:  ?
+16:44:07   RHEA:   
+16:46:11   USER:  quit
+16:46:11   RHEA:   
+
+Rhea started at:  16:46:27  05/01/2017
+17:20:39   USER:  info
+17:20:39   RHEA:   
+17:20:43   USER:  webinfo
+17:20:43   RHEA:   
+17:24:12   USER:  ?
+17:24:12   RHEA:   
+17:24:25   USER:  dig
+17:24:25   RHEA:   
+17:25:14   USER:  dig
+17:25:14   RHEA:   
+17:28:26   USER:  ?
+17:28:26   RHEA:   
+17:28:44   USER:  quit
+17:28:44   RHEA:   
+16:48:17   USER:  ?
+16:48:17   RHEA:   
+16:49:04   USER:  nmap
+16:49:04   RHEA:   
+18:01:10   USER:  find
+18:01:10   RHEA:   
+18:01:39   USER:  
+18:01:39   RHEA:   
+18:01:41   USER:  find
+18:01:41   RHEA:   
+18:03:16   USER:  ?
+18:03:16   RHEA:   
+18:03:24   USER:  find
+18:03:24   RHEA:   
+18:03:35   USER:  
+18:03:35   RHEA:   
+18:03:36   USER:  find
+18:03:36   RHEA:   
+18:03:40   USER:  
+18:03:40   RHEA:   
+18:03:43   USER:  find'
+18:03:43   RHEA:   
+18:03:46   USER:  find
+18:03:46   RHEA:   
+18:05:48   USER:  pipl
+18:05:48   RHEA:   
+
+Rhea started at:  18:06:07  06/01/2017
+
+Rhea started by:  Trey
+18:06:34   USER:  pipl
+18:06:34   RHEA:   
+18:06:41   USER:  pipl
+18:06:41   RHEA:   
+18:08:06   USER:  ?
+18:08:06   RHEA:   
+18:20:37   USER:  cfc
+18:20:37   RHEA:   
+18:20:40   USER:  cfc
+18:20:40   RHEA:   
+18:20:43   USER:  kronos
+18:20:43   RHEA:   
+18:21:46   USER:  cfc
+18:21:46   RHEA:   
+18:23:24   USER:  
+18:23:24   RHEA:   
+18:23:42   USER:  cfc
+18:23:42   RHEA:   
+18:29:09   USER:  cfc
+18:29:09   RHEA:   
+18:36:40   USER:  cfc
+18:36:41   RHEA:   
+
+Rhea started at:  18:08:50  07/01/2017
+
+Rhea started by:  Trey
+18:09:02   USER:  quit
+18:09:02   RHEA:   
+
+Rhea terminated at:  18:09:02  07/01/2017
+20:32:20   USER:  ?
+20:32:20   RHEA:   
+20:32:31   USER:  quit
+20:32:31   RHEA:   

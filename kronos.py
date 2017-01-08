@@ -287,7 +287,7 @@ while True:
         bot.atom()
         print("Who are you looking for, " + name + "?")
 ### SEARCH FOR INFORMATION ON TARGET WITH NAME AND STATE
-        os.system('read -p "Enter First Name:" fname ; read -p "Enter Middle Name:" mname ; read -p "Enter Last Name:"lname ; read -p "Enter City:" city ; read -p "Enter State: " state ; w3m "https://pipl.com/search/?q=$fname+$mname+$lname&l=sloc=&in=5" && w3m "https://www.findmugshots.com/arrests/"$fname"_"$lname"_"$state && w3m "http://mugshots.com/search.html?q="$fname"+"$lname && w3m "http://10digits.us/n/"$fname"_"$lname"/location/"$city"_"$state ; read output ')
+        os.system('read -p "Enter First Name: " fname ; read -p "Enter Middle Name: " mname ; read -p "Enter Last Name: " lname ; read -p "Enter City: " city ; read -p "Enter State: " state ; w3m "https://pipl.com/search/?q=$fname+$mname+$lname&l=sloc=&in=5" && w3m "https://www.findmugshots.com/arrests/"$fname"_"$lname"_"$state && w3m "http://mugshots.com/search.html?q="$fname"+"$lname && w3m "http://10digits.us/n/"$fname"_"$lname"/location/"$city"_"$state ; read output ')
 ########################################################  
 ### DATASCRAPE
 ########################################################

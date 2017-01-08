@@ -1,0 +1,2145 @@
+Script started on Wednesday 04 January 2017 10:40:12 PM CST
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# nmap -h
+Nmap 6.40 ( http://nmap.org )
+Usage: nmap [Scan Type(s)] [Options] {target specification}
+TARGET SPECIFICATION:
+  Can pass hostnames, IP addresses, networks, etc.
+  Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254
+  -iL <inputfilename>: Input from list of hosts/networks
+  -iR <num hosts>: Choose random targets
+  --exclude <host1[,host2][,host3],...>: Exclude hosts/networks
+  --excludefile <exclude_file>: Exclude list from file
+HOST DISCOVERY:
+  -sL: List Scan - simply list targets to scan
+  -sn: Ping Scan - disable port scan
+  -Pn: Treat all hosts as online -- skip host discovery
+  -PS/PA/PU/PY[portlist]: TCP SYN/ACK, UDP or SCTP discovery to given ports
+  -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes
+  -PO[protocol list]: IP Protocol Ping
+  -n/-R: Never do DNS resolution/Always resolve [default: sometimes]
+  --dns-servers <serv1[,serv2],...>: Specify custom DNS servers
+  --system-dns: Use OS's DNS resolver
+  --traceroute: Trace hop path to each host
+SCAN TECHNIQUES:
+  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans
+  -sU: UDP Scan
+  -sN/sF/sX: TCP Null, FIN, and Xmas scans
+  --scanflags <flags>: Customize TCP scan flags
+  -sI <zombie host[:probeport]>: Idle scan
+  -sY/sZ: SCTP INIT/COOKIE-ECHO scans
+  -sO: IP protocol scan
+  -b <FTP relay host>: FTP bounce scan
+PORT SPECIFICATION AND SCAN ORDER:
+  -p <port ranges>: Only scan specified ports
+    Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9
+  -F: Fast mode - Scan fewer ports than the default scan
+  -r: Scan ports consecutively - don't randomize
+  --top-ports <number>: Scan <number> most common ports
+  --port-ratio <ratio>: Scan ports more common than <ratio>
+SERVICE/VERSION DETECTION:
+  -sV: Probe open ports to determine service/version info
+  --version-intensity <level>: Set from 0 (light) to 9 (try all probes)
+  --version-light: Limit to most likely probes (intensity 2)
+  --version-all: Try every single probe (intensity 9)
+  --version-trace: Show detailed version scan activity (for debugging)
+SCRIPT SCAN:
+  -sC: equivalent to --script=default
+  --script=<Lua scripts>: <Lua scripts> is a comma separated list of 
+           directories, script-files or script-categories
+  --script-args=<n1=v1,[n2=v2,...]>: provide arguments to scripts
+  --script-args-file=filename: provide NSE script args in a file
+  --script-trace: Show all data sent and received
+  --script-updatedb: Update the script database.
+  --script-help=<Lua scripts>: Show help about scripts.
+           <Lua scripts> is a comma separted list of script-files or
+           script-categories.
+OS DETECTION:
+  -O: Enable OS detection
+  --osscan-limit: Limit OS detection to promising targets
+  --osscan-guess: Guess OS more aggressively
+TIMING AND PERFORMANCE:
+  Options which take <time> are in seconds, or append 'ms' (milliseconds),
+  's' (seconds), 'm' (minutes), or 'h' (hours) to the value (e.g. 30m).
+  -T<0-5>: Set timing template (higher is faster)
+  --min-hostgroup/max-hostgroup <size>: Parallel host scan group sizes
+  --min-parallelism/max-parallelism <numprobes>: Probe parallelization
+  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout <time>: Specifies
+      probe round trip time.
+  --max-retries <tries>: Caps number of port scan probe retransmissions.
+  --host-timeout <time>: Give up on target after this long
+  --scan-delay/--max-scan-delay <time>: Adjust delay between probes
+  --min-rate <number>: Send packets no slower than <number> per second
+  --max-rate <number>: Send packets no faster than <number> per second
+FIREWALL/IDS EVASION AND SPOOFING:
+  -f; --mtu <val>: fragment packets (optionally w/given MTU)
+  -D <decoy1,decoy2[,ME],...>: Cloak a scan with decoys
+  -S <IP_Address>: Spoof source address
+  -e <iface>: Use specified interface
+  -g/--source-port <portnum>: Use given port number
+  --data-length <num>: Append random data to sent packets
+  --ip-options <options>: Send packets with specified ip options
+  --ttl <val>: Set IP time-to-live field
+  --spoof-mac <mac address/prefix/vendor name>: Spoof your MAC address
+  --badsum: Send packets with a bogus TCP/UDP/SCTP checksum
+OUTPUT:
+  -oN/-oX/-oS/-oG <file>: Output scan in normal, XML, s|<rIpt kIddi3,
+     and Grepable format, respectively, to the given filename.
+  -oA <basename>: Output in the three major formats at once
+  -v: Increase verbosity level (use -vv or more for greater effect)
+  -d: Increase debugging level (use -dd or more for greater effect)
+  --reason: Display the reason a port is in a particular state
+  --open: Only show open (or possibly open) ports
+  --packet-trace: Show all packets sent and received
+  --iflist: Print host interfaces and routes (for debugging)
+  --log-errors: Log errors/warnings to the normal-format output file
+  --append-output: Append to rather than clobber specified output files
+  --resume <filename>: Resume an aborted scan
+  --stylesheet <path/URL>: XSL stylesheet to transform XML output to HTML
+  --webxml: Reference stylesheet from Nmap.Org for more portable XML
+  --no-stylesheet: Prevent associating of XSL stylesheet w/XML output
+MISC:
+  -6: Enable IPv6 scanning
+  -A: Enable OS detection, version detection, script scanning, and traceroute
+  --datadir <dirname>: Specify custom Nmap data file location
+  --send-eth/--send-ip: Send using raw ethernet frames or IP packets
+  --privileged: Assume that the user is fully privileged
+  --unprivileged: Assume the user lacks raw socket privileges
+  -V: Print version number
+  -h: Print this help summary page.
+EXAMPLES:
+  nmap -v -A scanme.nmap.org
+  nmap -v -sn 192.168.0.0/16 10.0.0.0/8
+  nmap -v -iR 10000 -Pn -p 80
+SEE THE MAN PAGE (http://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# nmao [K[Kp -S 173-20-3-25.client.mchsi.com[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KC[K173-20-3-25.client.mchsi.com[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-S 166.172.58.141 - A -6[C[1@ [1@-[1@v[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C 173.20.3.25
+Failed to resolve/decode supposed IPv6 source address "166.172.58.141": Address family for hostname not supported
+QUITTING!
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# nmap -v -S 166.172.58.141 - A -6 173.20.3.25[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kifconfig
+eth0      Link encap:Ethernet  HWaddr 54:ab:3a:29:8d:ef  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:294476 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:294476 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:84605507 (84.6 MB)  TX bytes:84605507 (84.6 MB)
+
+teredo    Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          inet6 addr: 2001:0:53aa:64c:fa:330e:5953:c572/32 Scope:Global
+          inet6 addr: fe80::ffff:ffff:ffff/64 Scope:Link
+          UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1280  Metric:1
+          RX packets:23 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:41 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:500 
+          RX bytes:2208 (2.2 KB)  TX bytes:3616 (3.6 KB)
+
+wlan0     Link encap:Ethernet  HWaddr a4:c4:94:89:ee:1e  
+          inet addr:192.168.43.189  Bcast:192.168.43.255  Mask:255.255.255.0
+          inet6 addr: fe80::a6c4:94ff:fe89:ee1e/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:75271 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:97349 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:57236589 (57.2 MB)  TX bytes:21429285 (21.4 MB)
+
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# ifconfignmap -v -S 166.172.58.141 - A -6 173.20.3.25[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@f[1@e[1@8[1@0[1@:[1@:[1@a[1@6[1@c[1@4[1@:[1@9[1@4[1@f[1@f[1@:[1@f[1@e[1@8[1@9[1@:[1@e[1@e[1@1[1@e
+WARNING: If -S is being used to fake your source address, you may also have to use -e <interface> and -Pn .  If you are using it to specify your real source address, you can ignore this warning.
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2017-01-04 22:46 CST
+Failed to resolve "-".
+Failed to resolve "A".
+Failed to resolve "173.20.3.25".
+Read data files from: /usr/bin/../share/nmap
+WARNING: No targets were specified, so 0 hosts scanned.
+Nmap done: 0 IP addresses (0 hosts up) scanned in 0.26 seconds
+           Raw packets sent: 0 (0B) | Rcvd: 0 (0B)
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# nmap -v -S fe80::a6c4:94ff:fe89:ee1e - A -6 173.20.3.25[C[1P
+WARNING: If -S is being used to fake your source address, you may also have to use -e <interface> and -Pn .  If you are using it to specify your real source address, you can ignore this warning.
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2017-01-04 22:46 CST
+NSE: Loaded 110 scripts for scanning.
+NSE: Script Pre-scanning.
+Failed to resolve "173.20.3.25".
+NSE: Script Post-scanning.
+Read data files from: /usr/bin/../share/nmap
+WARNING: No targets were specified, so 0 hosts scanned.
+Nmap done: 0 IP addresses (0 hosts up) scanned in 1.16 seconds
+           Raw packets sent: 0 (0B) | Rcvd: 0 (0B)
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# nmap -v -S fe80::a6c4:94ff:fe89:ee1e -A -6 173.20.3.25[K[K[K[K[K[K[K[K[K[K[K173-20-3-25.client.mchsi.com
+WARNING: If -S is being used to fake your source address, you may also have to use -e <interface> and -Pn .  If you are using it to specify your real source address, you can ignore this warning.
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2017-01-04 22:46 CST
+NSE: Loaded 110 scripts for scanning.
+NSE: Script Pre-scanning.
+Failed to resolve "173-20-3-25.client.mchsi.com".
+NSE: Script Post-scanning.
+Read data files from: /usr/bin/../share/nmap
+WARNING: No targets were specified, so 0 hosts scanned.
+Nmap done: 0 IP addresses (0 hosts up) scanned in 1.39 seconds
+           Raw packets sent: 0 (0B) | Rcvd: 0 (0B)
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# nmap -v -S fe80::a6c4:94ff:fe89:ee1e -A -6 173-20-3-25.client.mchsi.com[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K173.20.3.25
+Failed to resolve/decode supposed IPv4 source address "fe80::a6c4:94ff:fe89:ee1e": Address family for hostname not supported
+QUITTING!
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# nmap -v -S fe80::a6c4:94ff:fe89:ee1e -A 173.20.3.25[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@1[1@0[1@7[1@.[1@7[1@7[1@.[1@6[1@8[1@.[1@1[1@2[1@1
+WARNING: If -S is being used to fake your source address, you may also have to use -e <interface> and -Pn .  If you are using it to specify your real source address, you can ignore this warning.
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2017-01-04 22:48 CST
+Could not figure out what device to send the packet out on with the source address you gave me!  If you are trying to sp00f your scan, this is normal, just give the -e eth0 or -e ppp0 or whatever.  Otherwise you can still use -e, but I find it kindof fishy.
+QUITTING!
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# nmap -v -S 107.77.68.121 -A 173.20.3.25[C[1@ [1@-[1@e
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2017-01-04 22:48 CST
+I cannot figure out what source address to use for device -S, does it even exist?
+QUITTING!
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# nmap -v -e -S 107.77.68.121 -A 173.20.3.25[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2017-01-04 22:48 CST
+NSE: Loaded 110 scripts for scanning.
+NSE: Script Pre-scanning.
+Initiating Ping Scan at 22:48
+Scanning 173.20.3.25 [4 ports]
+Completed Ping Scan at 22:48, 0.89s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 22:48
+Completed Parallel DNS resolution of 1 host. at 22:48, 0.00s elapsed
+Initiating SYN Stealth Scan at 22:48
+Scanning 173-20-3-25.client.mchsi.com (173.20.3.25) [1000 ports]
+Discovered open port 443/tcp on 173.20.3.25
+
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# nmap -v -A 173.20.3.25[1@-[1@6[1P[1P[C[1@ [1@-[1@6
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2017-01-04 22:49 CST
+NSE: Loaded 110 scripts for scanning.
+NSE: Script Pre-scanning.
+Failed to resolve "173.20.3.25".
+NSE: Script Post-scanning.
+Read data files from: /usr/bin/../share/nmap
+WARNING: No targets were specified, so 0 hosts scanned.
+Nmap done: 0 IP addresses (0 hosts up) scanned in 1.20 seconds
+           Raw packets sent: 0 (0B) | Rcvd: 0 (0B)
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# nmap -v -6 -A 173.20.3.25[1P[1P[1P
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2017-01-04 22:49 CST
+NSE: Loaded 110 scripts for scanning.
+NSE: Script Pre-scanning.
+Initiating Ping Scan at 22:49
+Scanning 173.20.3.25 [4 ports]
+Completed Ping Scan at 22:49, 1.01s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 22:49
+Completed Parallel DNS resolution of 1 host. at 22:49, 0.00s elapsed
+Initiating SYN Stealth Scan at 22:49
+Scanning 173-20-3-25.client.mchsi.com (173.20.3.25) [1000 ports]
+Discovered open port 443/tcp on 173.20.3.25
+Stats: 0:00:04 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
+SYN Stealth Scan Timing: About 1.10% done; ETC: 22:52 (0:03:00 remaining)
+Discovered open port 80/tcp on 173.20.3.25
+Stats: 0:00:06 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
+SYN Stealth Scan Timing: About 9.40% done; ETC: 22:49 (0:00:39 remaining)
+Stats: 0:00:07 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
+SYN Stealth Scan Timing: About 16.90% done; ETC: 22:49 (0:00:25 remaining)
+Stats: 0:00:07 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
+SYN Stealth Scan Timing: About 20.65% done; ETC: 22:49 (0:00:19 remaining)
+Stats: 0:00:07 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
+SYN Stealth Scan Timing: About 24.35% done; ETC: 22:49 (0:00:16 remaining)
+
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# dmitry -h
+Deepmagic Information Gathering Tool
+"There be some deep magic going on"
+
+dmitry: invalid option -- 'h'
+Usage: dmitry [-winsepfb] [-t 0-9] [-o %host.txt] host
+  -o	 Save output to %host.txt or to file specified by -o file
+  -i	 Perform a whois lookup on the IP address of a host
+  -w	 Perform a whois lookup on the domain name of a host
+  -n	 Retrieve Netcraft.com information on a host
+  -s	 Perform a search for possible subdomains
+  -e	 Perform a search for possible email addresses
+  -p	 Perform a TCP port scan on a host
+* -f	 Perform a TCP port scan on a host showing output reporting filtered ports
+* -b	 Read in the banner received from the scanned port
+* -t 0-9 Set the TTL in seconds when scanning a TCP port ( Default 2 )
+*Requires the -p flagged to be passed
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# dimitry [K[K[K[K[K[K[Kmitry -e 173.20.3.25
+Deepmagic Information Gathering Tool
+"There be some deep magic going on"
+
+HostIP:173.20.3.25
+HostName:173-20-3-25.client.mchsi.com
+
+Gathered E-Mail information for 173-20-3-25.client.mchsi.com
+---------------------------------
+Searching Google.com:80...
+Searching Altavista.com:80...
+Found 0 E-Mail(s) for host 173-20-3-25.client.mchsi.com, Searched 0 pages containing 0 results
+
+All scans completed, exiting
+]0;root@Program13: /usr/bin/rhea/84nd17server[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea/84nd17server[00m# cd ..
+]0;root@Program13: /usr/bin/rhea[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea[00m# less [K[K[K[K[Kcat zues.py
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+import os
+import time
+import webbrowser
+import re
+import urllib
+import urllib2
+import sys
+import random
+import numpy as np
+import math
+import subprocess
+import future
+import requests
+#############################################################
+### IMPORT ###                                            ###
+import psych#.PY     ### ZUES' RESPONSES                  ###
+import bot#.PY       ### ZUES' FUNCTIONS                  ###
+### FROM /USR/BIN/RHEA ###                                ###
+#############################################################
+### THESE FILES HOLD OUR FUNCTIONS AND RESPONSES FOR ZUES ###
+#############################################################
+#############################################################
+###   import image_scraper ### [THIS IS NEEDED FOR (1) COMMAND.]
+#############################################################
+from lxml import html
+from html.parser import HTMLParser
+from urllib.request import urlopen
+from urllib import parse
+### THIS PROGRAM WILL NOT FUNCTION PROPERLY IF NOT RUN AS 'ROOT'
+os.system('sudo')
+### LOGIN SCREEN
+os.system('clear')
+os.system('python /usr/bin/rhea/dc.py')
+import config
+class Logger(object):
+    def __init__(self):
+        self.terminal = sys.stdout
+        self.log = open("Zues.log", "a")
+
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)
+
+    def flush(self):
+        pass
+while True:
+    with open("Zuesconv.txt", "a") as myfile:
+        myfile.write("\nZues started at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
+    with open("Zues.log", "a") as myfile:
+        myfile.write("\nZues started at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
+###############################################################
+### LOAD FUNCTION 'LOCK()' FROM FILE 'BOT.PY'
+    bot.lock()
+###############################################################
+    print("Login:")
+    username = raw_input("Username: ")
+    if username == config.username:
+        print("Sounds Legit...")
+    else:
+        bot.zues()
+        with open("Zues.log", "a") as myfile:
+            myfile.write("\nZues terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "Due to Incorrect Username.\n")
+        print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
+        quit()
+    bot.zues()
+### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
+    os.system("stty -echo")
+    password = raw_input("Please Enter Password: ")
+### TURN PRINT TO STDOUT BACK ON 
+    os.system("stty echo")
+    print("\n")
+    if password == config.password:
+        bot.unlock()
+        os.system("gpg -e -r Ender /usr/bin/rhea/config.py --output '/usr/bin/rhea/config.py.gpg' ")
+	os.system('rm config.py')
+        os.system('rm config.pyc')
+	os.system('clear')
+        print("Access Granted")
+        print("Please Wait While System Loads...")
+### WAIT FOR (2) SECONDS BEFORE CONTINUING
+        time.sleep(2)
+        break
+    else:
+        bot.zues()
+        print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+        with open("Zues.log", "a") as myfile:
+            myfile.write("\nZues terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "Due to Incorrect Username.\n")
+### IF PASSWORD IS INCORRECT, TERMINATE PROGRAM
+        os.system("gpg -e -u Ender /usr/bin/rhea/config.py --output '/usr/bin/rhea/config.py.gpg' ")
+        os.system('rm config.py')
+        os.system('rm config.pyc')
+	os.system('clear')
+        quit()
+### PROGRAM INTRODUCTION
+bot.zues()
+os.system("toilet Zues")
+time.sleep(5)
+os.system('clear')
+bot.zues()
+name = raw_input("What is your name? ")
+with open("Zues.log", "a") as myfile:
+    myfile.write("\nZues started by:  " + name + "\n")
+with open("Zuesconv.txt", "a") as myfile:
+    myfile.write("\nZues started by:  " + name + "\n")
+print("Hello, " + name + ". my name is Zues.")
+time.sleep(2)
+bot.zues()
+print("What sort of hell shall we raise today?")
+time.sleep(2)
+os.system('clear')
+bot.zues()
+print("type 'quit' to exit program")
+print("type '?' for help")
+### START OF MAIN PROGRAM
+while True:
+    statement = raw_input(">")
+    os.system('clear')
+    bot.zues()
+### ANALYZE USER INPUT AND RETURN REPONSE FROM PSYCH.PY
+    print(bot.analyze(statement))
+########################################################
+### ?
+########################################################
+    if statement == "?":
+        bot.zues()
+        print("Loading available commands, " + name)
+        time.sleep(3)
+### LOAD BASH SCRIPT CONTAINING LIST OF COMMANDS WITH DESCRIPTIONS
+        os.system('sh /usr/bin/rhea/zuescomphelp.sh')
+########################################################
+### RESTART
+########################################################
+    elif statement == "restart":
+        bot.zues()
+        print('Restarting. Please wait, ' + name)
+        time.sleep(2)
+### RESTART ZUES WITHOUT HAVING TO EXIT AND RELOAD PROGRAM
+        os.execv(sys.executable, ['python'] + sys.argv)
+    elif statement == "commands":
+        print(commands)
+########################################################
+### MACCHANGE
+########################################################
+    elif statement == "macchange":
+        bot.zues()
+        print("Let's change the mac address real quick, " + name + ".")
+        time.sleep(2)
+        os.system('/usr/bin/macchanger')
+########################################################
+### ZARP
+########################################################
+    elif statement == "zarp":
+        bot.zues()
+	os.system('/usr/bin/zarp')
+########################################################
+### ZENMAP
+########################################################
+    elif statement == "zenmap":
+        bot.zues()
+	os.system('/usr/bin/zenmap')
+########################################################
+### ZAPROXY
+########################################################
+    elif statement == "zaproxy":
+        bot.zues()
+	os.system('/usr/bin/zaproxy')
+########################################################  
+### SHUTDOWN
+########################################################
+    elif statement == "shutdown":
+        bot.zues()
+        print("When would you like to shutdown, " + name + "?")
+### SHUTDOWN COMPUTER SYSTEM AT SPECIFIED TIME [IN MINS]
+        os.system('read -p "Enter Time Till Shutdown In Mins: " mins ; echo "SHUTTING DOWN IN $mins MINS...\n ^c TOCANCEL" ; shutdown -h +$mins')
+########################################################  
+### ..PWN
+########################################################
+    elif statement == "..pwn":
+### PRINT SIMPLE ..PWN 'ANIMATION'
+        bot.zues()
+        print('.')
+        time.sleep(1)
+        bot.zues()
+        print('..')
+        time.sleep(1)
+        bot.zues()
+        os.system('toilet ..pwn')
+        time.sleep(3)
+        bot.zues()
+### START DOTDOTPWN WITH SPECIFIED TARGET
+        os.system("read -p 'Enter Target Host: ' target ; dotdotpwn -m http -h '$target' -M GET ")
+########################################################  
+### READPWN
+########################################################
+    elif statement == "readpwn":
+        bot.zues()
+### READ DOTDOTPWN REPORT
+        os.system("read -p 'Enter File Name: ' file ; less /usr/bin/rhea/dotdotpwn/Reports/$file")
+########################################################  
+### ..PWNREPO
+########################################################
+    elif statement == "..pwnrepo":
+        bot.zues()
+        print("Getting Reports...")
+        time.sleep(3)
+### PRINT LIST OF DOTDOTPWN REPORTS
+        os.system("ls '/usr/bin/rhea/dotdotpwn/Reports/' ; read output ")
+########################################################  
+### FUCKSHITUP
+########################################################
+    elif statement == "fuckshitup":
+### DISPLAY FUCKSHITUP 'ANIMATION'
+        bot.zues()
+        os.system("toilet Lets")
+        time.sleep(1)
+        bot.atom()
+        os.system("figlet Fuck")
+        time.sleep(1)
+        bot.dragon()
+        os.system('toilet Shit')
+        time.sleep(1)
+        bot.satan()
+        os.system('figlet Up!!!')
+        time.sleep(2)
+### LOAD FUCKSHITUP-SCANNER
+        os.system('cd /pentest/scanners/fuckshitup-master && sudo php fsu.php "$@"')
+########################################################  
+### BLUEPOT
+########################################################
+    elif statement == "bluepot":
+        bot.atom()
+        print("Bluepot now loading")
+### LOAD BLUEPOT [BLUETOOTH HONEY POT CREATOR]
+        os.system('cd /pentest/bluetooth/bluepot && ./run.sh "$@"')
+########################################################  
+### MERCURY
+########################################################
+    elif statement == "mercury":
+        bot.atom()
+        print("Starting Mercury")
+### START MERCURY REVERSE ENGINEERING CLIENT
+        os.system('cd /pentest/reverse-engineering/mercury/client && sudo ./mercury.py "$@"')
+########################################################  
+### TSHARK
+########################################################
+    elif statement == "tshark":
+        bot.network()
+        print("Let's see whats going on in the network, " + name + ".")
+        time.sleep(2)
+        bot.network()
+        print("Starting tshark...")
+        time.sleep(3)
+### RUN 'WIRESHARK' IN TERMINAL
+        os.system("tshark -i wlan0")
+########################################################  
+### GPG
+########################################################
+    elif statement == "gpg":
+        bot.atom()
+        print("Loading key generator")
+### GENERATE A NEW GPG KEY
+        os.system("gpg --gen-key")
+########################################################  
+### VIPER
+########################################################
+    elif statement == "viper":
+        bot.atom()
+        print("Loading Viper")
+### RUN VIPER.PY
+        os.system("viper.py")
+########################################################  
+### FIND
+########################################################
+    elif statement == "find":
+        bot.atom()
+        print("Who are you looking for, " + name + "?")
+### SEARCH FOR INFORMATION ON TARGET WITH NAME AND STATE
+        os.system('read -p "Enter First Name:" fname ; read -p "Enter Middle Name:" mname ; read -p "Enter Last Name:"lname ; read -p "Enter City:" city ; read -p "Enter State: " state ; w3m "https://pipl.com/search/?q=$fname+$mname+$lname&l=sloc=&in=5" && w3m "https://www.findmugshots.com/arrests/"$fname"_"$lname"_"$state && w3m "http://mugshots.com/search.html?q="$fname"+"$lname && w3m "http://10digits.us/n/"$fname"_"$lname"/location/"$city"_"$state ; read output ')
+########################################################  
+### DATASCRAPE
+########################################################
+    elif statement == "datascrape":
+        bot.angryhomer()
+        print("Let's scrape some data.")
+### PERFORM DATA SCRAPE ON WEBSITE
+        url = raw_input("Enter URL: ")
+        page = requests.get(url)
+        tree = html.fromstring(page.content)
+        print(tree)
+        print(page.content)
+########################################################  
+### IMGGET
+########################################################
+    elif statement == "imgget":
+        bot.atom()
+### GET ALL IMAGES FROM WEBPAGE [TO GET ALL IMAGES FROM ENTIE SITE, SEE 'ALLPICS']
+        os.system('read -p "Enter URL: " url ; image-scraper --dump-urls --scrape-reverse $url')
+################################################################################################
+### HACKNEWS                                                                                 ###
+################################################################################################
+### elif statement == "hacknews":                                                            ###
+###     os.system('clear')                                                                   ###
+###     bot.poc()                                                                            ###
+###     print("Getting Hack News...")                                                        ###
+###     response = requests.get("https://latesthackingnews.com/category/vulnerabilities/")   ###
+########################   ADD HTML2TEXT   #####################################################
+###     txt = response.text                                                                  ###
+###     print(txt)                                                                           ###
+################################################################################################
+################################################################################################
+################################################################################################
+########################################################  
+### WEBINFO
+########################################################
+    elif statement == "webinfo":
+        bot.atom()
+        print("Enter URL to get web info")
+### RUN VULNERABILITY SCAN ON TARGET WEBSITE
+        os.system("read -p 'Enter Site Name: ' site ; whois $site ; dig $site ; % dig +short $site ; nslookup -type=any $site ; nikto -host $site -C all ; read output ")
+########################################################  
+### ALLPICS
+########################################################
+    elif statement == "allpics":
+        os.system('clear')
+        bot.tex()
+### DOWNLOAD ALL IMAGES FROM WEBSITE
+        os.system("read -p 'Enter URL:' site ; wget -r -p -l inf -np $site ")
+########################################################  
+### CFC
+########################################################
+    elif statement == "cfc":
+        bot.atom()
+        print("Creating New Case")
+        os.system("gpg --decrypt-files /usr/bin/rhea/case.sh.gpg ; rm /usr/bin/rhea/case.sh.gpg ; sh /usr/bin/rhea/case.sh ; gpg -r Ender --encrypt-files /usr/bin/rhea/case.sh ; rm /usr/bin/rhea/case.sh")
+########################################################  
+### CFADD
+########################################################
+    elif statement == "cfadd":
+        bot.atom()
+### EDIT OR ADD INFORMATION TO A CASEFILE
+        os.system("read -p 'Enter Case Number:' title ; gpg --decrypt-files /usr/bin/rhea/casefile/$title.gpg ; nano/usr/bin/rhea/casefile/$title ; gpg -e /usr/bin/rhea/casefile/$title ; rm /usr/bin/rhea/casefile/$title")
+########################################################  
+### CFREAD
+########################################################
+    elif statement == "cfread":
+        bot.atom()
+### READ AN EXISTING CASEFILE
+        os.system("read -p 'Enter Case Number:' case ; gpg --decrypt-files /usr/bin/rhea/casefile/$case.gpg ; rm/usr/bin/rhea/$case.gpg ; less /usr/bin/rhea/casefile/$case ; gpg -e /usr/bin/rhea/casefile/$case ; rm /usr/bin/rhea/casefile/$case")
+########################################################  
+### CFLIST
+########################################################
+    elif statement == "cflist":
+        bot.bshelf()
+        print("Loading Casefile Bookshelf...")
+        time.sleep(3)
+### LIST CURRENT CASEFILES
+        os.system("ls /usr/bin/rhea/casefile")
+########################################################  
+### METAGOO
+########################################################
+    elif statement == "metagoo":
+        bot.atom()
+### START METAGOOFIL
+        os.system("read -p 'Enter Domain to search: ' dom ; read -p 'Enter Filetype To Download (pdf,doc,xls,ppt,odp,ods,docx,xlsx,pptx): ' down ; read -p 'Where Do You Want To Save Downloaded Files?: ' dfile ; read -p 'Enter Where Do You Want To Save Output File?: ' ofile ; /usr/bin/metagoofil -d $dom -t $down -o $dfile -f $ofile ")
+########################################################  
+### W3AF
+########################################################
+    elif statement == "w3af":
+        bot.atom()
+        print("Loading W3AF")
+### RUN W3AF IN TERMINAL
+        os.system("/usr/bin/w3af_console")
+########################################################  
+### W3GUI
+########################################################
+    elif statement == "w3gui":
+        bot.atom()
+        print("Loading W3AF")
+### OPEN W3AF [GUI] APPLICATION
+        os.system("/usr/bin/w3af_gui")
+########################################################
+########################################################  
+### HTTPTEST
+########################################################
+    elif statement == "httptest":
+        bot.atom()
+### START SLOWHTTPTEST
+        os.system("/usr/bin/slowhttptest")
+########################################################  
+### SCAN
+########################################################
+    elif statement == "scan":
+        bot.atom()
+### START SIMPLE-SCAN [DOCUMENT SCANNER]
+        os.system("/usr/bin/simple-scan")
+########################################################  
+### GRABBER
+########################################################
+    elif statement == "grabber":
+        bot.atom()
+        os.system("/usr/bin/grabber")
+########################################################  
+### KEYS
+########################################################
+    elif statement == "keys":
+        bot.atom()
+### START SEAHORSE [PASSWORDS AND KEYS MANAGER]
+        os.system("/usr/bin/seahorse")
+########################################################  
+### ETTERCAP
+########################################################
+    elif statement == "ettercap":
+        os.system('clear')
+        bot.atom()
+        print('Starting Ettercap...')
+        time.sleep(3)
+### START ETTERCAP [CONFIGURED FOR WLAN0]
+        os.system("/usr/bin/ettercap -i wlan0 -T")
+########################################################  
+### ETERM
+########################################################
+    elif statement == "eterm":
+        bot.atom()
+### OPEN ANOTHER TERMINAL [ETERM IS A LOT SMALLER THAN GNOME TERMINAL. YOU MAY HAVE TROUBLE READING TEXT]
+        os.system("/usr/bin/Eterm")
+########################################################  
+### PYRIT
+########################################################
+    elif statement == "pyrit":
+        bot.atom()
+        print("Recognized options:\n  -b               : Filters AccessPoint by BSSID\n  -e               : Filters AccessPoint by ESSID\n  -h               : Print help for a certain command\n  -i               : Filename for input ('-' is stdin)\n  -o               : Filename for output ('-' is stdout)\n  -r               : Packet capture source in pcap-format\n  -u               : URL of the storage-system to use\n  --all-handshakes : Use all handshakes instead of the best one\n \n Recognized commands:\n  analyze                 : Analyze a packet-capture file\n  attack_batch            : Attack a handshake with PMKs/passwords from the db\n  attack_cowpatty         : Attack a handshake with PMKs from a cowpatty-file\n  attack_db               : Attack a handshake with PMKs from the db\n  attack_passthrough      : Attack a handshake with passwords from a file\n  batch                   : Batchprocess the database\n  benchmark               : Determine performance of available cores\n  benchmark_long          : Longer and more accurate version of benchmark (~10 minutes)\n  check_db                : Check the database for errors\n  create_essid            : Create a new ESSID\n  delete_essid            : Delete a ESSID from the database\n  eval                    : Count the available passwords and matching results\n  export_cowpatty         : Export results to a new cowpatty file\n  export_hashdb           : Export results to an airolib database\n  export_passwords        : Export passwords to a file\n  help                    : Print general help\n  import_passwords        : Import passwords from a file-like source\n  import_unique_passwords : Import unique passwords from a file-like source\n  list_cores              : List available cores\n  list_essids             : List all ESSIDs but don't count matching results\n  passthrough             : Compute PMKs and write results to a file\n  relay                   : Relay a storage-url via RPC\n  selftest                : Test hardware to ensure it computes correct results\n  serve                   : Serve local hardware to other Pyrit clients\n  strip                   : Strip packet-capture files to the relevant packets\n  stripLive               : Capture relevant packets from a live capture-source\n  verify                  : Verify 10% of the results by recomputation")
+### START PYRIT 
+        os.system("read -p 'Enter Options: ' option ; read -p 'Enter Commands: ' com ; /usr/bin/pyrit $option $com")
+########################################################  
+### HIDEME
+########################################################
+    elif statement == "hideme":
+        bot.atom()
+        print("I Am Hiding You")
+        os.system("service tor start ")
+########################################################  
+### DRIFT
+########################################################
+    elif statement == "drift":
+        bot.atom()
+        print("Let's Drift")
+### START DRIFTNET [ALREADY CONFIGURED FOR USE WITH WLAN0
+### { IF USING ETHERNET, CHANGE ALL INSTANCES OF WLAN0 TO 
+### ETH0 OR ETH1 DEPENDING ON YOUR SYSTEM CONFIGURATION}]
+        os.system("read -p 'Enter Your Routers IP Address ex: 192.168.1.254 :' rip ; read -p 'Enter Your Local IPAddress ex: 192.168.1.86 : ' lip ; arpspoof -i wlan0 -t $rip $lip & ettercap -Tqi wlan0 -M arp:remote /// & driftnet -i wlan0 ")
+########################################################  
+### KALI
+########################################################
+    elif statement == "kali":
+        bot.atom()
+### GO TO KALI LINUX TOOLS LISTING USING GOOGLE-CHROME
+        os.system('google-chrome tools.kali.org/tools-listing')
+########################################################  
+### P0F
+########################################################
+    elif statement == "p0f":
+        bot.atom()
+### START PASSIVE OS FINGERPRINTING UTILITY
+        os.system('p0f -i wlan0 -p -o /tmp/p0f.log')
+########################################################  
+### REAVERSCAN
+########################################################
+    elif statement == "wash":
+        bot.atom()
+### START WIFI PROTECTED SETUP SCAN TOOL
+        os.system('read -p "Enter Channel: " chan ; wash -i mon0 -c $chan -C')
+########################################################  
+### REAVER
+########################################################
+    elif statement == "reaver":
+        bot.atom()
+### START WIFI PROTRECTED SETUP ATTACK TOOL
+        os.system('read -p "Enter BSSID: " bssid ; reaver -i mon0 -b $bssid -v')
+########################################################  
+### WIPASS
+########################################################
+    elif statement == "wipass":
+        bot.network()
+        print("Getting Wifi Password")
+        time.sleep(3)
+### DISPLAY CURRENT WIFI NETWORK NAME AND PASSWORD
+        os.system('awk -F= "/^(psk|id)/{print $2}" /etc/NetworkManager/system-connections/"$(iwgetid -r)" ')
+########################################################  
+### IPSCAN
+########################################################
+    elif statement == "ipscan":
+        bot.network()
+        print("Scanning For IP Addresses")
+        time.sleep(2)
+### SCAN LOCAL NETWORK [VIA WIFI] FOR IP ADDRESSES
+        os.system("arp-scan -l --interface=wlan0 --localnet")
+########################################################  
+### CRAWL
+########################################################
+########################################################
+###          *** DOESN'T CURRENTLY WORK ***          ### 
+########################################################
+###    elif statement == "crawl":
+###     bot.atom()
+###     class LinkParser(HTMLParser):
+###         def handle_starting(self, tag, attrs):
+###             if tag == 'a':
+###                 for (key, value) in attrs:
+###                     if key == 'href':
+###                         newUrl = parse.urljoin(self.baseUrl, value)
+###                         self.links = self.links + [newUrl]
+###         def getLinks(self, url):
+###             self.links = []
+###             self.baseUrl = url
+###             response = urlopen(url)
+###             if response.getheader('Content-Type')=='text/html':
+###                 htmlBytes = response.read()
+###                 htmlString = htmlBytes.decode("utf-8")
+###                 self.feed(htmlString)
+###                 return htmlString, self.links
+###             else:
+###                 return "",[]
+###         def spider(url, word, maxPages):
+###             pagesToVisit = [url]
+###             numberVisited = 0
+###             foundWord = False
+###             while numberVisited < maxPages and pagesToVisit != [] and not foundWord:
+###                 numberVisited = numberVisited +1
+###                 url = pagesToVisit[0]
+###                 pagesToVisit = pagesToVisit[1:]
+###                 try:
+###                     print(numberVisited, "Visiting:", url)
+###                     parser = LinkParser()
+###                     data, links = parser.getLinks(url)
+###                     if data.find(word)>-1:
+###                         foundWord = True
+###                     pagesToVisit = pagesToVisit + links
+###                     print(" **Success!** ")
+###                 except:
+###                     print(" **Failed!** ")
+###             if foundWord:
+###                 print("The word", word, "was found at", url)
+###             else:
+###                 print("Word never found")
+########################################################
+########################################################  
+### JOURNAL
+########################################################
+    elif statement == "journal":
+        bot.bshelf()
+        os.system("read -p 'Enter Title: ' title ; nano /usr/bin/rhea/journal/$title ; gpg -e /usr/bin/rhea/journal/$title ; rm /usr/bin/rhea/journal/$title ")
+########################################################  
+### VULNSCAN
+########################################################
+    elif statement == "vulnscan":
+        bot.atom()
+        print("Starting SkipFish")
+        time.sleep(3)
+        os.system('read -p "Enter URL: " url ; read -p "Enter File Title: " title ; mkdir /usr/bin/rhea/skipfish/$title; skipfish -o /usr/bin/rhea/skipfish/$title -S /usr/share/skipfish/dictionaries/minimal.wl $url')
+########################################################  
+### TOR
+########################################################
+    elif statement == "tor":
+        bot.atom()
+        print("Loading Tor")
+        os.system("read -p 'Enter Site URL: ' site ; service start tor ; proxychains firefox $site ; service tor stop ")
+########################################################  
+### DDOS
+########################################################
+    elif statement == "ddos":
+        bot.network()
+        os.system('read -p "Target: " target ; hping3 -S -P -U --flood -V --rand-source $target ')
+########################################################  
+### RANDJOURN
+########################################################
+    elif statement == "randjourn":
+        bot.bshelf()
+        os.system('read -p "Enter Title: " title ; nano /usr/bin/rhea/journal/random/$title ; gpg -e /usr/bin/rhea/journal/random/$title ; rm /usr/bin/rhea/journal/random/$title')
+########################################################  
+### JOURNALBS
+########################################################
+    elif statement == "journalbs":
+        bot.bshelf()
+        os.system('ls /usr/bin/rhea/journal')
+########################################################  
+### AUTOMATER
+########################################################
+    elif statement == "automater":
+        os.system('clear')
+        bot.atom()
+        os.system('read -p "Enter Host: " host ; automater -t $host')
+########################################################  
+### AUTODETECT
+########################################################
+    elif statement == "autodetect":
+        bot.network()
+        print"Loading Autodetect"
+        time.sleep(3)
+        os.system('autodetect-network')
+########################################################  
+### ARPING
+########################################################
+    elif statement == "arping":
+        bot.network()
+        print("Loading Arping...")
+        time.sleep(3)
+        os.system('read -p "Enter Channel: " chan ; read -p "Enter IP: " ip ; arping -I wlan0 -c $chan $ip')
+########################################################  
+### READRAND
+########################################################
+    elif statement == "readrand":
+        bot.bshelf()
+        os.system('ls /usr/bin/rhea/journal/random/ ; read -p "Enter Title: " title ; gpg --decrypt-files "/usr/bin/rhea/journal/random/$title"')
+########################################################  
+### READJOURN
+########################################################
+    elif statement == "readjourn":
+        bot.bshelf()
+        os.system('read -p "Enter Title: " title ; gpg --decrypt-files /usr/bin/rhea/journal/$title.gpg ; less /usr/bin/rhea/journal/$title ; gpg --encrypt-files $title ; rm "/usr/bin/rhea/journal/$title"')
+########################################################  
+### DISFIRE
+########################################################
+    elif statement == "disfire":
+        bot.network()
+        print("Although I Think This Is A Terrible Fucking Idea I Am Disabling Your Firewall")
+        time.sleep(3)
+        os.system("ufw disable ; iptables -F ")
+########################################################  
+### REFIRE
+########################################################
+    elif statement == "refire":
+        bot.network()
+        print("It's About Fucking Time Ass Hole...")
+        print("[*'Incomprehensible Mumbled Swears'*]")
+        time.sleep(3)
+        os.system("ufw enable ; iptables-restore < iptablesdefault_conf")
+########################################################  
+### NETWATCH
+########################################################
+    elif statement == "netwatch":
+        bot.network()
+        print("Let's watch the net.")
+        time.sleep(2)
+        os.system('detect-new-ip6 wlan0')
+########################################################  
+### DIG
+########################################################
+    elif statement == "dig":
+        bot.atom()
+        os.system('read -p "Enter Host: " host ; dig $host')
+########################################################  
+### DMITRY
+########################################################
+    elif statement == "dmitry":
+        bot.atom()
+        os.system('read -p "Enter Host: " host ; dmitry $host')
+########################################################  
+### XHYDRA
+########################################################
+    elif statement == "xhydra":
+        bot.atom()
+        os.system("/usr/bin/xhydra")
+########################################################  
+### AFL
+########################################################
+    elif statement == "afl":
+        bot.atom()
+        print("Please Connect Android Device Before Running This Command...")
+        time.sleep(2)
+        while True:
+            print("Is your Android device connected? y/n: ")
+            statement = raw_input(">").split()
+            if len(statement) == 0:
+                break
+            if len(statement) > 0:
+                verb = statement[0].lower()
+            if statement == "y":
+                time.sleep(3)
+                os.system("/usr/bin/aflogical")
+                os.system("usr/bin/abd devices")
+            if statement == "n":
+                bot.doh()
+                print("You will need to connect your Android device before running this command...")
+                break
+            else:
+                bot.doh()
+                print("I didn't understand your response. Exiting AFLogical ")
+                time.sleep(3)
+                break
+########################################################  
+### ANDROSDK
+########################################################
+    elif statement == "androsdk":
+        bot.atom()
+        os.system("/usr/bin/android-sdk")
+########################################################  
+### SYSPRINT
+########################################################
+    elif statement == "sysprint":
+        bot.network()
+        os.system('read -p "Enter IP Address Or Host Name: " ip ; /usr/bin/arp-fingerprint -o "-N -I wlan0" $ip')
+########################################################  
+### MTRANSCODE
+########################################################
+    elif statement == "mtranscode":
+        bot.atom()
+        os.system("/usr/bin/arista-gtk")
+########################################################  
+### DISKUSAGE
+########################################################
+    elif statement == "diskusage":
+        bot.atom()
+        os.system("/usr/bin/baobab")
+########################################################  
+### BLUEBROWSE
+########################################################
+    elif statement == "bluebrowse":
+        bot.atom()
+        os.system("/usr/bin/blueman-browse")
+######################################################## 
+### BLUEPHONEBOOK
+########################################################
+    elif statement == "bluephonebook":
+        bot.atom()
+        print('bluesnarfer: you must set bd_addr\n bluesnarfer, version 0.1 -\n usage: bluesnarfer [options] [ATCMD] -b bt_addr\n ATCMD     : valid AT+CMD (GSM EXTENSION)\n TYPE      : valid phonebook type ..\n example   : "DC" (dialed call list)\n            "SM" (SIM phonebook)\n            "RC" (recevied call list)\n            "XX" much more\n -b bdaddr : bluetooth device address\n -C chan   : bluetooth rfcomm channel\n -c ATCMD  : custom action\n -r N-M    : read phonebook entry N to M \n -w N-M    : delete phonebook entry N to M\n -f name   : search "name" in phonebook address\n -s TYPE   : select phonebook memory storage\n -l        : list aviable phonebook memory storage\n -i        : device info')
+        os.system("/usr/bin/bluesnarfer ")
+        os.system("/usr/bin/bluesnarfer ")
+########################################################  
+### BOMBARDMENT
+########################################################
+    elif statement == "bombardment":
+        bot.atom()
+        os.system("man bombardment")
+        os.system("/usr/bin/bombardment")
+########################################################  
+### WIFIBUDDY
+########################################################
+    elif statement == "wifibuddy":
+        bot.network()
+        os.system("man /usr/bin/easside-ng")
+        os.system("/usr/bin/easside-ng")
+        os.system("man /usr/bin/buddy-ng")
+        os.system("/usr/bin/buddy-ng")
+########################################################  
+### BULLY
+########################################################
+    elif statement == "bully":
+        bot.atom()
+        os.system("man /usr/bin/bully")
+        os.system("/usr/bin/bully ")
+########################################################  
+### BURPSUITE
+########################################################
+    elif statement == "burpsuite":
+        bot.atom()
+        os.system("/usr/bin/burpsuite")
+########################################################  
+### DIG
+########################################################
+    elif statement == "dig":
+        bot.atom()
+        os.system("man /usr/bin/dig")
+        os.system("/usr/bin/dig ")
+########################################################  
+### DUMPZILLA
+########################################################
+    elif statement == "dumpzilla":
+        bot.atom()
+        os.system("/usr/bin/dumpzilla")
+        os.system("/usr/bin/dumpzilla ")
+########################################################  
+### MUG
+########################################################
+    elif statement == "mug":
+        bot.atom()
+        print("Enter Targets Name")
+        os.system('read -p "First Name: " fname ; read -p "Last Name: " lname ; read -p "Enter State: " state ; w3m"http://www.findmugshots.com/arrests/$fname"_"$lname"_"$state" && w3m http://mugshots.com/search.html?q=$fname+$lname ; read output ')
+########################################################  
+### PSYOP
+########################################################
+    elif statement == "psyop":
+        bot.atom()
+        os.system('read -p "Enter Psyop Title: " title ; read -p "Enter Date: " date ; read -p "Enter Target Name: "target ; read -p "Enter Notes: " notes ; echo "Title $title" > /usr/bin/rhea/psyop/$title ; echo "Date: $date" >> /usr/bin/rhea/psyop/$title ; echo "Name: $target" >> /usr/bin/rhea/psyop/$title ; echo "Notes: $notes" >> /usr/bin/rhea/psyop/$title ; gpg --encrypt-files /usr/bin/rhea/psyop/$title ; rm /usr/bin/rhea/psyop/$title')
+########################################################  
+### EDITPSYOP
+########################################################
+    elif statement == "editpsyop":
+        bot.atom()
+        os.system("read -p 'Enter Title: ' title ; gpg --decrypt-files /usr/bin/rhea/psyop/$title.gpg ; nano /usr/bin/rhea/psyop/$title ; gpg -e /usr/bin/rhea/psyop/$title ; rm /usr/bin/rhea/psyop/$title")
+########################################################  
+### READPSYOP
+########################################################
+    elif statement == "readpsyop":
+        bot.atom()
+        os.system("read -p 'Enter Title: ' title ; gpg --decrypt-files /usr/bin/rhea/psyop/$title.gpg ; rm /usr/bin/rhea/psyop/$title.gpg ; less /usr/bin/rhea/psyop/$title ; gpg --encrypt-files /usr/bin/rhea/psyop/$title ; rm /usr/bin/rhea/psyop/$title")
+########################################################  
+### POPHOOD
+########################################################
+    elif statement == "pophood":
+###############################################################
+### LOAD FUNCTION 'LOCK()' FROM FILE 'BOT.PY'
+        bot.lock()
+###############################################################
+        print("Login:")
+        username = raw_input("Username: ")
+        if username == "13":
+            print("Sounds Legit...")
+        else:
+            bot.rhea()
+            print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
+            quit()
+        bot.rhea()
+### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
+        os.system("stty -echo")
+        password = raw_input("Please Enter Password: ")
+### TURN PRINT TO STDOUT BACK ON 
+        os.system("stty echo")
+        print("\n")
+        if password == "[Getthefuckout13###]":
+            bot.unlock()
+            print("Access Granted")
+            print("Please Wait While System Loads...")
+### WAIT FOR (2) SECONDS BEFORE CONTINUING
+            time.sleep(2)
+            bot.atom()
+            os.system("less /usr/bin/rhea/13.py")
+        else:
+            break
+########################################################  
+### MAINTENANCE
+########################################################
+    elif statement == "maintenance":
+###############################################################
+### LOAD FUNCTION 'LOCK()' FROM FILE 'BOT.PY'
+        bot.lock()
+###############################################################
+        print("Login:")
+        username = raw_input("Username: ")
+        if username == "13":
+            print("Sounds Legit...")
+        else:
+            bot.rhea()
+            print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
+            quit()
+        bot.rhea()
+### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
+        os.system("stty -echo")
+        password = raw_input("Please Enter Password: ")
+### TURN PRINT TO STDOUT BACK ON 
+        os.system("stty echo")
+        print("\n")
+        if password == "[Getthefuckout13###]":
+            bot.unlock()
+            print("Access Granted")
+            print("Please Wait While System Loads...")
+### WAIT FOR (2) SECONDS BEFORE CONTINUING
+            time.sleep(2)
+            bot.rhea()
+            print('Please Restart Rhea When Maintenance Is Complete.')
+            time.sleep(3)
+            os.system("nano /usr/bin/rhea/13.py")
+            bot.rhea()
+            print("Please restart Rhea for changes to take effect...")
+        else:
+            break
+########################################################
+########################################################  
+### WHOIS
+########################################################
+    elif statement == "whois":
+        bot.network()
+        os.system('clear')
+        os.system("read -p 'Enter Host: ' host ; whois $host")
+########################################################  
+### GEOIP
+########################################################
+    elif statement == "geoip":
+        bot.atom()
+        os.system("read -p 'Enter Target IP Address: ' ip ; lynx -dump 'http://www.ip-adress.com/ip_tracer/$ip' | grepaddress | egrep 'city|state|country' | awk '{print $3,$4,$5,$6,$7,$8,$9}' | sed 's\ip address flag \\'|sed 's\My\\' ; read output")
+########################################################  
+### FBD
+########################################################
+    elif statement == "fbd":
+        bot.kronos()
+        os.system('read -p "Enter Name (Seperate with + ): " name ; service tor start ; proxychains firefox "https://www.facebook.com/public/?query="$name"" ; service tor stop')
+########################################################  
+### SOCIALSEARCH
+########################################################
+    elif statement == "socialsearch":
+        bot.kronos()
+        os.system('read -p "Enter Name (Seperate With +): " name ; service tor start ; proxychains firefox "https://www.social-searcher.com/social-buzz/?q5="$name"" ; service tor stop')
+########################################################  
+### MALTEGO
+########################################################
+    elif statement == "maltego":
+        bot.kronos()
+        os.system("/usr/bin/casefile")
+########################################################  
+### CALIBRE
+########################################################
+    elif statement == "calibre":
+        bot.kronos()
+        os.system("/usr/bin/calibre")
+########################################################  
+### AUTOPSY
+########################################################
+    elif statement == "autopsy":
+        bot.kronos()
+        os.system("/usr/bin/autopsy")
+########################################################  
+### CREEPY
+########################################################
+    elif statement == "creepy":
+        bot.kronos()
+        os.system("/usr/bin/creepy")
+########################################################  
+### CUCKOO
+########################################################
+    elif statement == "cuckoo":
+        bot.kronos()
+        os.system("/usr/bin/cuckoo")
+########################################################  
+### CYMOTHOA
+########################################################
+    elif statement == "cymothoa":
+        bot.kronos()
+        os.system("/usr/bin/cymothoa")
+########################################################  
+### DFF
+########################################################
+    elif statement == "dff":
+        bot.kronos()
+        os.system("man dff ; /usr/bin/dff")
+########################################################  
+### DFFGUI
+########################################################
+    elif statement == "dffgui":
+        bot.kronos()
+        os.system("/usr/bin/dff-gui")
+########################################################  
+### DUMPCAP
+########################################################
+    elif statement == "dumpcap":
+        bot.kronos()
+        os.system("/usr/bin/dumpcap -i wlan0")
+########################################################  
+### FERN
+########################################################
+    elif statement == "fern":
+        bot.network()
+        print("Loading Fern Wifi Cracker...")
+        time.sleep(3)
+        os.system("/usr/bin/fern-wifi-cracker")
+########################################################  
+### FIMAP
+########################################################
+    elif statement == "fimap":
+        bot.kronos()
+        os.system("/usr/bin/fimap -h")
+        os.system("read -p 'Enter Commands: ' com ; /usr/bin/fimap $com")
+########################################################  
+### 10D
+########################################################
+    elif statement == "10d":
+        bot.kronos()
+        print("Enter Name: ")
+        os.system('read -p "Enter First Name : " fname ; read -p "Enter Last Name : " lname ; read -p "Enter City : " city ; read -p "Enter State e.g. Al : " state ; w3m "http://10digits.us/n/"$fname"_"$lname"/location/"$city"_"$state""')
+########################################################  
+### NMAP
+########################################################
+    elif statement == "nmap":
+        bot.network()
+        print("Starting nMap")
+        os.system('read -p "Enter Host : " host ; nmap -v -A "$host" ')
+########################################################  
+### SOCIALIZE
+########################################################
+    elif statement == "socialize":
+        bot.kronos()
+        os.system("/usr/bin/setoolkit")
+########################################################  
+### HARVEST
+########################################################
+    elif statement == "harvest":
+        bot.kronos()
+        print("-d: Domain to search or company name")
+        print("-b: Data source (google,bing,bingapi,pgp,linkedin,google-profiles,people123,jigsaw,all)")
+        print("-s: Start in result number X (default 0)")
+        print("-v: Verify host name via dns resolution and search for virtual hosts")
+        print("-f: Save the results into an HTML and XML file")
+        print("-n: Perform a DNS reverse query on all ranges discovered")
+        print("-c: Perform a DNS brute force for the domain name")
+        print("-t: Perform a DNS TLD expansion discovery")
+        print("-e: Use this DNS server")
+        print("-l: Limit the number of results to work with(bing goes from 50 to 50 results,")
+        print("-h: use SHODAN database to query discovered hosts")
+        print(" google 100 to 100, and pgp doesn't use this option)")
+        print("Examples:./theharvester.py -d microsoft.com -l 500 -b google")
+        print(" ./theharvester.py -d microsoft.com -b pgp")
+        print(" ./theharvester.py -d microsoft -l 200 -b linkedin")
+        os.system('read -p "Enter Options: " options ; /usr/bin/theharvester $options')
+########################################################  
+### RECON
+########################################################
+    elif statement == "recon":
+        os.system('clear')
+        bot.kronos()
+        print('Loading Recon-ng...')
+        time.sleep(3)
+        os.system("/usr/bin/recon-ng")
+###############################################
+###          LEARN SOME NEW SHIT            ###
+###       (Some Files Need Editing)         ###
+###############################################
+########################################################  
+###    CREDITCARDFRAUD
+########################################################
+    elif statement == "creditcardfraud":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/ccf')
+########################################################  
+###    PICKMASTERLOCK
+########################################################
+    elif statement == "pickmasterlock":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/pml')
+########################################################  
+###    SMOKEBOMB
+########################################################
+    elif statement == "smokebomb":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/smoke')
+########################################################  
+###    LOCKPICKING
+########################################################
+    elif statement == "lockpicking":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/apl')
+########################################################  
+###    BEIGEBOX
+########################################################
+    elif statement == "beigebox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/beige')
+########################################################  
+###    JAMRADAR
+########################################################
+    elif statement == "jamradar":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/jamr')
+########################################################  
+###    HOTWIRE
+########################################################
+    elif statement == "hotwire":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/hwire')
+########################################################  
+###    UNLISTEDPHONE
+########################################################
+    elif statement == "unlistedphone":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/uphone')
+########################################################  
+###    CHEMICALEQUIV
+########################################################
+    elif statement == "chemicalequiv":
+###############################################################
+### LOAD FUNCTION 'LOCK()' FROM FILE 'BOT.PY'
+        bot.lock()
+###############################################################
+        print("Login:")
+        username = raw_input("Username: ")
+        if username == "13":
+            print("Sounds Legit...")
+        else: 
+            bot.kronos()
+            print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
+            quit()
+        bot.kronos()
+### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
+        os.system("stty -echo")
+        password = raw_input("Please Enter Password: ")
+### TURN PRINT TO STDOUT BACK ON 
+        os.system("stty echo")
+        print("\n")
+        if password == "[Getthefuckout13###]":
+            bot.unlock()
+            print("Access Granted")
+            print("Please Wait While System Loads...")
+### WAIT FOR (2) SECONDS BEFORE CONTINUING
+            time.sleep(2)
+            bot.kronos()
+            bot.disclaimer()
+            time.sleep(1)
+            print("Loading...")
+            time.sleep(3)
+            os.system('less /usr/bin/rhea/lib13/chemeq')
+        else:
+            break
+########################################################  
+###    PHONETAP
+########################################################
+    elif statement == "phonetap":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/tapphone')
+########################################################  
+###    PHONESYSTEM
+########################################################
+    elif statement == "phonesystem":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/phonesys')
+########################################################  
+###    AQUABOX
+########################################################
+    elif statement == "aquabox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/aqua')
+########################################################  
+###    BLACKBOX
+########################################################
+    elif statement == "blackbox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/black')
+########################################################  
+###    BLOTTOBOX
+########################################################
+    elif statement == "blottobox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/blotto')
+########################################################  
+###    BROWNBOX
+########################################################
+    elif statement == "brownbox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/brown')
+########################################################  
+###    CLEARBOX
+########################################################
+    elif statement == "clearbox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/clear')
+########################################################  
+###    CARFTMOD
+########################################################
+    elif statement == "carftmod":
+###############################################################
+### LOAD FUNCTION 'LOCK()' FROM FILE 'BOT.PY'
+        bot.lock()
+###############################################################
+        print("Login:")
+        username = raw_input("Username: ")
+        if username == "13":
+            print("Sounds Legit...")
+        else: 
+            bot.kronos()
+            print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
+            quit()
+        bot.kronos()
+### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
+        os.system("stty -echo")
+        password = raw_input("Please Enter Password: ")
+### TURN PRINT TO STDOUT BACK ON 
+        os.system("stty echo")
+        print("\n")
+        if password == "[Getthefuckout13###]":
+            bot.unlock()
+            print("Access Granted")
+            print("Please Wait While System Loads...")
+### WAIT FOR (2) SECONDS BEFORE CONTINUING
+            time.sleep(2)
+            bot.kronos()
+            bot.disclaimer()
+            time.sleep(1)
+            print("Loading...")
+            time.sleep(3)
+            os.system('less /usr/bin/rhea/lib13/carft')
+        else:
+            break
+########################################################  
+###    MACE
+########################################################
+    elif statement == "mace":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/mace')
+########################################################
+########################################################  
+###    BLUEBOX
+########################################################
+    elif statement == "bluebox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/blue')
+########################################################  
+###    RECOGNIZECC
+########################################################
+    elif statement == "recognizecc":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/reccreditcard')
+########################################################  
+###    NEWID
+########################################################
+    elif statement == "newid":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/newid')
+########################################################  
+###    PHONENUBERS
+########################################################
+    elif statement == "phonenumbers":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/phonenum')
+########################################################  
+###    REDBOX
+########################################################
+    elif statement == "redbox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/red')
+########################################################  
+###    SILVERBOX
+########################################################
+    elif statement == "silverbox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/silver')
+########################################################  
+###    WHITEBOX
+########################################################
+    elif statement == "whitebox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/white')
+########################################################  
+###    GOLDBOX
+########################################################
+    elif statement == "goldbox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/gold')
+########################################################  
+###    LUNCHBOX
+########################################################
+    elif statement == "lunchbox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/lunch')
+########################################################  
+###    OLIVEBOX
+########################################################
+    elif statement == "olivebox":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/olive')
+########################################################  
+###    TELNET
+########################################################
+    elif statement == "telnet":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/telnet')
+########################################################  
+###    INFINITYTRANS
+########################################################
+    elif statement == "infinitytrans":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/infinity')
+########################################################  
+###    MYRIGHTS
+########################################################
+    elif statement == "myrights":
+        bot.kronos()
+        bot.disclaimer()
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(3)
+        os.system('less /usr/bin/rhea/lib13/rights')
+###############################################
+###############################################
+###############################################
+########################################################  
+### QUIT
+########################################################
+    elif statement == "quit":
+        with open("Kronosconv.txt", "a") as myfile:
+            myfile.write("\nKronos terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
+        os.system('clear')
+        with open("Kronos.log", "a") as myfile:
+            myfile.write("\nKronos terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
+        bot.buck()
+        print('Whatever...')
+        os.system('cp /usr/bin/rhea/kronos.py /media/Program13/13/truecrypt1/.backup/kronos.py.backup')
+        os.system('cp /usr/bin/rhea/bot.py /media/Program13/13/truecrypt1/.backup/bot.py.backup')
+        os.system('cp /usr/bin/rhea/psych.py /media/Program13/13/truecrypt1/.backup/psych.py.backup')
+        os.system('cp Kronosconv.txt /media/Program13/13/truecrypt1/.backup/Kronosconv.txt.backup')
+        os.system('cp Kronos.log /media/Program13/13/truecrypt1/.backup/Kronos.log.backup')
+        quit()
+
+        if __name__ == "__main__":
+             bot.main()
+]0;root@Program13: /usr/bin/rhea[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea[00m# less zues.[K[K[K[K[K[K[K[K[K[Kscript stop
+Script started, file is stop
+]0;root@Program13: /usr/bin/rhea[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea[00m# rm stop
+]0;root@Program13: /usr/bin/rhea[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea[00m# ls
+133.py                     base64              elements.sh           LICENSE       psych.py.save    torussia.py
+[0m[01;34m13books[0m                    bot13_setup.sh      ephemeralserv.py      logfile.log   [01;34mpsyop[0m            [01;34mtuts[0m
+13elements(expert).py      bot.py              game2.py              MATRIX 1.pdf  pwd.py           tvsearch.pl
+13elements(expert).py.gpg  bot.pyc             help.sh               msfcli        [01;34mpytorctl[0m         [01;34mtxt_files[0m
+13elements.py              btc.py              hiddenserv.py         needswork     README.md        udp.py
+13elements.py.gpg          btc.py.gpg          ipchanger.py          neural2.py    rheacomphelp.sh  up.py.gpg
+[01;32m13.py[0m                      [01;34mcasefile[0m            ipdropall_conf        neuron        Rheaconv.txt     vcy.py
+13.py~                     case.sh.gpg         iptablesdefault_conf  neuron.conf   Rhea.log         viper.db
+13.py.save                 ConfigParser        irc.py                neuron.py     scraper.py       v.py
+13.py.save.1               config.py.gpg       kronoscomphelp.sh     pass.py       [01;32mserver.py[0m        v.py.doesnt_work
+13.py.save.2               datascraper.py      Kronosconv.txt        pass.py.gpg   spider.py        vyrus
+13.py.save.3               datascraper.py.gpg  Kronos.log            podcast.sh    tcp.py           vyrus.py
+13.py.save.4               dc.py               [01;32mkronos.py[0m             programlist   thinkpython.pdf  y
+13.py.save.5               deb.gpg             [01;34mlib13[0m                 [01;34mprojects[0m      torirc.py        Zuesconv.txt
+[01;34m84nd17server[0m               defenitions.py      lib13.sh              psych.py      torscrape.py     Zues.log
+altlib.txt                 defenitions.pyc     [01;34mLibrary[0m               psych.pyc     tortest.py       zues.py
+]0;root@Program13: /usr/bin/rhea[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea[00m# cd [K[K[Kless [K[K[K[K[Kpython zues.py
+usage: sudo -h | -K | -k | -V
+usage: sudo -v [-AknS] [-g group] [-h host] [-p prompt] [-u user]
+usage: sudo -l [-AknS] [-g group] [-h host] [-p prompt] [-U user] [-u user] [command]
+usage: sudo [-AbEHknPS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-u user] [VAR=value] [-i|-s]
+            [<command>]
+usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-u user] file ...
+[H[2Jgpg: WARNING: unsafe ownership on configuration file `/home/cyborg/.gnupg/gpg.conf'
+Reading passphrase from file descriptor 0 ...   
+
+You need a passphrase to unlock the secret key for
+user: "Program13 <programthirteen@gmail.com>"
+4096-bit RSA key, ID 301ABC96, created 2016-10-21 (main key ID E8B2DD3B)
+
+gpg: encrypted with 4096-bit RSA key, ID 301ABC96, created 2016-10-21
+      "Program13 <programthirteen@gmail.com>"
+[H[2J
+                                                `````                                                
+                                       `..----:::::::::---.``                                       
+                                   `.--:--..````````````..--::-.`                                   
+                                `.-:-.``   ``````````````  ``.--:-.`                                
+                              `-:-.`` ```````````````````````````-::-`                              
+                            `::-.`````````....-------....``````````.-:-`                            
+                          `-:-.````````..----::::::::::----..````````-::-                           
+                         .::-.```.``..---::///////+/////:::---..``````.-::`                         
+                        ./:-.``.``..--:///++//:-----:://+///::--..`````.-::`                        
+                       ./:-....``.--:///+/-.`          `.://///:--.``.``.-:/`                       
+                      ./:-.......-:://+:.                 `./+//::-.``....-/:`                      
+                     `//:-.....--://+/.                     `-+//::-......-:/-                      
+                     .+::---...-::/+/`                        .+//::-......://`                     
+                     :/::---..-:://+.                          -+//::-.....::+-                     
+                     +/:----.-:::/+:                           `///::--.----/+:                     
+                    `+//:-----:://+-                           `///:::-----:/+:                     
+                    `+//:::--::://+-                           `////::-----:/+:                     
+                    `++/:::::::://+-                           `////:::--:::/+/                     
+                    `oo++///////++o:                           `++++////////+o/                     
+                 `-//ssssooooooosss+////////////////////////////osssooooooossso/:.                  
+                .o+:-------------................................---------------/o/`                
+                +o/...........``````````````````````````````````````............-+s:                
+                +o/-.............````````````````````````````````...............:+s:                
+                +o/-...-..........``````````````````````````````............-...:+s:                
+                +o/-...-............`````````````````````````...............-...:+s:                
+                +o/-..---..............``````````````````..................--...:+s:                
+                +o/-..----.................................................--...:+s:                
+                +o/-..----...............................................-----..:+s:                
+                +o/-..----..............................................------.-:+s:                
+                +o+:.-------..........................................--------.-:+s:                
+                +o+:---:---------................................-------------.-/+s:                
+                +o+:---::------------........................--------------::---/+s:                
+                +o+:--:::------------------........------------------------::---/os:                
+                +s+:--::::------------------------------------------------::::-:/os:                
+                +o+/--:::::---------------------------------------------::::::-:/os:                
+                +so/:::/:::::::-------------------------------------::::::::/:-:+os:                
+                +so/::///:::::::::::----------------------------::::::::::://:::+os:                
+                +so+::////:::::::::::::::::::::----::::::::::::::::::::::::///:/+os:                
+                +so+//////:::::::::::::::::::::::::::::::::::::::::::::::://////oos:                
+                +so+///+///:::::::::::::::::::::::::::::::::::::::::::::////+///oss:                
+                :sso++++++/////////////////////////////////////////////////+++/+sso.                
+                 .+ssoossoooooooooooooooooooooo++++ooooooooooooooooooooooooooooso/`                 
+                   ``````````````````````````````````````````````````````````````
+
+Login:
+Username: 13
+Sounds Legit...
+[H[2J
+                             ``:.             
+            `-/osyhhyyso:`      `+mNs             
+        +hdmmy+::::/+ymNNd/     `mNN-             
+        ymh+`         .omNN+     hmm`             
+        `.              /NNm`    yNd              
+                         mNm`    oNy              
+                        `mmy     +Ns              
+                        :Nm.     /N+              
+                       `dm:      /N/              
+                      .hd-       /N-              
+                     :ds`        +N.              
+                   .sh:          +m`              
+                 `od/            sm`              
+               .oh/`             ym`              
+            `:yh:                hm`              
+        `.:sds-                  mN.      ```     
+     `/ymNNNd++++ooossssssyhhyssymmdhyyhhhmmd`    
+    `dNNNmmdhyssoo++++++++++ooosmNNmssyyhmdy.     
+     ./:.`                      `mm+              
+                                 mN/              
+                                `mN+              
+                                -Nmo              
+                                /NNd`             
+                                ommN:             
+                                .::.              
+
+Please Enter Password: 
+
+[H[2J
+                             ``:.             
+            `-/osyhhyyso:`      `+mNs             
+        +hdmmy+::::/+ymNNd/     `mNN-             
+        ymh+`         .omNN+     hmm`             
+        `.              /NNm`    yNd              
+                         mNm`    oNy              
+                        `mmy     +Ns              
+                        :Nm.     /N+              
+                       `dm:      /N/              
+                      .hd-       /N-              
+                     :ds`        +N.              
+                   .sh:          +m`              
+                 `od/            sm`              
+               .oh/`             ym`              
+            `:yh:                hm`              
+        `.:sds-                  mN.      ```     
+     `/ymNNNd++++ooossssssyhhyssymmdhyyhhhmmd`    
+    `dNNNmmdhyssoo++++++++++ooosmNNmssyyhmdy.     
+     ./:.`                      `mm+              
+                                 mN/              
+                                `mN+              
+                                -Nmo              
+                                /NNd`             
+                                ommN:             
+                                .::.              
+
+('INTRUDER ALERT!!!', 'SYSTEM LOCKED')
+gpg: WARNING: unsafe ownership on configuration file `/home/cyborg/.gnupg/gpg.conf'
+usage: gpg [options] --encrypt [filename]
+[H[2J]0;root@Program13: /usr/bin/rhea[01;31mroot@Program13[00m:[01;34m/usr/bin/rhea[00m# python zues.py
+usage: sudo -h | -K | -k | -V
+usage: sudo -v [-AknS] [-g group] [-h host] [-p prompt] [-u user]
+usage: sudo -l [-AknS] [-g group] [-h host] [-p prompt] [-U user] [-u user] [command]
+usage: sudo [-AbEHknPS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-u user] [VAR=value] [-i|-s]
+            [<command>]
+usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-u user] file ...
+[H[2Jgpg: WARNING: unsafe ownership on configuration file `/home/cyborg/.gnupg/gpg.conf'
+Reading passphrase from file descriptor 0 ...   
+
+You need a passphrase to unlock the secret key for
+user: "Program13 <programthirteen@gmail.com>"
+4096-bit RSA key, ID 301ABC96, created 2016-10-21 (main key ID E8B2DD3B)
+
+gpg: encrypted with 4096-bit RSA key, ID 301ABC96, created 2016-10-21
+      "Program13 <programthirteen@gmail.com>"
+[H[2J
+                                                `````                                                
+                                       `..----:::::::::---.``                                       
+                                   `.--:--..````````````..--::-.`                                   
+                                `.-:-.``   ``````````````  ``.--:-.`                                
+                              `-:-.`` ```````````````````````````-::-`                              
+                            `::-.`````````....-------....``````````.-:-`                            
+                          `-:-.````````..----::::::::::----..````````-::-                           
+                         .::-.```.``..---::///////+/////:::---..``````.-::`                         
+                        ./:-.``.``..--:///++//:-----:://+///::--..`````.-::`                        
+                       ./:-....``.--:///+/-.`          `.://///:--.``.``.-:/`                       
+                      ./:-.......-:://+:.                 `./+//::-.``....-/:`                      
+                     `//:-.....--://+/.                     `-+//::-......-:/-                      
+                     .+::---...-::/+/`                        .+//::-......://`                     
+                     :/::---..-:://+.                          -+//::-.....::+-                     
+                     +/:----.-:::/+:                           `///::--.----/+:                     
+                    `+//:-----:://+-                           `///:::-----:/+:                     
+                    `+//:::--::://+-                           `////::-----:/+:                     
+                    `++/:::::::://+-                           `////:::--:::/+/                     
+                    `oo++///////++o:                           `++++////////+o/                     
+                 `-//ssssooooooosss+////////////////////////////osssooooooossso/:.                  
+                .o+:-------------................................---------------/o/`                
+                +o/...........``````````````````````````````````````............-+s:                
+                +o/-.............````````````````````````````````...............:+s:                
+                +o/-...-..........``````````````````````````````............-...:+s:                
+                +o/-...-............`````````````````````````...............-...:+s:                
+                +o/-..---..............``````````````````..................--...:+s:                
+                +o/-..----.................................................--...:+s:                
+                +o/-..----...............................................-----..:+s:                
+                +o/-..----..............................................------.-:+s:                
+                +o+:.-------..........................................--------.-:+s:                
+                +o+:---:---------................................-------------.-/+s:                
+                +o+:---::------------........................--------------::---/+s:                
+                +o+:--:::------------------........------------------------::---/os:                
+                +s+:--::::------------------------------------------------::::-:/os:                
+                +o+/--:::::---------------------------------------------::::::-:/os:                
+                +so/:::/:::::::-------------------------------------::::::::/:-:+os:                
+                +so/::///:::::::::::----------------------------::::::::::://:::+os:                
+                +so+::////:::::::::::::::::::::----::::::::::::::::::::::::///:/+os:                
+                +so+//////:::::::::::::::::::::::::::::::::::::::::::::::://////oos:                
+                +so+///+///:::::::::::::::::::::::::::::::::::::::::::::////+///oss:                
+                :sso++++++/////////////////////////////////////////////////+++/+sso.                
+                 .+ssoossoooooooooooooooooooooo++++ooooooooooooooooooooooooooooso/`                 
+                   ``````````````````````````````````````````````````````````````
+
+Login:
+Username: 13
+Sounds Legit...
+[H[2J
+                             ``:.             
+            `-/osyhhyyso:`      `+mNs             
+        +hdmmy+::::/+ymNNd/     `mNN-             
+        ymh+`         .omNN+     hmm`             
+        `.              /NNm`    yNd              
+                         mNm`    oNy              
+                        `mmy     +Ns              
+                        :Nm.     /N+              
+                       `dm:      /N/              
+                      .hd-       /N-              
+                     :ds`        +N.              
+                   .sh:          +m`              
+                 `od/            sm`              
+               .oh/`             ym`              
+            `:yh:                hm`              
+        `.:sds-                  mN.      ```     
+     `/ymNNNd++++ooossssssyhhyssymmdhyyhhhmmd`    
+    `dNNNmmdhyssoo++++++++++ooosmNNmssyyhmdy.     
+     ./:.`                      `mm+              
+                                 mN/              
+                                `mN+              
+                                -Nmo              
+                                /NNd`             
+                                ommN:             
+                                .::.              
+
+Please Enter Password: 
+
+[H[2J
+                                      `..--:::-------:-:---.``                                      
+                                   `.-:--..```        ```..-::-.`                                   
+                                `-:--.`   ````````````````  ``.-:-.`                                
+                              `-:-.`  ```````````...``````````  `.-:-`                              
+                            `-:-.`  ``````.....-------....``````  `.-:-`                            
+                          `-:-.`  `````..----::::::::::----..`````  `.-:.                           
+                         `-:-````````.---:://///////////:::--..`````  .-:-                          
+                        `:--```````..-::////-..``````.-:///:::-..` ``  `-:-                         
+                       `::-.``````.-:://:-`             ``-//::--.`` ```.-:-                        
+                       ::-.`````..-:///-`                  `-/:::-.` ````.-/.                       
+                      ./--...``.--::/:`                      .//::-.`````.-:/`                      
+                      ::-....``.--:/:`                        ./::--.`````.:/.                      
+                     `/:-....`.--::/.                          :/::--.``...:/:                      
+                     `/:-.....---:/:                           ./::--......://                      
+                      -/:--...--:::.                           `+::---.....:/+                      
+                       .-::---:::-`                            `+::---...--:/+                      
+                         `.....``                              `+::::------:/+                      
+                                                               `+:::::----://+                      
+                                                               .+:/::::::::/++                      
+                                                               `+///:::::::/++                      
+                                                               .+///:::::::/++                      
+                                                               `+/////:::://++                      
+                                                               .o/+////////+oo                      
+                  `-///////////////////////////////////////////+oooooooooooooo//-`                  
+                `:o+:------.............................................-------:++.                 
+                `so:..........`````````````````````````````````````............-/s+                 
+                `so:............`````````````````````````````````..............-/s+                 
+                .so/-...-..........````````````````````````````............-...-/so                 
+                .so/-..--.............``````````````````````...............-...-/so                 
+                `so/-..---................````````````.``..................--..:+so                 
+                `so/-..---...............................................----..:+so                 
+                `so/-..----.............................................-----..:+so                 
+                `so/-..-----...........................................------..:+so                 
+                `so/-.---------.....................................---------.-:+so                 
+                `so+:---:-----------...........................------------:---:+so                 
+                .so+:--:::------------.-..................-.---------------:---/+so                 
+                `so+:--:::------------------------------------------------:::--/+so                 
+                `so+:--::::---------------------------------------------:::::--/oso                 
+                .so+/:::/:::------------------------------------------:::::::-:/oso                 
+                `sso/:://:::::::----------------------------------:::::::::/:::+oso                 
+                `sso/::///:::::::::::::::----------------:::::::::::::::::///::+oso                 
+                .sso+//////:::::::::::::::::::::::::::::::::::::::::::::::///:/+oso                 
+                .sso+//++///::::::::::::::::::::::::::::::::::::::::::::///+///ooso                 
+                `osso//+++/////////::::::::::::::::::::::::::::////////////++//oss/                 
+                 `/ssooosoooooo+++++++++++++++++++++++++++++++++++++oooooooooooys:`                 
+                   `------------------------------------------------------------`
+
+gpg: WARNING: unsafe ownership on configuration file `/home/cyborg/.gnupg/gpg.conf'
+usage: gpg [options] --encrypt [filename]
+[H[2JAccess Granted
+Please Wait While System Loads...
+[H[2J
+                             ``:.             
+            `-/osyhhyyso:`      `+mNs             
+        +hdmmy+::::/+ymNNd/     `mNN-             
+        ymh+`         .omNN+     hmm`             
+        `.              /NNm`    yNd              
+                         mNm`    oNy              
+                        `mmy     +Ns              
+                        :Nm.     /N+              
+                       `dm:      /N/              
+                      .hd-       /N-              
+                     :ds`        +N.              
+                   .sh:          +m`              
+                 `od/            sm`              
+               .oh/`             ym`              
+            `:yh:                hm`              
+        `.:sds-                  mN.      ```     
+     `/ymNNNd++++ooossssssyhhyssymmdhyyhhhmmd`    
+    `dNNNmmdhyssoo++++++++++ooosmNNmssyyhmdy.     
+     ./:.`                      `mm+              
+                                 mN/              
+                                `mN+              
+                                -Nmo              
+                                /NNd`             
+                                ommN:             
+                                .::.              
+
+                            
+ mmmmmm                     
+     #" m   m   mmm    mmm  
+   m#   #   #  #"  #  #   " 
+  m"    #   #  #""""   """m 
+ ##mmmm "mm"#  "#mm"  "mmm" 
+                            
+                            
+[H[2J[H[2J
+                             ``:.             
+            `-/osyhhyyso:`      `+mNs             
+        +hdmmy+::::/+ymNNd/     `mNN-             
+        ymh+`         .omNN+     hmm`             
+        `.              /NNm`    yNd              
+                         mNm`    oNy              
+                        `mmy     +Ns              
+                        :Nm.     /N+              
+                       `dm:      /N/              
+                      .hd-       /N-              
+                     :ds`        +N.              
+                   .sh:          +m`              
+                 `od/            sm`              
+               .oh/`             ym`              
+            `:yh:                hm`              
+        `.:sds-                  mN.      ```     
+     `/ymNNNd++++ooossssssyhhyssymmdhyyhhhmmd`    
+    `dNNNmmdhyssoo++++++++++ooosmNNmssyyhmdy.     
+     ./:.`                      `mm+              
+                                 mN/              
+                                `mN+              
+                                -Nmo              
+                                /NNd`             
+                                ommN:             
+                                .::.              
+
+What is your name? Trey
+Hello, Trey. my name is Zues.
+[H[2J
+                             ``:.             
+            `-/osyhhyyso:`      `+mNs             
+        +hdmmy+::::/+ymNNd/     `mNN-             
+        ymh+`         .omNN+     hmm`             
+        `.              /NNm`    yNd              
+                         mNm`    oNy              
+                        `mmy     +Ns              
+                        :Nm.     /N+              
+                       `dm:      /N/              
+                      .hd-       /N-              
+                     :ds`        +N.              
+                   .sh:          +m`              
+                 `od/            sm`              
+               .oh/`             ym`              
+            `:yh:                hm`              
+        `.:sds-                  mN.      ```     
+     `/ymNNNd++++ooossssssyhhyssymmdhyyhhhmmd`    
+    `dNNNmmdhyssoo++++++++++ooosmNNmssyyhmdy.     
+     ./:.`                      `mm+              
+                                 mN/              
+                                `mN+              
+                                -Nmo              
+                                /NNd`             
+                                ommN:             
+                                .::.              
+
+What sort of hell shall we raise today?
+[H[2J[H[2J
+                             ``:.             
+            `-/osyhhyyso:`      `+mNs             
+        +hdmmy+::::/+ymNNd/     `mNN-             
+        ymh+`         .omNN+     hmm`             
+        `.              /NNm`    yNd              
+                         mNm`    oNy              
+                        `mmy     +Ns              
+                        :Nm.     /N+              
+                       `dm:      /N/              
+                      .hd-       /N-              
+                     :ds`        +N.              
+                   .sh:          +m`              
+                 `od/            sm`              
+               .oh/`             ym`              
+            `:yh:                hm`              
+        `.:sds-                  mN.      ```     
+     `/ymNNNd++++ooossssssyhhyssymmdhyyhhhmmd`    
+    `dNNNmmdhyssoo++++++++++ooosmNNmssyyhmdy.     
+     ./:.`                      `mm+              
+                                 mN/              
+                                `mN+              
+                                -Nmo              
+                                /NNd`             
+                                ommN:             
+                                .::.              
+
+type 'quit' to exit program
+type '?' for help
+>s ?
+[H[2J[H[2J
+                             ``:.             
+            `-/osyhhyyso:`      `+mNs             
+        +hdmmy+::::/+ymNNd/     `mNN-             
+        ymh+`         .omNN+     hmm`             
+        `.              /NNm`    yNd              
+                         mNm`    oNy              
+                        `mmy     +Ns              
+                        :Nm.     /N+              
+                       `dm:      /N/              
+                      .hd-       /N-              
+                     :ds`        +N.              
+                   .sh:          +m`              
+                 `od/            sm`              
+               .oh/`             ym`              
+            `:yh:                hm`              
+        `.:sds-                  mN.      ```     
+     `/ymNNNd++++ooossssssyhhyssymmdhyyhhhmmd`    
+    `dNNNmmdhyssoo++++++++++ooosmNNmssyyhmdy.     
+     ./:.`                      `mm+              
+                                 mN/              
+                                `mN+              
+                                -Nmo              
+                                /NNd`             
+                                ommN:             
+                                .::.              
+
+ 
+[H[2J
+                             ``:.             
+            `-/osyhhyyso:`      `+mNs             
+        +hdmmy+::::/+ymNNd/     `mNN-             
+        ymh+`         .omNN+     hmm`             
+        `.              /NNm`    yNd              
+                         mNm`    oNy              
+                        `mmy     +Ns              
+                        :Nm.     /N+              
+                       `dm:      /N/              
+                      .hd-       /N-              
+                     :ds`        +N.              
+                   .sh:          +m`              
+                 `od/            sm`              
+               .oh/`             ym`         
