@@ -37,7 +37,7 @@ import config
 class Logger(object):
     def __init__(self):
         self.terminal = sys.stdout
-        self.log = open("Deadpool.log", "a")
+        self.log = open("D34D9001.log", "a")
 
     def write(self, message):
         self.terminal.write(message)
@@ -46,10 +46,10 @@ class Logger(object):
     def flush(self):
         pass
 while True:
-    with open("Deadpoolconv.txt", "a") as myfile:
-        myfile.write("\nZues started at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
-    with open("Deadpool.log", "a") as myfile:
-        myfile.write("\nZues started at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
+    with open("D34D9001conv.txt", "a") as myfile:
+        myfile.write("\nD34D9001 started at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
+    with open("D34D9001.log", "a") as myfile:
+        myfile.write("\nD34D9001 started at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
 ###############################################################
 ### LOAD FUNCTION 'LOCK()' FROM FILE 'BOT.PY'
     bot.lock()
@@ -60,8 +60,8 @@ while True:
         print("Sounds Legit...")
     else:
         bot.dp()
-        with open("Deadpool.log", "a") as myfile:
-            myfile.write("\nZues terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "Due to Incorrect Username.\n")
+        with open("D34D9001.log", "a") as myfile:
+            myfile.write("\nD34D9001 terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "Due to Incorrect Username.\n")
         print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
 ### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
         quit()
@@ -86,8 +86,8 @@ while True:
     else:
         bot.dp()
         print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
-        with open("Deadpool.log", "a") as myfile:
-            myfile.write("\nDeadpool terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "Due to Incorrect Username.\n")
+        with open("D34D9001.log", "a") as myfile:
+            myfile.write("\nD34D9001 terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "Due to Incorrect Username.\n")
 ### IF PASSWORD IS INCORRECT, TERMINATE PROGRAM
         os.system("gpg -e -u Ender /usr/bin/rhea/config.py --output '/usr/bin/rhea/config.py.gpg' ")
         os.system('rm config.py')
@@ -96,19 +96,19 @@ while True:
         quit()
 ### PROGRAM INTRODUCTION
 bot.dp()
-os.system("toilet D34D9001")
+os.system("toilet ' D34D9001'")
 time.sleep(5)
 os.system('clear')
 bot.dp()
 name = raw_input("What is your name? ")
-with open("Deadpool.log", "a") as myfile:
-    myfile.write("\nDeadpool started by:  " + name + "\n")
-with open("Deadpoolconv.txt", "a") as myfile:
-    myfile.write("\nDeadpool started by:  " + name + "\n")
-print("Hello, " + name + ". my name is D34D900l.")
+with open("D34D9001.log", "a") as myfile:
+    myfile.write("\nD34D9001 started by:  " + name + "\n")
+with open("D34D9001conv.txt", "a") as myfile:
+    myfile.write("\nD34D9001 started by:  " + name + "\n")
+print("What's up " + name + "? My name is D34D9001.")
 time.sleep(2)
 bot.dp()
-print("What scum bags are we takin' out today?")
+print("What kind of scum bags are we taking out today?")
 time.sleep(2)
 os.system('clear')
 bot.dp()
@@ -129,15 +129,15 @@ while True:
         print("Loading available commands, " + name)
         time.sleep(3)
 ### LOAD BASH SCRIPT CONTAINING LIST OF COMMANDS WITH DESCRIPTIONS
-        os.system('sh /usr/bin/rhea/zuescomphelp.sh')
+        os.system('sh /usr/bin/rhea/D34D9001comphelp.sh')
 ########################################################
 ### RESTART
 ########################################################
     elif statement == "restart":
         bot.dp()
-        print('Restarting. Please wait, ' + name)
+        print('Restarting. Gimme a fuckin minute, ' + name)
         time.sleep(2)
-### RESTART DEADPOOL WITHOUT HAVING TO EXIT AND RELOAD PROGRAM
+### RESTART D34D9001 WITHOUT HAVING TO EXIT AND RELOAD PROGRAM
         os.execv(sys.executable, ['python'] + sys.argv)
 ########################################################
 ### SCRIPT
@@ -155,8 +155,8 @@ while True:
 ### MACCHANGE
 ########################################################
     elif statement == "macchange":
-        bot.dp()
-        print("Let's change the mac address real quick, " + name + ".")
+        bot.cp()
+        print("Fuck this mac address. Let's get a new one, " + name + ".")
         time.sleep(2)
         os.system('/usr/bin/macchanger')
 ########################################################
@@ -301,85 +301,85 @@ while True:
 ### DRADIS
 ########################################################
     elif statement == "dradis":
-        bot.zues()
+        bot.dp()
         os.system('usr/bin/dradis')
 ########################################################
 ### EVILGRADE
 ########################################################
     elif statement == "evilgrade":
-        bot.zues()
+        bot.dp()
         os.system('usr/bin/evilgrade')
 ########################################################
 ### FIERCE
 ########################################################
     elif statement == "fierce":
-        bot.zues()
+        bot.dp()
         os.system('usr/bin/fierce')
 ########################################################
 ### FIMAP
 ########################################################
     elif statement == "fimap":
-        bot.zues()
+        bot.dp()
         os.system('usr/bin/fimap')
 ########################################################
 ### FRAGROUTER
 ########################################################
     elif statement == "fragrouter":
-        bot.zues()
+        bot.dp()
         os.system('usr/bin/fragrouter')
 ########################################################
 ### GERIX WIFI CRACKER
 ########################################################
     elif statement == "gerix":
-        bot.zues()
+        bot.dp()
         os.system('usr/bin/gerix')
 ########################################################
 ### HEARTBLEED
 ########################################################
     elif statement == "heartbleed":
-        bot.zues()
+        bot.dp()
         os.system('usr/bin/heartbleed')
 ########################################################
 ### GETHOSTIP
 ########################################################
     elif statement == "gethostip":
-        bot.zues()
+        bot.dp()
         os.system('usr/bin/gethostip')
 ########################################################
 ### GHOST PHISHER
 ########################################################
     elif statement == "ghost":
-        bot.zues()
+        bot.dp()
         os.system('usr/bin/ghost-phisher')
 ########################################################
 ### HAMSTER
 ########################################################
     elif statement == "hamster":
-        bot.zues()
+        bot.dp()
         os.system('usr/bin/hamster')
 ########################################################
 ### ZARP
 ########################################################
     elif statement == "zarp":
-        bot.zues()
+        bot.dp()
 	os.system('/usr/bin/zarp')
 ########################################################
 ### ZENMAP
 ########################################################
     elif statement == "zenmap":
-        bot.zues()
+        bot.dp()
 	os.system('/usr/bin/zenmap')
 ########################################################
 ### ZAPROXY
 ########################################################
     elif statement == "zaproxy":
-        bot.zues()
+        bot.dp()
 	os.system('/usr/bin/zaproxy')
 ########################################################  
 ### SHUTDOWN
 ########################################################
     elif statement == "shutdown":
-        bot.zues()
+        bot.dp()
         print("When would you like to shutdown, " + name + "?")
 ### SHUTDOWN COMPUTER SYSTEM AT SPECIFIED TIME [IN MINS]
         os.system('read -p "Enter Time Till Shutdown In Mins: " mins ; echo "SHUTTING DOWN IN $mins MINS...\n ^c TOCANCEL" ; shutdown -h +$mins')
@@ -391,21 +391,21 @@ while True:
 	bot.load()
         os.system('toilet ..pwn')
         time.sleep(3)
-        bot.zues()
+        bot.dp()
 ### START DOTDOTPWN WITH SPECIFIED TARGET
         os.system("read -p 'Enter Target Host: ' target ; dotdotpwn -m http -h $target -M GET ")
 ########################################################  
 ### READPWN
 ########################################################
     elif statement == "readpwn":
-        bot.zues()
+        bot.dp()
 ### READ DOTDOTPWN REPORT
         os.system("read -p 'Enter File Name: ' file ; less /usr/bin/rhea/dotdotpwn/Reports/$file")
 ########################################################  
 ### ..PWNREPO
 ########################################################
     elif statement == "..pwnrepo":
-        bot.zues()
+        bot.dp()
         print("Getting Reports...")
         time.sleep(3)
 ### PRINT LIST OF DOTDOTPWN REPORTS
@@ -415,13 +415,13 @@ while True:
 ########################################################
     elif statement == "fuckshitup":
 ### DISPLAY FUCKSHITUP 'ANIMATION'
-        bot.zues()
+        bot.dp()
         os.system("toilet Lets")
         time.sleep(1)
-        bot.atom()
+        bot.dp()
         os.system("figlet Fuck")
         time.sleep(1)
-        bot.dragon()
+        bot.dp()
         os.system('toilet Shit')
         time.sleep(1)
         bot.satan()
@@ -433,7 +433,7 @@ while True:
 ### BLUEPOT
 ########################################################
     elif statement == "bluepot":
-        bot.atom()
+        bot.dp()
         print("Bluepot now loading")
 ### LOAD BLUEPOT [BLUETOOTH HONEY POT CREATOR]
         os.system('cd /pentest/bluetooth/bluepot && ./run.sh "$@"')
@@ -441,7 +441,7 @@ while True:
 ### MERCURY
 ########################################################
     elif statement == "mercury":
-        bot.atom()
+        bot.dp()
         print("Starting Mercury")
 ### START MERCURY REVERSE ENGINEERING CLIENT
         os.system('cd /pentest/reverse-engineering/mercury/client && sudo ./mercury.py "$@"')
@@ -461,15 +461,15 @@ while True:
 ### GPG
 ########################################################
     elif statement == "gpg":
-        bot.atom()
-        print("Loading key generator")
+        bot.dp()
+        print("Loading GPG Key Generator...")
 ### GENERATE A NEW GPG KEY
         os.system("gpg --gen-key")
 ########################################################  
 ### VIPER
 ########################################################
     elif statement == "viper":
-        bot.atom()
+        bot.dp()
         print("Loading Viper")
 ### RUN VIPER.PY
         os.system("viper.py")
@@ -477,7 +477,7 @@ while True:
 ### WEBINFO
 ########################################################
     elif statement == "webinfo":
-        bot.atom()
+        bot.dp()
         print("Enter URL to get web info")
 ### RUN VULNERABILITY SCAN ON TARGET WEBSITE
         os.system("read -p 'Enter Site Name: ' site ; whois $site ; dig $site ; % dig +short $site ; nslookup -type=any $site ; nikto -host $site -C all ; read output ")
@@ -485,14 +485,14 @@ while True:
 ### METAGOO
 ########################################################
     elif statement == "metagoo":
-        bot.atom()
+        bot.dp()
 ### START METAGOOFIL
         os.system("read -p 'Enter Domain to search: ' dom ; read -p 'Enter Filetype To Download (pdf,doc,xls,ppt,odp,ods,docx,xlsx,pptx): ' down ; read -p 'Where Do You Want To Save Downloaded Files?: ' dfile ; read -p 'Enter Where Do You Want To Save Output File?: ' ofile ; /usr/bin/metagoofil -d $dom -t $down -o $dfile -f $ofile ")
 ########################################################  
 ### W3AF
 ########################################################
     elif statement == "w3af":
-        bot.atom()
+        bot.dp()
         print("Loading W3AF")
 ### RUN W3AF IN TERMINAL
         os.system("/usr/bin/w3af_console")
@@ -500,7 +500,7 @@ while True:
 ### W3GUI
 ########################################################
     elif statement == "w3gui":
-        bot.atom()
+        bot.dp()
         print("Loading W3AF")
 ### OPEN W3AF [GUI] APPLICATION
         os.system("/usr/bin/w3af_gui")
@@ -509,20 +509,20 @@ while True:
 ### HTTPTEST
 ########################################################
     elif statement == "httptest":
-        bot.atom()
+        bot.dp()
 ### START SLOWHTTPTEST
         os.system("/usr/bin/slowhttptest")
 ########################################################  
 ### GRABBER
 ########################################################
     elif statement == "grabber":
-        bot.atom()
+        bot.dp()
         os.system("/usr/bin/grabber")
 ########################################################  
 ### KEYS
 ########################################################
     elif statement == "keys":
-        bot.atom()
+        bot.dp()
 ### START SEAHORSE [PASSWORDS AND KEYS MANAGER]
         os.system("/usr/bin/seahorse")
 ########################################################  
@@ -530,7 +530,7 @@ while True:
 ########################################################
     elif statement == "ettercap":
         os.system('clear')
-        bot.atom()
+        bot.dp()
         print('Starting Ettercap...')
         time.sleep(3)
 ### START ETTERCAP [CONFIGURED FOR WLAN0]
@@ -539,7 +539,7 @@ while True:
 ### PYRIT
 ########################################################
     elif statement == "pyrit":
-        bot.atom()
+        bot.dp()
         print("Recognized options:\n  -b               : Filters AccessPoint by BSSID\n  -e               : Filters AccessPoint by ESSID\n  -h               : Print help for a certain command\n  -i               : Filename for input ('-' is stdin)\n  -o               : Filename for output ('-' is stdout)\n  -r               : Packet capture source in pcap-format\n  -u               : URL of the storage-system to use\n  --all-handshakes : Use all handshakes instead of the best one\n \n Recognized commands:\n  analyze                 : Analyze a packet-capture file\n  attack_batch            : Attack a handshake with PMKs/passwords from the db\n  attack_cowpatty         : Attack a handshake with PMKs from a cowpatty-file\n  attack_db               : Attack a handshake with PMKs from the db\n  attack_passthrough      : Attack a handshake with passwords from a file\n  batch                   : Batchprocess the database\n  benchmark               : Determine performance of available cores\n  benchmark_long          : Longer and more accurate version of benchmark (~10 minutes)\n  check_db                : Check the database for errors\n  create_essid            : Create a new ESSID\n  delete_essid            : Delete a ESSID from the database\n  eval                    : Count the available passwords and matching results\n  export_cowpatty         : Export results to a new cowpatty file\n  export_hashdb           : Export results to an airolib database\n  export_passwords        : Export passwords to a file\n  help                    : Print general help\n  import_passwords        : Import passwords from a file-like source\n  import_unique_passwords : Import unique passwords from a file-like source\n  list_cores              : List available cores\n  list_essids             : List all ESSIDs but don't count matching results\n  passthrough             : Compute PMKs and write results to a file\n  relay                   : Relay a storage-url via RPC\n  selftest                : Test hardware to ensure it computes correct results\n  serve                   : Serve local hardware to other Pyrit clients\n  strip                   : Strip packet-capture files to the relevant packets\n  stripLive               : Capture relevant packets from a live capture-source\n  verify                  : Verify 10% of the results by recomputation")
 ### START PYRIT 
         os.system("read -p 'Enter Options: ' option ; read -p 'Enter Commands: ' com ; /usr/bin/pyrit $option $com")
@@ -547,15 +547,15 @@ while True:
 ### HIDEME
 ########################################################
     elif statement == "hideme":
-        bot.atom()
-        print("I Am Hiding You")
+        bot.dp()
+        print("Well let's just run to the shadows why don't we? Ya fuckin pussy...")
         os.system("service tor start ")
 ########################################################  
 ### DRIFT
 ########################################################
     elif statement == "drift":
-        bot.atom()
-        print("Let's Drift")
+        bot.dp()
+        print("Let's see what these fags are lookin at...")
 ### START DRIFTNET [ALREADY CONFIGURED FOR USE WITH WLAN0
 ### { IF USING ETHERNET, CHANGE ALL INSTANCES OF WLAN0 TO 
 ### ETH0 OR ETH1 DEPENDING ON YOUR SYSTEM CONFIGURATION}]
@@ -564,28 +564,30 @@ while True:
 ### KALI
 ########################################################
     elif statement == "kali":
-        bot.atom()
+        bot.dp()
+	print("Let's learn how to use some of this shit...")
+	time.sleep(2)
 ### GO TO KALI LINUX TOOLS LISTING USING GOOGLE-CHROME
         os.system('google-chrome tools.kali.org/tools-listing')
 ########################################################  
 ### P0F
 ########################################################
     elif statement == "p0f":
-        bot.atom()
+        bot.dp()
 ### START PASSIVE OS FINGERPRINTING UTILITY
         os.system('p0f -i wlan0 -p -o /tmp/p0f.log')
 ########################################################  
 ### REAVERSCAN
 ########################################################
     elif statement == "wash":
-        bot.atom()
+        bot.dp()
 ### START WIFI PROTECTED SETUP SCAN TOOL
         os.system('read -p "Enter Channel: " chan ; wash -i mon0 -c $chan -C')
 ########################################################  
 ### REAVER
 ########################################################
     elif statement == "reaver":
-        bot.atom()
+        bot.dp()
 ### START WIFI PROTRECTED SETUP ATTACK TOOL
         os.system('read -p "Enter BSSID: " bssid ; reaver -i mon0 -b $bssid -v')
 ########################################################  
@@ -610,7 +612,7 @@ while True:
 ### VULNSCAN
 ########################################################
     elif statement == "vulnscan":
-        bot.atom()
+        bot.dp()
         print("Starting SkipFish")
         time.sleep(3)
         os.system('read -p "Enter URL: " url ; read -p "Enter File Title: " title ; mkdir /usr/bin/rhea/skipfish/$title; skipfish -o /usr/bin/rhea/skipfish/$title -S /usr/share/skipfish/dictionaries/minimal.wl $url')
@@ -625,7 +627,7 @@ while True:
 ########################################################
     elif statement == "automater":
         os.system('clear')
-        bot.atom()
+        bot.dp()
         os.system('read -p "Enter Host: " host ; automater -t $host')
 ########################################################  
 ### AUTODETECT
@@ -672,25 +674,25 @@ while True:
 ### DIG
 ########################################################
     elif statement == "dig":
-        bot.atom()
+        bot.dp()
         os.system('read -p "Enter Host: " host ; dig $host')
 ########################################################  
 ### DMITRY
 ########################################################
     elif statement == "dmitry":
-        bot.atom()
+        bot.dp()
         os.system('read -p "Enter Host: " host ; dmitry $host')
 ########################################################  
 ### XHYDRA
 ########################################################
     elif statement == "xhydra":
-        bot.atom()
+        bot.dp()
         os.system("/usr/bin/xhydra")
 ########################################################  
 ### AFL
 ########################################################
     elif statement == "afl":
-        bot.atom()
+        bot.dp()
         print("Please Connect Android Device Before Running This Command...")
         time.sleep(2)
         while True:
@@ -717,7 +719,7 @@ while True:
 ### ANDROSDK
 ########################################################
     elif statement == "androsdk":
-        bot.atom()
+        bot.dp()
         os.system("/usr/bin/android-sdk")
 ########################################################  
 ### SYSPRINT
@@ -729,13 +731,13 @@ while True:
 ### BLUEBROWSE
 ########################################################
     elif statement == "bluebrowse":
-        bot.atom()
+        bot.dp()
         os.system("/usr/bin/blueman-browse")
 ######################################################## 
 ### BLUEPHONEBOOK
 ########################################################
     elif statement == "bluephonebook":
-        bot.atom()
+        bot.dp()
         print('bluesnarfer: you must set bd_addr\n bluesnarfer, version 0.1 -\n usage: bluesnarfer [options] [ATCMD] -b bt_addr\n ATCMD     : valid AT+CMD (GSM EXTENSION)\n TYPE      : valid phonebook type ..\n example   : "DC" (dialed call list)\n            "SM" (SIM phonebook)\n            "RC" (recevied call list)\n            "XX" much more\n -b bdaddr : bluetooth device address\n -C chan   : bluetooth rfcomm channel\n -c ATCMD  : custom action\n -r N-M    : read phonebook entry N to M \n -w N-M    : delete phonebook entry N to M\n -f name   : search "name" in phonebook address\n -s TYPE   : select phonebook memory storage\n -l        : list aviable phonebook memory storage\n -i        : device info')
         os.system("/usr/bin/bluesnarfer ")
         os.system("/usr/bin/bluesnarfer ")
@@ -743,7 +745,7 @@ while True:
 ### BOMBARDMENT
 ########################################################
     elif statement == "bombardment":
-        bot.atom()
+        bot.dp()
         os.system("man bombardment")
         os.system("/usr/bin/bombardment")
 ########################################################  
@@ -759,27 +761,27 @@ while True:
 ### BULLY
 ########################################################
     elif statement == "bully":
-        bot.atom()
+        bot.dp()
         os.system("man /usr/bin/bully")
         os.system("/usr/bin/bully ")
 ########################################################  
 ### BURPSUITE
 ########################################################
     elif statement == "burpsuite":
-        bot.atom()
+        bot.dp()
         os.system("/usr/bin/burpsuite")
 ########################################################  
 ### DIG
 ########################################################
     elif statement == "dig":
-        bot.atom()
+        bot.dp()
         os.system("man /usr/bin/dig")
         os.system("/usr/bin/dig ")
 ########################################################  
 ### DUMPZILLA
 ########################################################
     elif statement == "dumpzilla":
-        bot.atom()
+        bot.dp()
         os.system("/usr/bin/dumpzilla")
         os.system("/usr/bin/dumpzilla ")
 ########################################################  
@@ -793,61 +795,61 @@ while True:
 ### GEOIP
 ########################################################
     elif statement == "geoip":
-        bot.atom()
+        bot.dp()
         os.system("read -p 'Enter Target IP Address: ' ip ; lynx -dump 'http://www.ip-adress.com/ip_tracer/$ip' | grepaddress | egrep 'city|state|country' | awk '{print $3,$4,$5,$6,$7,$8,$9}' | sed 's\ip address flag \\'|sed 's\My\\' ; read output")
 ########################################################  
 ### MALTEGO
 ########################################################
     elif statement == "maltego":
-        bot.kronos()
+        bot.dp()
         os.system("/usr/bin/casefile")
 ########################################################  
 ### CALIBRE
 ########################################################
     elif statement == "calibre":
-        bot.kronos()
+        bot.dp()
         os.system("/usr/bin/calibre")
 ########################################################  
 ### AUTOPSY
 ########################################################
     elif statement == "autopsy":
-        bot.kronos()
+        bot.dp()
         os.system("/usr/bin/autopsy")
 ########################################################  
 ### CREEPY
 ########################################################
     elif statement == "creepy":
-        bot.kronos()
+        bot.dp()
         os.system("/usr/bin/creepy")
 ########################################################  
 ### CUCKOO
 ########################################################
     elif statement == "cuckoo":
-        bot.kronos()
+        bot.dp()
         os.system("/usr/bin/cuckoo")
 ########################################################  
 ### CYMOTHOA
 ########################################################
     elif statement == "cymothoa":
-        bot.kronos()
+        bot.dp()
         os.system("/usr/bin/cymothoa")
 ########################################################  
 ### DFF
 ########################################################
     elif statement == "dff":
-        bot.kronos()
+        bot.dp()
         os.system("man dff ; /usr/bin/dff")
 ########################################################  
 ### DFFGUI
 ########################################################
     elif statement == "dffgui":
-        bot.kronos()
+        bot.dp()
         os.system("/usr/bin/dff-gui")
 ########################################################  
 ### DUMPCAP
 ########################################################
     elif statement == "dumpcap":
-        bot.kronos()
+        bot.dp()
         os.system("/usr/bin/dumpcap -i wlan0")
 ########################################################  
 ### FERN
@@ -868,7 +870,7 @@ while True:
 ### HARVEST
 ########################################################
     elif statement == "harvest":
-        bot.kronos()
+        bot.dp()
         print("-d: Domain to search or company name")
         print("-b: Data source (google,bing,bingapi,pgp,linkedin,google-profiles,people123,jigsaw,all)")
         print("-s: Start in result number X (default 0)")
@@ -890,7 +892,7 @@ while True:
 ########################################################
     elif statement == "recon":
         os.system('clear')
-        bot.kronos()
+        bot.dp()
         print('Loading Recon-ng...')
         time.sleep(3)
         os.system("/usr/bin/recon-ng")
@@ -901,11 +903,11 @@ while True:
 ### QUIT
 ########################################################
     elif statement == "quit":
-        with open("Kronosconv.txt", "a") as myfile:
-            myfile.write("\nKronos terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
+        with open("D34D9001conv.txt", "a") as myfile:
+            myfile.write("\nD34D9001 terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
         os.system('clear')
-        with open("Kronos.log", "a") as myfile:
-            myfile.write("\nKronos terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
+        with open("D34D9001.log", "a") as myfile:
+            myfile.write("\nD34D9001 terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "\n")
         bot.dp()
         print('Fuck off...')
         os.system('cp /usr/bin/rhea/kronos.py /media/Program13/13/truecrypt1/.backup/kronos.py.backup')
@@ -913,6 +915,7 @@ while True:
         os.system('cp /usr/bin/rhea/psych.py /media/Program13/13/truecrypt1/.backup/psych.py.backup')
         os.system('cp Kronosconv.txt /media/Program13/13/truecrypt1/.backup/Kronosconv.txt.backup')
         os.system('cp Kronos.log /media/Program13/13/truecrypt1/.backup/Kronos.log.backup')
+        os.system('cp 13.py /media/Program13/13/truecrypt1/13.py ; cp kronos.py /media/Program13/13/truecrypt1/kronos.py ; cp D34D9001.py /media/Program13/13/truecrypt1/D34D9001.py')
         quit()
 
         if __name__ == "__main__":

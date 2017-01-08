@@ -537,3 +537,25 @@ Rhea terminated at:  18:09:02  07/01/2017
 20:32:20   RHEA:   
 20:32:31   USER:  quit
 20:32:31   RHEA:   
+01:18:42   USER:  ?
+01:18:42   RHEA:   
+01:20:34   USER:  quit
+01:20:35   RHEA:   
+01:21:15   USER:  quit
+01:21:15   RHEA:   
+01:24:58   USER:  ?
+01:24:58   RHEA:   
+01:28:04   USER:  ?
+01:28:04   RHEA:   
+01:28:18   USER:  find
+01:28:18   RHEA:   
+01:28:22   USER:  what up
+01:28:22   RHEA:   
+01:28:24   USER:  hey
+01:28:24   RHEA:  Hey, how are you
+01:28:28   USER:  great
+01:28:28   RHEA:   
+01:30:23   USER:  nmap
+01:30:23   RHEA:   
+01:35:27   USER:  quit
+01:35:27   RHEA:   
