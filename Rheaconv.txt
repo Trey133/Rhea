@@ -559,3 +559,311 @@ Rhea terminated at:  18:09:02  07/01/2017
 01:30:23   RHEA:   
 01:35:27   USER:  quit
 01:35:27   RHEA:   
+01:43:19   USER:  pyrit
+01:43:19   RHEA:   
+01:44:03   USER:  
+01:44:03   RHEA:   
+01:44:25   USER:  quti
+01:44:25   RHEA:   
+01:44:27   USER:  quit
+01:44:27   RHEA:   
+16:14:24   USER:  goofile
+16:14:24   RHEA:   
+16:14:30   USER:  goofile
+16:14:31   RHEA:   
+16:14:37   USER:  quit
+16:14:37   RHEA:   
+16:15:19   USER:  goofile
+16:15:19   RHEA:   
+16:15:25   USER:  quit
+16:15:25   RHEA:   
+16:17:06   USER:  goofile
+16:17:06   RHEA:   
+16:17:09   USER:  goofile
+16:17:09   RHEA:   
+16:17:20   USER:  quit
+16:17:20   RHEA:   
+16:18:10   USER:  goofile
+16:18:10   RHEA:   
+16:19:09   USER:  quit
+16:19:09   RHEA:   
+16:19:38   USER:  goofile
+16:19:38   RHEA:   
+16:19:57   USER:  c
+16:19:57   RHEA:   
+16:20:29   USER:  goofile
+16:20:29   RHEA:   
+16:20:57   USER:  goofile
+16:20:57   RHEA:   
+16:21:20   USER:  goofile
+16:21:20   RHEA:   
+16:21:52   USER:  goofile
+16:21:52   RHEA:   
+16:23:07   USER:  
+16:23:07   RHEA:   
+16:25:39   USER:  quit
+16:25:39   RHEA:   
+17:15:03   USER:  quit
+17:15:03   RHEA:   
+
+Rhea started at:  21:51:39  08/01/2017
+
+Rhea started by:  7R3Y
+21:52:02   USER:  game
+21:52:02   RHEA:   
+
+Rhea started at:  21:53:49  08/01/2017
+
+Rhea started by:  7R3Y
+21:54:08   USER:  game
+21:54:08   RHEA:   
+21:54:43   USER:  game
+21:54:43   RHEA:   
+21:55:08   USER:  GAME
+21:55:08   RHEA:   
+21:55:10   USER:  game
+21:55:10   RHEA:   
+21:55:52   USER:  game
+21:55:52   RHEA:   
+21:56:49   USER:  game
+21:56:49   RHEA:   
+21:57:16   USER:  game
+21:57:16   RHEA:   
+
+Rhea started at:  22:00:17  08/01/2017
+
+Rhea started by:  7R3Y
+22:00:43   USER:  game
+22:00:43   RHEA:   
+22:01:35   USER:  game
+22:01:35   RHEA:   
+22:13:17   USER:  game
+22:13:17   RHEA:   
+22:13:42   USER:  gma
+22:13:42   RHEA:   
+22:13:43   USER:  gam
+22:13:43   RHEA:   
+22:13:45   USER:  game
+22:13:45   RHEA:   
+22:13:50   USER:  game
+22:13:50   RHEA:   
+22:13:58   USER:  gam'e
+22:13:58   RHEA:   
+22:14:00   USER:  game
+22:14:00   RHEA:   
+22:14:14   USER:  game
+22:14:14   RHEA:   
+22:17:50   USER:  QQQsQgame
+22:17:50   RHEA:   
+22:17:52   USER:  game
+22:17:52   RHEA:   
+22:18:00   USER:  game
+22:18:00   RHEA:   
+22:19:19   USER:  game
+22:19:19   RHEA:   
+22:21:04   USER:  game
+22:21:04   RHEA:   
+22:29:24   USER:  game
+22:29:24   RHEA:   
+22:31:09   USER:  quit
+22:31:09   RHEA:   
+
+Rhea terminated at:  22:31:09  08/01/2017
+
+Rhea started at:  22:33:16  08/01/2017
+
+Rhea started at:  22:44:58  08/01/2017
+
+Rhea started by:  7R3Y
+22:45:11   USER:  game
+22:45:11   RHEA:   
+
+Rhea started at:  22:45:51  08/01/2017
+
+Rhea started by:  13
+22:46:05   USER:  game
+22:46:05   RHEA:   
+22:46:37   USER:  game
+22:46:37   RHEA:   
+22:47:01   USER:  game
+22:47:01   RHEA:   
+22:47:28   USER:  game
+22:47:28   RHEA:   
+22:47:43   USER:  game
+22:47:43   RHEA:   
+22:47:57   USER:  game
+22:47:57   RHEA:   
+22:48:14   USER:  game
+22:48:14   RHEA:   
+22:48:53   USER:  game
+22:48:53   RHEA:   
+22:49:04   USER:  game
+22:49:04   RHEA:   
+22:50:46   USER:  s
+22:50:46   RHEA:   
+22:50:48   USER:  game
+22:50:48   RHEA:   
+22:51:55   USER:  game
+22:51:55   RHEA:   
+22:52:15   USER:  game
+22:52:15   RHEA:   
+22:52:29   USER:  phantasia
+22:52:29   RHEA:   
+22:52:31   USER:  game
+22:52:31   RHEA:   
+22:56:35   USER:  game
+22:56:35   RHEA:   
+22:57:10   USER:  game
+22:57:10   RHEA:   
+22:57:43   USER:  game
+22:57:43   RHEA:   
+23:00:00   USER:  game
+23:00:00   RHEA:   
+23:19:44   USER:  game
+23:19:44   RHEA:   
+23:20:19   USER:  game
+23:20:19   RHEA:   
+23:21:34   USER:  game
+23:21:34   RHEA:   
+23:21:52   USER:  game
+23:21:52   RHEA:   
+23:22:08   USER:  game
+23:22:08   RHEA:   
+23:26:08   USER:  game
+23:26:08   RHEA:   
+23:29:06   USER:  game
+23:29:06   RHEA:   
+03:37:52   USER:  ?
+03:37:52   RHEA:   
+03:38:27   USER:  quit
+03:38:27   RHEA:   
+04:17:04   USER:  atk6
+04:17:04   RHEA:   
+04:17:30   USER:  atk6
+04:17:30   RHEA:   
+04:18:08   USER:  atk6
+04:18:08   RHEA:   
+04:19:21   USER:  quit
+04:19:21   RHEA:   
+04:26:00   USER:  ?
+04:26:00   RHEA:   
+04:26:44   USER:  nmap
+04:26:44   RHEA:   
+04:26:57   USER:  ?
+04:26:57   RHEA:   
+04:27:04   USER:  atk6
+04:27:04   RHEA:   
+04:27:40   USER:  atk6
+04:27:40   RHEA:   
+04:29:08   USER:  atk6
+04:29:08   RHEA:   
+04:29:17   USER:  
+04:29:17   RHEA:   
+04:29:24   USER:  sup dude
+04:29:24   RHEA:   
+04:29:26   USER:  hey 
+04:29:26   RHEA:  Hello how are you feeling today
+04:29:37   USER:  great. what about you?
+04:29:37   RHEA:   
+04:29:44   USER:  how are you?
+04:29:44   RHEA:  I just smoked a bunch of crack... : )
+04:29:50   USER:  hahaha
+04:29:50   RHEA:  Don't laugh at me bitch
+04:30:05   USER:  ?
+04:30:05   RHEA:   
+04:30:59   USER:  atk6
+04:30:59   RHEA:   
+04:32:07   USER:  shutdown
+04:32:07   RHEA:   
+06:11:18   USER:  atk6
+06:11:18   RHEA:   
+06:12:52   USER:  quit
+06:12:52   RHEA:   
+13:24:21   USER:  fake
+13:24:21   RHEA:   
+13:24:29   USER:  fake
+13:24:29   RHEA:   
+13:24:32   USER:  fakeit
+13:24:32   RHEA:   
+13:24:44   USER:  
+13:24:44   RHEA:   
+13:24:47   USER:  etter
+13:24:47   RHEA:   
+13:25:00   USER:  
+13:25:00   RHEA:   
+13:25:03   USER:  ?
+13:25:03   RHEA:   
+13:26:39   USER:  fping
+13:26:39   RHEA:   
+13:28:08   USER:  fping
+13:28:08   RHEA:   
+13:37:50   USER:  fping
+13:37:50   RHEA:   
+13:40:45   USER:  fping
+13:40:45   RHEA:   
+13:42:06   USER:  restart
+13:42:06   RHEA:   
+13:42:58   USER:  fping
+13:42:58   RHEA:   
+13:43:08   USER:  
+13:43:08   RHEA:   
+13:43:12   USER:  fping
+13:43:12   RHEA:   
+13:46:12   USER:  restart
+13:46:12   RHEA:   
+13:46:46   USER:  fping
+13:46:46   RHEA:   
+13:47:30   USER:  restart
+13:47:30   RHEA:   
+13:48:17   USER:  fping
+13:48:17   RHEA:   
+13:49:00   USER:  restart
+13:49:00   RHEA:   
+13:49:28   USER:  fping
+13:49:28   RHEA:   
+13:50:26   USER:  restart
+13:50:26   RHEA:   
+13:51:03   USER:  fping
+13:51:03   RHEA:   
+13:52:31   USER:  restart
+13:52:31   RHEA:   
+13:52:53   USER:  fping
+13:52:53   RHEA:   
+14:02:50   USER:  atk6
+14:02:50   RHEA:   
+22:09:52   USER:  restart
+22:09:52   RHEA:   
+22:13:11   USER:  restart
+22:13:11   RHEA:   
+22:14:12   USER:  ?
+22:14:12   RHEA:   
+22:18:47   USER:  
+22:18:47   RHEA:   
+22:19:32   USER:  restart
+22:19:32   RHEA:   
+22:24:54   USER:  quit
+22:24:54   RHEA:   
+01:34:36   USER:  atk
+01:34:36   RHEA:   
+01:34:40   USER:  atk6
+01:34:40   RHEA:   
+01:37:04   USER:  atk6
+01:37:04   RHEA:   
+01:37:13   USER:  
+01:37:13   RHEA:   
+01:38:39   USER:  restart
+01:38:39   RHEA:   
+01:39:35   USER:  atk
+01:39:35   RHEA:   
+01:39:38   USER:  atk6
+01:39:38   RHEA:   
+01:40:25   USER:  
+01:40:25   RHEA:   
+00:59:54   USER:  atk6
+00:59:54   RHEA:   
+01:01:28   USER:  atk6
+01:01:28   RHEA:   
+01:02:06   USER:  
+01:02:06   RHEA:   
+01:02:22   USER:  etter
+01:02:22   RHEA:   

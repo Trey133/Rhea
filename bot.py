@@ -10,14 +10,8 @@ import sys
 import random
 import math
 import subprocess
-import future
 import requests
 import psych
-import image_scraper
-from lxml import html
-from html.parser import HTMLParser
-from urllib.request import urlopen
-from urllib import parse
 
 def rhea():
     os.system('clear')

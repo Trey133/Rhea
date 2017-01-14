@@ -114,7 +114,7 @@ with open("D34D9001conv.txt", "a") as myfile:
 print("What's up " + name + "? My name is D34D9001.")
 time.sleep(2)
 bot.dp()
-opsys = raw_input("Which Operating System Are You Using?: cyborg // kali // ubuntu1604 \n[DP@CL]: ")
+opsys = raw_input("Which Operating System Are You Using?: cyborg // kali // ubuntu1604 \n[DP@CL]:")
 ####################
 ####################
 ####################

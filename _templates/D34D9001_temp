@@ -1,0 +1,166 @@
+########################################################
+################## Python Templates ####################
+########################################################
+
+
+////////////////////////////////////////////////////////
+                           OPSYS
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+time.sleep(2)
+bot.dp()
+opsys = raw_input("Which Operating System Are You Using?: cyborg // kali // ubuntu1604 ")
+if opsys == "":
+    [...]
+elif opsys == "":
+    [...]
+else:
+    [...]
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+                 ELIF /USR/BIN/$PROG
+////////////////////////////////////////////////////////
+
+
+########################################################
+###
+########################################################
+    elif statement == "":
+        bot.dp()
+        os.system('usr/bin/')
+########################################################
+###
+########################################################
+    elif statement == "":
+        bot.dp()
+        os.system('usr/bin/')
+########################################################
+###
+########################################################
+    elif statement == "":
+        bot.dp()
+        os.system('usr/bin/')
+
+
+////////////////////////////////////////////////////////
+                        LOGIN
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+^^^  IMPORT CONFIG#.PY  ^^^
+^^^  OSYS = RAW_INPUT("ARE YOU USING KALI LINUX?: Y/N ")  ^^^
+[...]
+
+    print("Login:")
+    username = raw_input("Username: ")
+    if username == config.username:
+        print("Sounds Legit...")
+    else:
+        bot.dp()
+        with open("D34D9001.log", "a") as myfile:
+            myfile.write("\nD34D9001 terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "Due to Incorrect Username.\n")
+        print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+### IF USERNAME IS INCORRECT, TERMINATE PROGRAM
+        quit()
+    bot.dp()
+### DO NOT PRINT PASSWORD TO STDOUT [DON'T DISPLAY IT ON THE SCREEN AS YOU TYPE]
+    os.system("stty -echo")
+    password = raw_input("Please Enter Password: ")
+### TURN PRINT TO STDOUT BACK ON
+    os.system("stty echo")
+    print("\n")
+    if password == config.password:
+        bot.unlock()
+        if osys == "n":
+            os.system("gpg -e -r Ender /usr/bin/rhea/config.py --output '/usr/bin/rhea/config.py.gpg' ")
+            os.system('rm config.py')
+            os.system('rm config.pyc')
+        elif osys == "y":
+            bot.dragon()
+            time.sleep(2)
+        os.system('clear')
+        print("Access Granted")
+        print("Please Wait While System Loads...")
+### WAIT FOR (2) SECONDS BEFORE CONTINUING
+        time.sleep(2)
+        break
+    else:
+        bot.dp()
+        print("INTRUDER ALERT!!!" , "SYSTEM LOCKED")
+        with open("D34D9001.log", "a") as myfile:
+            myfile.write("\nD34D9001 terminated at:  " + time.strftime("%H:%M:%S") + "  " + time.strftime("%d/%m/%Y") + "Due to Incorrect Username.\n")
+        if osys == "n":
+### IF PASSWORD IS INCORRECT, TERMINATE PROGRAM
+            os.system("gpg -e -u Ender /usr/bin/rhea/config.py --output '/usr/bin/rhea/config.py.gpg' ")
+            os.system('rm config.py')
+            os.system('rm config.pyc')
+        elif osys == "y":
+            bot.dragon()
+            time.sleep(2)
+        os.system('clear')
+        quit()
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+                      SECONDARY IMPORT
+////////////////////////////////////////////////////////
+
+
+    import time
+    import webbrowser
+    import re
+    import urllib
+    import urllib2
+    import sys
+    import random
+    import numpy as np
+    import math
+    import subprocess
+    import future
+    import requests
+    from lxml import html
+    from html.parser import HTMLParser
+#    from urllib.request import urlopen
+#    from urllib import parse
+
+
+////////////////////////////////////////////////////////
+                     MAIN IMPORT
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+import os
+import re
+import sys
+import time
+#############################################################
+### IMPORT ###                                            ###
+import psych#.PY     ### D34D9001's RESPONSES             ###
+import bot#.PY       ### D34D9001's FUNCTIONS             ###
+### FROM /USR/BIN/RHEA ###                                ###
+#############################################################
+### THESE FILES HOLD OUR FUNCTIONS AND RESPONSES FOR D34D9001 ###
+#############################################################
+#############################################################
+###   import image_scraper ### [THIS IS NEEDED FOR (1) COMMAND.]
+#############################################################
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+                          LOG
+////////////////////////////////////////////////////////
+
+
+name = raw_input("What is your name? ")
+with open("D34D9001.log", "a") as myfile:
+    myfile.write("\nD34D9001 started by:  " + name + "\n")
+with open("D34D9001conv.txt", "a") as myfile:
+    myfile.write("\nD34D9001 started by:  " + name + "\n")
+print("What's up " + name + "? My name is D34D9001.")
+
+
+////////////////////////////////////////////////////////
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -4,8 +4,9 @@ import os
 import time
 import webbrowser
 import re
-import urllib
+#import urllib
 import urllib2
+import argparse
 import sys
 import random
 import numpy as np
@@ -26,13 +27,32 @@ import bot#.PY       ### RHEA'S FUNCTIONS                 ###
 #############################################################
 from lxml import html
 from html.parser import HTMLParser
-from urllib.request import urlopen
-from urllib import parse
+#from urllib.request import urlopen
+#from urllib import parse
 os.system('sudo')
 os.system('clear')
+def kron():
+    os.system('python /media/Program13/13/truecrypt1/rhea/kronos.py')
+def rhea():
+    os.system('python /media/Program13/13/truecrypt1/rhea/13.py')
+def deadpool():
+    os.system('python /media/Program13/13/truecrypt1/rhea/D34D9001.py')
+parser = argparse.ArgumentParser(prog='rhea')
+parser.add_argument("-r", "--rhea", default='rhea', help="Start Rhea")
+parser.add_argument("-k", "--kronos", default='kron', help="Start Kronos")
+parser.add_argument("-d", "--deadpool", default='deadpool', help="Start D34D9001")
+args = parser.parse_args()
+if args.kronos:
+    kron()
+elif args.rhea:
+    rhea()
+elif args.deadpool:
+    deadpool()
+else:
+    print('Error: ' + args + ' Not Defined')
 bot.atom()
 os.system("figlet Rhea")
-print("Developed by: 7R3Y @ Program13 // copyleft: 2016\n Program13.me // Programthirteen@gmail.com")
+print("Developed by: $M0K3Y @ Program13 // copyleft: 2016\n Program13.me // Programthirteen@gmail.com")
 time.sleep(5)
 ### THIS PROGRAM WILL NOT FUNCTION PROPERLY IF NOT RUN AS 'ROOT'
 os.system('clear')
@@ -200,12 +220,19 @@ while True:
 ### SHUTDOWN COMPUTER SYSTEM AT SPECIFIED TIME [IN MINS]
 	os.system('read -p "Enter Time Till Shutdown In Mins: " mins ; echo "SHUTTING DOWN IN $mins MINS...\n ^c TO CANCEL" ; shutdown -h +$mins')
 ########################################################
-###
 ########################################################
-    elif statement == "-k":
-	os.system('python /usr/bin/rhea/kronos.py')
-    elif statement == "-z":
-        os.system('python /usr/bin/rhea/zues.py')
+########################################################
+### KRONOS                                           ###
+########################################################
+    elif statement == "k":                           ###
+	os.system('python /usr/bin/rhea/kronos.py')  ###
+########################################################
+### D34D9001                                         ###
+########################################################
+    elif statement == "d":                           ###
+        os.system('python /usr/bin/rhea/D34D9001.py')###
+########################################################
+########################################################
 ########################################################  
 ### PROGRAM13
 ########################################################
@@ -241,6 +268,9 @@ while True:
 ########################################################  
 ### PLAY
 ########################################################
+    elif statement == "game":
+	bot.controller()
+	os.system("ls /usr/games ; read -p 'Choose A Game: ' game ; /usr/games/$game")
     elif statement == "play":
 	bot.controller()
 	print("What game would you like to play, " + name + "?")
@@ -791,7 +821,7 @@ while True:
         os.system('cp /usr/bin/rhea/psych.py /media/Program13/13/truecrypt1/.backup/psych.py.backup')
         os.system('cp Rheaconv.txt /media/Program13/13/truecrypt1/.backup/Rheaconv.txt.backup')
         os.system('cp Rhea.log /media/Program13/13/truecrypt1/.backup/Rhea.log.backup')
-        os.system('cp 13.py /media/Program13/13/truecrypt1/13.py ; cp kronos.py /media/Program13/13/truecrypt1/kronos.py ; cp D43D9001.py /media/Program13/13/truecrypt1/D34D9001.py')
+        os.system('cp 13.py /media/Program13/13/truecrypt1/13.py ; cp kronos.py /media/Program13/13/truecrypt1/kronos.py ; cp D34D9001.py /media/Program13/13/truecrypt1/D34D9001.py')
         quit()
 
         if __name__ == "__main__":
